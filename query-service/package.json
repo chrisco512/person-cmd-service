@@ -5,6 +5,7 @@
   "main": "app.js",
   "engine": "node 6.0.0",
   "scripts": {
+    "devtool": "devtool app.js --watch --break",
     "test": "mocha **/*.spec.js",
     "test:watch": "npm run test -- --watch",
     "start:prod": "node app.js",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "babel-polyfill": "^6.9.1",
+    "devtool": "^2.0.2",
     "nodemon": "^1.9.2"
   }
 }

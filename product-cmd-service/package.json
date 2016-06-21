@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "devtool": "devtool app.js --watch --break",
     "test": "mocha **/*.spec.js",
     "test:watch": "npm run test -- --watch",
     "start:prod": "node app.js",
@@ -33,6 +34,7 @@
     "validations": "bitbucket:ultilabs/validations#HEAD"
   },
   "devDependencies": {
+    "devtool": "^2.0.2",
     "nodemon": "^1.9.2"
   }
 }
