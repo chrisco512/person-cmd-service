@@ -55,3 +55,7 @@ You start the system by running the `start` script with the environment you want
 
 `start develop` will create a volume for each microservice so you can change the services and have the changes exist in the container as well as the docker host machine NOTE: YOU MUST INSTALL THE NPM PACKAGES FOR EACH SERVICE FOR DEVELOP TO WORK fix for this coming soon. Stay Tuned!!
 `start production` will build all the images with and run them with no file system attachment to the docker host machine
+
+# Linus Torvalds Appreciation Day
+## June 21st, 2016
+Let this day go down in history as the day all the zombie line endings were eradicated. Praise LF! Long live Linus Torvalds!
