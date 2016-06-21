@@ -5,7 +5,11 @@
   "main": "app.js",
   "engine": "node 6.0.0",
   "scripts": {
-    "start": "node app.js"
+    "devtool": "devtool app.js --watch --break",
+    "test": "mocha **/*.spec.js",
+    "test:watch": "npm run test -- --watch",
+    "start:prod": "node app.js",
+    "start:dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +33,8 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "babel-polyfill": "^6.9.1"
+    "babel-polyfill": "^6.9.1",
+    "devtool": "^2.0.2",
+    "nodemon": "^1.9.2"
   }
 }
