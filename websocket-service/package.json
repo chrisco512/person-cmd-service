@@ -1,0 +1,24 @@
+{
+  "name": "websocket-service",
+  "version": "1.0.0",
+  "description": "WebSocket Microservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "socket",
+    "microservice"
+  ],
+  "author": "Ben Diuguid",
+  "license": "ISC",
+  "dependencies": {
+    "servicebus": "^2.0.2",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
+}

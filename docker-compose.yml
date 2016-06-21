@@ -1,0 +1,84 @@
+version: '2'
+services:
+
+  product-cmd:
+    restart: always
+    networks:
+      - main
+    build: ./product-cmd-service
+    links:
+     - mongo
+     - rabbit
+
+  proposal-cmd:
+    restart: always
+    networks:
+      - main
+    build: ./proposal-cmd-service
+    links:
+     - mongo
+     - rabbit
+
+  query-service:
+    restart: always
+    networks:
+      - main
+    build: ./query-service
+    links:
+     - mongo
+     - rabbit
+
+  websocket-service:
+    restart: always
+    networks:
+      - main
+    build: ./websocket-service
+    links:
+      - mongo
+      - rabbit
+
+  mongo:
+    networks:
+      - main
+    image: mongo
+
+  rabbit:
+    networks:
+      - main
+    image: rabbitmq
+
+  kong:
+    restart: always
+    image: mashape/kong
+    networks:
+      - main
+      - kong
+    links:
+      - "kong-database:kong-database"
+      - "query-service:query-service"
+      - "proposal-cmd:proposal-cmd"
+      - "product-cmd:product-cmd"
+    ports:
+      - "8000:8000"
+
+  kongfig:
+    depends_on:
+      - kong
+    build:
+      context: .
+      dockerfile: ./kongfig_fix/kongfig.Dockerfile
+    networks:
+      - kong
+    links:
+      - "kong:kong"
+
+  kong-database:
+    image: cassandra:2.2.1
+    networks:
+      - kong
+
+networks:
+  main:
+    driver: bridge
+  kong:
+    driver: bridge

@@ -1,0 +1,11 @@
+const USER_CREATED = 'user.USER_CREATED';
+
+const TENANT_CREATED = 'tenant.TENANT_CREATED';
+
+const PERSON_CREATED = 'person.PERSON_CREATED';
+
+module.exports = {
+	USER_CREATED,
+	TENANT_CREATED,
+	PERSON_CREATED
+};

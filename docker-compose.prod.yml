@@ -1,0 +1,9 @@
+version: '2'
+services:
+
+  kong:
+    ports:
+      - "8000:80"
+  websocket-service:
+    ports:
+      - "9001:80"

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+opt=""
+
+if [[ $2 == "linux" ]]; then
+  opt='-f ./docker-compose.linux.yml'
+fi
+
+if [[ $3 == "-d" ]]; then
+  opt='$opt -d'
+fi
+
+if [[ $1 == "develop" ]]; then
+  docker-compose -f ./docker-compose.yml -f ./docker-compose.develop.yml $opt up
+fi
+
+if [[ $1 == "production" ]]; then
+  docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml $opt up
+fi
