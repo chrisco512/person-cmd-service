@@ -11,4 +11,5 @@ ADD . /app
 ENV NODE_ENV production
 ENV PORT 80
 
-CMD [ "npm", "start" ]
+ENTRYPOINT  ["npm"]
+CMD [ "start:prod" ]
