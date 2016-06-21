@@ -1,3 +1,5 @@
+MAY ZOMBIES REST IN PEACE
+
 # Project DECMA
 
 DECMA is a reference architecture that implements Event Sourcing, CQRS, and Microservices. It uses Node.js, Redux,
