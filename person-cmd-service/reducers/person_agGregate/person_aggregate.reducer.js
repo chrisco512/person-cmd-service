@@ -1,9 +1,11 @@
 const {
 	PERSON_CREATED
 } = require('../../commands/event_types');
+const log = require('../../log');
 
 function reducer(persons = [], action ) {
-	console.log("In proposal reducer - ", action);
+	log.debug('IN REDUCER');
+
 	switch(action.type) {
 		case PERSON_CREATED:
 			return personCreated(persons, action.payload);
@@ -12,7 +14,6 @@ function reducer(persons = [], action ) {
 }
 
 function personCreated(persons, payload) {
-	console.log("Making proposal with action - ", PERSON_CREATED);
 	return [...persons, payload];
 }
 

@@ -1,31 +1,30 @@
 const store = require('../../store/store');
-const { unique, email, uuid, minLength, integer, createValidator } = require('validations');
+const { unique, required, email, uuid, minLength, integer, createValidator } = require('validations');
+const { VALIDATION_ERROR } = require('../../errorTypes');
 
-const validateProposal = createValidator({
-	_id: [unique, uuid],
-	first_name: [minLength(1)],
-	last_name: [minLength(1)],
-	phone: [unique, integer],
+const validatePerson = createValidator({
+	_id: [required, unique, uuid],
+	first_name: [required, minLength(1)],
+	last_name: [required, minLength(1)],
+	phone: [required, integer],
 	carrier: [minLength(1)],
-	email: [email]
+	email: [required, email]
 });
 
-function validateProposalCreateCommand(payload) {
+function validatePersonCreateCommand(payload) {
 	return new Promise((resolve, reject) => {
-		const { proposalAggregate } = store.getState();
-		const proposal = payload;
+		const { personAggregate } = store.getState();
+		const person = payload;
 
-		const errors = validateProposal(proposal, null, proposalAggregate);
+		const errors = validatePerson(person, null, personAggregate);
 		const isErrors = Object.keys(errors).length;
-
-
-
+		
 		if(isErrors) {
-			return reject(errors);
+			return reject({ type: VALIDATION_ERROR, errors });
 		}
-		console.log('VALIDATED COMMAND:', payload);
+		
 		return resolve(payload);
 	});
 }
 
-module.exports = validateProposalCreateCommand;
+module.exports = validatePersonCreateCommand;

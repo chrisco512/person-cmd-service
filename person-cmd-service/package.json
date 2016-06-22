@@ -18,6 +18,8 @@
     "koa-jwt": "^1.1.2",
     "koa-router": "^5.4.0",
     "lodash": "^4.13.1",
+    "loglevel": "^1.4.1",
+    "loglevel-message-prefix": "^1.1.1",
     "mongodb": "^2.1.21",
     "mongoose": "^4.4.19",
     "node-uuid": "^1.4.7",

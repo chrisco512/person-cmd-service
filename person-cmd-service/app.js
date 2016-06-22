@@ -10,6 +10,8 @@ const config = require('./config');
 const store = require('./store/store');
 const co = require('co');
 const cors = require('koa-cors');
+const log = require('./log');
+const { VALIDATION_ERROR, SERVER_ERROR } = require('./errorTypes');
 
 
 const { rebuildMeetingsFromEvents } = require('./utils');
@@ -44,12 +46,15 @@ router.get('/', function *() {
 			this.response.status = 200;
 			this.body = payload;
 		} catch(err) {
-			this.response.status = 400;
-			this.body = err;
+			if(err.type === VALIDATION_ERROR) {
+				this.response.status = 400;
+				this.body = err.errors;
+			}
+			if(err.type === SERVER_ERROR) {
+				this.response.status = 500;
+			}
 		}
-
 	});
-// }
 
 app
 	.use(router.routes())

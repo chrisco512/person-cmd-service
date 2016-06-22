@@ -3,9 +3,11 @@ const createEvent = require('./person_created.event.creator.js');
 const dispatchEvent = require('../../common/dispatch_event.chainable');
 const persistEvent = require('../../common/persist_event.chainable');
 const publishEvent = require('../../common/publish_event.chainable');
+const uuid = require('node-uuid');
+const log = require('../../log');
 
 function personCreateCommandHandler(payload) {
-	console.log('Handling PERSON_CREATE command');
+	payload._id = uuid.v4();
 
 	return validateCommand(payload)
 		.then(createEvent)
@@ -13,9 +15,8 @@ function personCreateCommandHandler(payload) {
 		.then(persistEvent)
 		.then(publishEvent)
 		.catch(function(err) {
-			console.log('Error: Need to handle errors better here ', err);
-
-
+			log.warn('PERSON_CREATE ERROR: ', err);
+			throw err;
 		});
 }
 
