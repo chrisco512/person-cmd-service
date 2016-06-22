@@ -46,6 +46,7 @@ GraphQL, adding new reducers, adding new routes
 ## Windows/Mac
 Download the virtualbox image from `https://ulti.box.com/s/y02dt94207nhx72a9blhko77fyug2y7o`
 Make sure to create a shared folder on the guest machine from wherever main-repo is on the host machine
+pw: ultilabsrocks
 
 ## Linux
 Just go ahead and run the start commands described below
