@@ -34,7 +34,7 @@ router.get('/', function *() {
 // if(process.env.NODE_ENV === 'development') {
 	router.get('/proposal_aggregates', function* () {
 		this.response.status = 200;
-		this.body = store.getState().proposalAggregate;
+		this.body = store.getState().personAggregate;
 	});
 
 	router.post('/', function *() {

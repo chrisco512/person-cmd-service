@@ -15,3 +15,8 @@ apis:
       upstream_url: http://query-service/
       request_path: /graphql
       strip_request_path: true
+  - name: person-cmd
+    attributes:
+      upstream_url: http://person-cmd/
+      request_path: /person
+      strip_request_path: true
