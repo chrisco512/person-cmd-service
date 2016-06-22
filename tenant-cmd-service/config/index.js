@@ -4,7 +4,7 @@ var path = require('path');
 var _ = require('underscore');
 
 var all = {
-    port: process.env.PORT || 8010,
+    port: process.env.PORT || 8000,
     servicebus: {
         uri: "amqp://localhost"
         // uri: "amqp://rabbit"

@@ -131,6 +131,17 @@ app
 co(function* () {
 	// yield chillOut(5000);
 	yield co(rebuildMeetingsFromEvents());
+
+    bus.subscribe('tenant.*', function (event) {
+        console.log('received event in user service: ', event);
+        store.dispatch(event);
+    });
+
+    bus.subscribe('person.*', function (event) {
+        console.log('received event in user service: ', event);
+        store.dispatch(event);
+    });
+
 	app.listen(port, () => {
 		console.log(`Listening on port: ${port}`);
 	});

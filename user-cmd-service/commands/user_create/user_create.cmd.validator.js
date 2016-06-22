@@ -7,25 +7,32 @@ const validateUser = createValidator({
   tenantID: [required, uuid],
   auth0ID: [required],
   personID: [required, uuid],
-  companyIdentifier: [required]
+  companyIdentifier: [required],
+  email: [required]
 });
 
 const validateTenant = createValidator({
-	_id: [valueExistsInCollection]
+	_id: [required, valueExistsInCollection]
 });
 
 const validatePerson = createValidator({
-	_id: [valueExistsInCollection]
+	_id: [required, valueExistsInCollection]
 })
 
 function validateUserCreateCommand(payload) {
 	return new Promise((resolve, reject) => {
 		const { userAggregate, tenants, people } = store.getState();
+
+		console.log("tenants - ", tenants);
 		const user = payload;
 
-		const userErrors = validateUser(user, userAggregate);
-		const tenantErrors = validateTenant({ _id: user.tenantID }, tenants);
-		const personErrors = validateTenant({ _id: user.personID }, people);
+		console.log("User - ", { _id: user.tenantID });
+
+		const userErrors = validateUser(user, null, userAggregate);
+		const tenantErrors = validateTenant({ _id: user.tenantID }, null, tenants);
+		const personErrors = validatePerson({ _id: user.personID }, null, people);
+
+		console.log("Tenant errors - ", tenantErrors);
 
 		if (tenantErrors._id) {
 			userErrors.tenantID = tenantErrors._id;
@@ -35,10 +42,10 @@ function validateUserCreateCommand(payload) {
 			userErrors.personID = personErrors._id;
 		}
 
-		const isErrors = Object.keys(errors).length;
+		const isErrors = Object.keys(userErrors).length;
 
 		if(isErrors) {
-			reject(errors);
+			reject(userErrors);
 		}
 		console.log('VALIDATED COMMAND:', payload);
 		resolve(payload);
