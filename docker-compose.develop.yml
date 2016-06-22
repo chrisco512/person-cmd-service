@@ -34,7 +34,7 @@ services:
       - "8004:80"
   person-cmd:
     environment:
-      - NODE_ENV development
+      - NODE_ENV=development
     volumes:
       - ./person-cmd-service:/app
     ports:
