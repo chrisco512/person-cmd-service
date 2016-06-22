@@ -54,7 +54,7 @@ router.post('/', function * () {
     const request = this.request.body;
     const { payload } = yield commandHandler(request);
     this.response.status = 200;
-    this.body = payload;    
+    this.body = payload;
 });
 
 app
