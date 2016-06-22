@@ -34,27 +34,33 @@ router.get('/', function *() {
 });
 
 // if(process.env.NODE_ENV === 'development') {
-	router.get('/person_aggregates', function* () {
-		this.response.status = 200;
-		this.body = store.getState().personAggregate;
-	});
+router.get('/person_aggregates', function* () {
+	this.response.status = 200;
+	this.body = store.getState().personAggregate;
+});
 
-	router.post('/', function *() {
-		const request = this.request.body;
-		try {
-			const { payload } = yield commandHandler(request);
-			this.response.status = 200;
-			this.body = payload;
-		} catch(err) {
-			if(err.type === VALIDATION_ERROR) {
-				this.response.status = 400;
-				this.body = err.errors;
-			}
-			if(err.type === SERVER_ERROR) {
-				this.response.status = 500;
-			}
+router.post('/', function *() {
+	const request = this.request.body;
+	let status = 200;
+	let body = "";
+
+	try {
+		const { payload } = yield commandHandler(request);
+		status = 200;
+		body = payload;
+	} catch(err) {
+		if(err.type === VALIDATION_ERROR) {
+			status = 400;
+			body = err.errors;
 		}
-	});
+		if(err.type === SERVER_ERROR) {
+			status = 500;
+		}
+	}
+
+	this.response.status = status;
+	this.response.body = body;
+});
 
 app
 	.use(router.routes())
