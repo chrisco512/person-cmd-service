@@ -28,20 +28,26 @@ app.use(unprotected);
 
 router.get('/', function *() {
 	this.response.status = 200;
-	this.body = 'Demo Application | Proposal Service operational.';
+	this.body = 'Demo Application | Person Service operational.';
 });
 
 // if(process.env.NODE_ENV === 'development') {
-	router.get('/proposal_aggregates', function* () {
+	router.get('/person_aggregates', function* () {
 		this.response.status = 200;
 		this.body = store.getState().personAggregate;
 	});
 
 	router.post('/', function *() {
 		const request = this.request.body;
-		commandHandler(request);
-		this.response.status = 201;
-		this.body = 'Command Received';
+		try {
+			const { payload } = yield commandHandler(request);
+			this.response.status = 200;
+			this.body = payload;
+		} catch(err) {
+			this.response.status = 400;
+			this.body = err;
+		}
+
 	});
 // }
 

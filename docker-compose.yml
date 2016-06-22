@@ -1,6 +1,5 @@
 version: '2'
 services:
-
   product-cmd:
     restart: always
     networks:
@@ -18,6 +17,15 @@ services:
     links:
      - mongo
      - rabbit
+
+  person-cmd:
+      restart: always
+      networks:
+        - main
+      build: ./person-cmd-service
+      links:
+       - mongo
+       - rabbit
 
   query-service:
     restart: always
@@ -52,12 +60,12 @@ services:
     image: mashape/kong
     networks:
       - main
-      - kong
     links:
       - "kong-database:kong-database"
       - "query-service:query-service"
       - "proposal-cmd:proposal-cmd"
       - "product-cmd:product-cmd"
+      - "person-cmd:person-cmd"
     ports:
       - "8000:8000"
 
@@ -68,17 +76,15 @@ services:
       context: .
       dockerfile: ./kongfig_fix/kongfig.Dockerfile
     networks:
-      - kong
+      - main
     links:
       - "kong:kong"
 
   kong-database:
     image: cassandra:2.2.1
     networks:
-      - kong
+      - main
 
 networks:
   main:
-    driver: bridge
-  kong:
     driver: bridge

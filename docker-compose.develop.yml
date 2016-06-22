@@ -22,6 +22,12 @@ services:
     ports:
       - "8004:80"
 
+  person-cmd:
+    volumes:
+      - ./person-cmd-service:/app
+    ports:
+      - "8005:80"
+
   mongo:
     ports:
       - "27017:27017"
