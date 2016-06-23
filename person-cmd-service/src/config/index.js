@@ -6,10 +6,10 @@ var _ = require('underscore');
 var all = {
     port: process.env.PORT || 8080,
     servicebus: {
-        uri: "amqp://rabbit"
+        uri: "amqp://localhost:5672" //"amqp://rabbit"
     },
     mongo: {
-        uri: "mongodb://mongo/test"
+        uri: "localhost:27017/test" //"mongodb://mongo/test"
     },
     env: process.env.NODE_ENV,
     root: path.normalize(__dirname + '/../../..'), // Root path of server

@@ -4,7 +4,7 @@ const { Schema } = require('mongoose');
 const config = require('../config');
 const uri = config.mongo.uri;
 const log = require('../log');
-const { SERVER_ERROR } = require('../errorTypes');
+const { SERVER_ERROR } = require('../error_types');
 
 mongoose.connect(uri);
 

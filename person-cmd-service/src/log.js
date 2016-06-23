@@ -5,8 +5,8 @@ loglevelMessagePrefix(log);
 
 if(process.env.NODE_ENV === 'development') {
 	log.setLevel('info');
+} else {
+	log.setLevel('error');
 }
-
-log.setLevel('info');
 
 module.exports = log;

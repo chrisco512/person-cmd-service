@@ -1,9 +1,9 @@
 const { combineReducers } = require('redux');
 
-const personAggregate = require('./person_aggregate/person_aggregate.reducer.js');
+const persons = require('./persons/persons.reducer.js');
 
 const reducers = {
-	personAggregate,
+	persons
 };
 
 module.exports = combineReducers(reducers);
