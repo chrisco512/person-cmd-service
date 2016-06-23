@@ -13,5 +13,6 @@ module.exports = {
   root: path.normalize(__dirname + '/../../..'), // Root path of server
   secrets: {
       session: 'culture-shock-secret'
-  }
+  },
+  emitEchoEvents: false
 };

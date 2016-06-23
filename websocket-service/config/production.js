@@ -1,7 +1,7 @@
 'use strict';
 var path = require('path');
 
-// DEVELOPMENT
+// PRODUCTION
 module.exports = {
   port: process.env.PORT || 80,
   servicebus: {
@@ -13,5 +13,6 @@ module.exports = {
   root: path.normalize(__dirname + '/../../..'), // Root path of server
   secrets: {
       session: 'culture-shock-secret'
-  }
+  },
+  emitEchoEvents: false
 };
