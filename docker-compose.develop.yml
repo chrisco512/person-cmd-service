@@ -2,68 +2,47 @@ version: '2'
 services:
   product-cmd:
     environment:
-      - NODE_ENV=development
-    command: start:dev
+      - NODE_ENV development
     volumes:
       - ./product-cmd-service:/app
     ports:
       - "8001:80"
+    command: npm run start:dev
+    working_dir: /app
+
   proposal-cmd:
     environment:
-      - NODE_ENV=development
-    command: start:dev
+      - NODE_ENV development
     volumes:
       - ./proposal-cmd-service:/app
     ports:
       - "8002:80"
+    command: npm run start:dev
+    working_dir: /app
+
   query-service:
     environment:
-      - NODE_ENV=development
-    command: start:dev
+      - NODE_ENV development
     volumes:
       - ./query-service:/app
     ports:
       - "8003:80"
+    command: npm run start:dev
+    working_dir: /app
+
   websocket-service:
     environment:
-      - NODE_ENV=development
-    command: start:dev
+      - NODE_ENV development
     volumes:
       - ./websocket-service:/app
     ports:
       - "8004:80"
-  person-cmd:
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - ./person-cmd-service:/app
-    ports:
-      - "8005:80"
-  user-cmd:
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - ./user-cmd-service:/app
-    ports:
-      - "8006:80"
-  saga-service:
-    environment:
-      - NODE_ENV=development
-    links:
-      - user-cmd
-      - person-cmd
-    volumes:
-      - ./saga-service:/app
-    ports:
-      - "8007:80"
-  tenant-cmd:
-    environment:
-      - NODE_ENV=development
-    command: start:dev
-    volumes:
-      - ./tenant-cmd-service:/app
-    ports:
-      - "8008:80"
+    command: npm run start:dev
+    working_dir: /app
+
   mongo:
     ports:
       - "27017:27017"
+  rabbit:
+    ports:
+      - "5672:5672"

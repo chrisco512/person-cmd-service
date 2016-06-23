@@ -9,11 +9,13 @@
     "test": "mocha **/*.spec.js",
     "test:watch": "npm run test -- --watch",
     "start:prod": "node app.js",
-    "start:dev": "nodemon app.js"
+    "start:dev": "nodemon app.js",
+    "start:local": "cross-env NODE_ENV=local nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.9.1",
     "co": "^4.6.0",
     "graphql": "^0.6.0",
     "js-schema": "^1.0.1",
@@ -33,7 +35,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "babel-polyfill": "^6.9.1",
+    "cross-env": "^1.0.8",
     "devtool": "^2.0.2",
     "nodemon": "^1.9.2"
   }

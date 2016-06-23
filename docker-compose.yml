@@ -1,19 +1,19 @@
 version: '2'
 services:
   product-cmd:
+    image: node:6
     restart: always
     networks:
       - main
-    build: ./product-cmd-service
     links:
      - mongo
      - rabbit
 
   proposal-cmd:
+    image: node:6
     restart: always
     networks:
       - main
-    build: ./proposal-cmd-service
     links:
      - mongo
      - rabbit
@@ -46,19 +46,19 @@ services:
        - rabbit
 
   query-service:
+    image: node:6
     restart: always
     networks:
       - main
-    build: ./query-service
     links:
      - mongo
      - rabbit
 
   websocket-service:
+    image: node:6
     restart: always
     networks:
       - main
-    build: ./websocket-service
     links:
       - mongo
       - rabbit
