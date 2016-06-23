@@ -1,4 +1,5 @@
 'use strict';
+var path = require('path');
 
 // PRODUCTION
 module.exports = {
