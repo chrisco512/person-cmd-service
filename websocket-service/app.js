@@ -1,8 +1,9 @@
 const Server = require('socket.io');
-const bus = require('servicebus').bus({ url: 'amqp://rabbit' + '?heartbeat=60' });
+const config = require('./config');
+const bus = require('servicebus').bus({ url: config.servicebus.uri + '?heartbeat=60' });
 
 
-const io = new Server().attach(80);
+const io = new Server().attach(config.port);
 
 
 io.on('connection', function(socket) {
@@ -43,20 +44,22 @@ function getSocketIds(io) {
   return Object.keys(io.sockets.connected);
 }
 
-
-setInterval( () => {
-  const socketId = Object.keys(io.sockets.connected)[0];
-  const event = {
-    type: 'ECHO',
-    payload: {
-      message: 'HELLO WORLD'
-    },
-    meta: {
-      socket: {
-        // id: socketId,
-        room: 'dashboard'
+if(config.emitEchoEvents) {
+  setInterval( () => {
+    const socketId = Object.keys(io.sockets.connected)[0];
+    const event = {
+      type: 'ECHO',
+      payload: {
+        message: 'HELLO WORLD'
+      },
+      meta: {
+        socket: {
+          // id: socketId,
+          room: 'dashboard'
+        }
       }
-    }
-  };
-  bus.publish(event.type, event);
-}, 30 * 1000);
+    };
+    bus.publish(event.type, event);
+  }, 30 * 1000);
+
+}

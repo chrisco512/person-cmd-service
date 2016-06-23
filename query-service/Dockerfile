@@ -8,8 +8,5 @@ RUN npm install
 
 ADD . /app
 
-ENV NODE_ENV production
-ENV PORT 80
-
 ENTRYPOINT  ["npm", "run"]
 CMD [ "start:prod" ]
