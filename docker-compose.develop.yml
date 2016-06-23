@@ -40,6 +40,49 @@ services:
     command: npm run start:dev
     working_dir: /app
 
+  user-cmd:
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./user-cmd-service:/app
+    ports:
+      - "8005:80"
+    command: npm run start:dev
+    working_dir: /app
+
+  person-cmd:
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./person-cmd-service:/app/src
+    ports:
+      - "8006:80"
+    command: npm run start:dev
+    working_dir: /app/src
+
+  tenant-cmd:
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./tenant-cmd-service:/app
+    ports:
+      - "8008:80"
+    command: npm run start:dev
+    working_dir: /app
+
+  saga-service:
+    links:
+     - person-cmd
+     - user-cmd
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./saga-service:/app/src
+    ports:
+      - "8007:80"
+    command: npm run start:dev
+    working_dir: /app/src
+
   mongo:
     ports:
       - "27017:27017"

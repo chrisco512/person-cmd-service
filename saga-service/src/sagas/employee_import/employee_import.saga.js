@@ -17,6 +17,9 @@ function* employeeImport(employee, tenantId) {
 		}
 	};
 
+	console.log("Node environ variable - ", process.env.NODE_ENV);
+	log.info('CREATING USER - url: ', personCommandUrl, '; command: ', createPersonCommand);
+
 	let personPayload;
 	try {
 		let { data } = yield axios.post(personCommandUrl, createPersonCommand);
@@ -39,6 +42,10 @@ function* employeeImport(employee, tenantId) {
 			email: employee.email
 		}
 	};
+
+	console.log("Node environ variable - ", process.env.NODE_ENV);
+
+	log.info('CREATING USER - url: ', userCommandUrl, '; command: ', createUserCommand);
 
 	let userPayload;
 	try {

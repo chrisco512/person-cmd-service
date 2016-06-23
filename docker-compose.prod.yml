@@ -24,3 +24,21 @@ services:
     environment:
       - NODE_ENV production
     command: npm run start:production
+
+  saga-service:
+      environment:
+        - NODE_ENV production
+      command: npm run start:production
+  person-cmd:
+      environment:
+        - NODE_ENV production
+      command: npm run start:production
+  user-cmd:
+      environment:
+        - NODE_ENV production
+      command: npm run start:production
+  tenant-cmd:
+      environment:
+        - NODE_ENV production
+      command: npm run start:production
+

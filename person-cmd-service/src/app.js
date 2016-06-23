@@ -43,7 +43,7 @@ app.use(router.allowedMethods());
 //START UP
 co(function* () {
 	yield co(rebuildMeetingsFromEvents());
-	app.listen(port, () => {
+	app.listen(80, () => {
 		console.log(`Listening on port: ${port}`);
 	});
 });

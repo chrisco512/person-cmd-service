@@ -19,28 +19,37 @@ services:
      - rabbit
 
   person-cmd:
+      image: node:6
       restart: always
       networks:
         - main
-      build: ./person-cmd-service
       links:
        - mongo
        - rabbit
 
   user-cmd:
+      image: node:6
       restart: always
       networks:
         - main
-      build: ./user-cmd-service
+      links:
+       - mongo
+       - rabbit
+
+  tenant-cmd:
+      image: node:6
+      restart: always
+      networks:
+        - main
       links:
        - mongo
        - rabbit
 
   saga-service:
+      image: node:6
       restart: always
       networks:
         - main
-      build: ./saga-service
       links:
        - mongo
        - rabbit
