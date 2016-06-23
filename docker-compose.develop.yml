@@ -35,3 +35,6 @@ services:
   mongo:
     ports:
       - "27017:27017"
+  rabbit:
+    ports:
+      - "5672:5672"
