@@ -7,7 +7,7 @@ const validatePerson = createValidator({
 	first_name: [required, minLength(1)],
 	last_name: [required, minLength(1)],
 	phone: [required, integer],
-	carrier: [minLength(1)],
+	carrier: [],
 	email: [required, email]
 });
 

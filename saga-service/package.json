@@ -1,0 +1,47 @@
+{
+  "name": "demo-research-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "devtool": "devtool ./src/app.js --watch --break",
+    "test": "mocha ./src/**/*.spec.js",
+    "test:watch": "npm run test -- --watch",
+    "start:prod": "node ./src/app.js",
+    "start:dev": "nodemon ./src/app.js"
+  },
+  "engine": "node 6.0.0",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.12.0",
+    "chai": "^3.5.0",
+    "co": "^4.6.0",
+    "csvtojson": "^1.0.0",
+    "formidable": "^1.0.17",
+    "js-schema": "^1.0.1",
+    "koa": "^1.1.2",
+    "koa-better-body": "^2.0.1",
+    "koa-cors": "0.0.16",
+    "koa-json-body": "^4.0.0",
+    "koa-jwt": "^1.1.2",
+    "koa-router": "^5.4.0",
+    "lodash": "^4.13.1",
+    "loglevel": "^1.4.1",
+    "loglevel-message-prefix": "^1.1.1",
+    "mocha": "^2.5.3",
+    "mongodb": "^2.1.21",
+    "mongoose": "^4.4.19",
+    "node-uuid": "^1.4.7",
+    "redux": "^3.5.2",
+    "redux-saga": "^0.10.4",
+    "servicebus": "^2.0.1",
+    "underscore": "^1.8.3",
+    "uuid-validate": "0.0.2",
+    "validations": "bitbucket:ultilabs/validations#HEAD"
+  },
+  "devDependencies": {
+    "devtool": "^2.0.2",
+    "nodemon": "^1.9.2"
+  }
+}

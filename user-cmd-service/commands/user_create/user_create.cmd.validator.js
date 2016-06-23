@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const store = require('../../store/store');
 const { createValidator, required, minLength, integer, email, uuid, valueExistsInCollection } = require('validations');
+const { VALIDATION_ERROR } = require("../../error_types");
 
 const validateUser = createValidator({
   role: [required],
@@ -45,7 +46,7 @@ function validateUserCreateCommand(payload) {
 		const isErrors = Object.keys(userErrors).length;
 
 		if(isErrors) {
-			reject(userErrors);
+			reject({ type: VALIDATION_ERROR, errors });
 		}
 		console.log('VALIDATED COMMAND:', payload);
 		resolve(payload);

@@ -27,6 +27,24 @@ services:
        - mongo
        - rabbit
 
+  user-cmd:
+      restart: always
+      networks:
+        - main
+      build: ./user-cmd-service
+      links:
+       - mongo
+       - rabbit
+
+  saga-service:
+      restart: always
+      networks:
+        - main
+      build: ./saga-service
+      links:
+       - mongo
+       - rabbit
+
   query-service:
     restart: always
     networks:

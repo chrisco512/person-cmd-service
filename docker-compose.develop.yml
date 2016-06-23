@@ -39,6 +39,31 @@ services:
       - ./person-cmd-service:/app
     ports:
       - "8005:80"
+  user-cmd:
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./user-cmd-service:/app
+    ports:
+      - "8006:80"
+  saga-service:
+    environment:
+      - NODE_ENV=development
+    links:
+      - user-cmd
+      - person-cmd
+    volumes:
+      - ./saga-service:/app
+    ports:
+      - "8007:80"
+  tenant-cmd:
+    environment:
+      - NODE_ENV=development
+    command: start:dev
+    volumes:
+      - ./tenant-cmd-service:/app
+    ports:
+      - "8008:80"
   mongo:
     ports:
       - "27017:27017"

@@ -12,6 +12,7 @@ const co = require('co');
 const cors = require('koa-cors');
 const bus = require('servicebus').bus({ url: config.servicebus.uri + "?heartbeat=60" });
 const fs = require('fs');
+const { VALIDATION_ERROR, SERVER_ERROR } = require('./error_types');
 
 
 const IncomingForm = require('formidable');
@@ -54,10 +55,26 @@ router.get('/people', function* () {
 });
 
 router.post('/', function * () {
-    const request = this.request.body;
-    const { payload } = yield commandHandler(request);
-    this.response.status = 200;
-    this.body = payload;
+	const request = this.request.body;
+	let status = 200;
+	let body = '';
+
+	try {
+		const { payload } = yield commandHandler(request);
+		status = 200;
+		body = payload;
+	} catch(err) {
+		if(err.type === VALIDATION_ERROR) {
+			status = 400;
+			body = err.errors;
+		}
+		if(err.type === SERVER_ERROR) {
+			status = 500;
+		}
+	}
+
+	this.response.status = status;
+	this.response.body = body;
 });
 
 
