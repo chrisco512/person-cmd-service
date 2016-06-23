@@ -1,26 +1,44 @@
 version: '2'
 services:
   product-cmd:
+    environment:
+      - NODE_ENV development
     volumes:
       - ./product-cmd-service:/app
     ports:
       - "8001:80"
+    command: npm run start:dev
+    working_dir: /app
+
   proposal-cmd:
+    environment:
+      - NODE_ENV development
     volumes:
       - ./proposal-cmd-service:/app
     ports:
       - "8002:80"
+    command: npm run start:dev
+    working_dir: /app
+
   query-service:
+    environment:
+      - NODE_ENV development
     volumes:
       - ./query-service:/app
     ports:
       - "8003:80"
+    command: npm run start:dev
+    working_dir: /app
 
   websocket-service:
+    environment:
+      - NODE_ENV development
     volumes:
       - ./websocket-service:/app
     ports:
       - "8004:80"
+    command: npm run start:dev
+    working_dir: /app
 
   mongo:
     ports:
