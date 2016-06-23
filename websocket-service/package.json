@@ -8,7 +8,8 @@
     "test": "mocha **/*.spec.js",
     "test:watch": "npm run test -- --watch",
     "start:prod": "node app.js",
-    "start:dev": "nodemon app.js"
+    "start:dev": "nodemon app.js",
+    "start:local": "cross-env NODE_ENV=local nodemon app.js"
   },
   "keywords": [
     "socket",
@@ -21,6 +22,7 @@
     "socket.io": "^1.4.6"
   },
   "devDependencies": {
+    "cross-env": "^1.0.8",
     "devtool": "^2.0.2",
     "nodemon": "^1.9.2"
   }
