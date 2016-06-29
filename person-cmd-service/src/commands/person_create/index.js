@@ -15,7 +15,6 @@ function personCreateCommandHandler(payload) {
 		.then(persistEvent)
 		.then(publishEvent)
 		.catch(function(err) {
-			log.warn('PERSON_CREATE ERROR: ', err);
 			throw err;
 		});
 }
