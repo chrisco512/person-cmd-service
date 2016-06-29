@@ -1,5 +1,5 @@
 {
-  "name": "demo-product-query-service",
+  "name": "query-service",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",

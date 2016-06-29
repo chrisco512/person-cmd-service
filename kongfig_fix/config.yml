@@ -20,3 +20,18 @@ apis:
       upstream_url: http://person-cmd/
       request_path: /person
       strip_request_path: true
+  - name: user-cmd
+    attributes:
+      upstream_url: http://user-cmd/
+      request_path: /user
+      strip_request_path: true
+  - name: tenant-cmd
+    attributes:
+      upstream_url: http://tenant-cmd/
+      request_path: /tenant
+      strip_request_path: true
+  - name: saga-service
+    attributes:
+      upstream_url: http://saga-service/
+      request_path: /saga
+      strip_request_path: true

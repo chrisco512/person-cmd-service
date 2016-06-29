@@ -275,7 +275,7 @@ co(function* () {
 
 	//const port = process.env.PORT || 1339;
 	app.listen(port, () => {
-		console.log(`Listening on NOT NOT port: ${port}`);
+		console.log(`Listening on port: ${port}`);
 	});
 });
 
