@@ -3,9 +3,9 @@
 DECMA is a reference architecture that implements Event Sourcing, CQRS, and Microservices. It uses Node.js, Redux,
 Mongo, and RabbitMQ.
 
-To setup project, type `npm run setup`.  This will install all the npm dependencies for each microservice.
+To setup project, type `./install_all`.  This will install all the npm dependencies for each microservice.
 
-To start project, from the root, type `npm start`.
+To start project, from the root, type `./start develop`.
 
 To run tests, cd into each service, then type `npm run test`.
 
