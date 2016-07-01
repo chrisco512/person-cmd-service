@@ -1,0 +1,7 @@
+const PILLAR_CREATED = 'pillar.PILLAR_CREATED';
+const PILLAR_DELETED = 'pillar.PILLAR_DELETED';
+
+module.exports = {
+	PILLAR_CREATED,
+	PILLAR_DELETED
+};
