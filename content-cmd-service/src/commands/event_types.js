@@ -1,0 +1,7 @@
+const CONTENT_CREATED = 'content.CONTENT_CREATED';
+const CONTENT_DELETED = 'content.CONTENT_DELETED';
+
+module.exports = {
+	CONTENT_CREATED,
+	CONTENT_DELETED
+};
