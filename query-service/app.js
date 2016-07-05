@@ -59,62 +59,9 @@ const {
     GraphQLList
 } = require('graphql');
 
-let statusEnum = new GraphQLEnumType({
-    name: 'status',
-    description: 'status of the product',
-    values: {
-        IN_PROGRESS: {
-            value: 'in progress',
-        },
-        STARTED: {
-            value: 'started'
-        },
-        COMPLETED: {
-            value: 'completed'
-        }
-    }
-});
-
-let proposalType = new GraphQLObjectType({
-    name: 'Proposal',
-    fields: () => ({
-        name: {
-            type: new GraphQLNonNull(GraphQLString),
-            description: 'name of the Proposal'
-        },
-        _id: {
-            type: new GraphQLNonNull(GraphQLString),
-            description: 'id of the Proposal'
-        }
-    })
-});
-
-let productType = new GraphQLObjectType({
-    name: 'Product',
-    description: 'Product description',
-    fields: () => ({
-        _id: {
-            type: new GraphQLNonNull(GraphQLString),
-            description: 'id of the product'
-        },
-        status: {
-            type: statusEnum
-        },
-        improvements: {
-            type: GraphQLInt
-        },
-        proposal: {
-            type: proposalType,
-            resolve: (product, params, source, fieldsAST) => {
-                return store.getState().proposals.filter((proposal) => (proposal._id === product.proposal_id))[0];
-            }
-        }
-    })
-});
-
 const employeeType = new GraphQLObjectType({
     name: 'Employee',
-    description: 'Product description',
+    description: 'Employee description',
     fields: () => ({
         _id: {
             type: new GraphQLNonNull(GraphQLString),
@@ -220,18 +167,6 @@ let schema = new GraphQLSchema({
     query: new GraphQLObjectType({
         name: 'RootQueryType',
         fields: {
-            products: {
-                type: new GraphQLList(productType),
-                resolve: function() {
-                    return store.getState().products;
-                }
-            },
-            proposals: {
-                type: new GraphQLList(proposalType),
-                resolve: function(id) {
-                    return store.getState().proposals;
-                }
-            },
             tenants: {
                 type: new GraphQLList(tenantType),
                 resolve: function() {

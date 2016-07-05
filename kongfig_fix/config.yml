@@ -1,15 +1,5 @@
 ---
 apis:
-  - name: proposal-cmd
-    attributes:
-      upstream_url: http://proposal-cmd/
-      request_path: /proposal
-      strip_request_path: true
-  - name: product-cmd
-    attributes:
-      upstream_url: http://product-cmd/
-      request_path: /product
-      strip_request_path: true
   - name: query-service
     attributes:
       upstream_url: http://query-service/

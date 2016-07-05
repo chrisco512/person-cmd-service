@@ -1,19 +1,8 @@
 version: '2'
 services:
-
   kong:
     ports:
       - "8000:80"
-
-  product-cmd:
-    environment:
-      - NODE_ENV production
-    command: npm run start:prod
-
-  proposal-cmd:
-    environment:
-      - NODE_ENV production
-    command: npm run start:prod
 
   query-service:
     environment:
