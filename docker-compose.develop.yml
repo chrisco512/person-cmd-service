@@ -1,6 +1,16 @@
 version: '2'
 services:
+  kong:
+    container_name: kong
+
+  kongfig:
+    container_name: kongfig
+
+  kong-database:
+    container_name: kong-db
+    
   query-service:
+    container_name: query-service
     environment:
       - NODE_ENV development
     volumes:
@@ -11,6 +21,7 @@ services:
     working_dir: /app
 
   websocket-service:
+    container_name: websocket-service
     environment:
       - NODE_ENV development
     volumes:
@@ -21,6 +32,7 @@ services:
     working_dir: /app
 
   user-cmd:
+    container_name: user-cmd
     environment:
       - NODE_ENV development
     volumes:
@@ -31,6 +43,7 @@ services:
     working_dir: /app
 
   person-cmd:
+    container_name: person-cmd
     environment:
       - NODE_ENV development
     volumes:
@@ -41,6 +54,7 @@ services:
     working_dir: /app/src
 
   saga-service:
+    container_name: saga-service
     links:
      - person-cmd
      - user-cmd
@@ -54,6 +68,7 @@ services:
     working_dir: /app/src
 
   tenant-cmd:
+    container_name: tenant-cmd
     environment:
       - NODE_ENV development
     volumes:
@@ -64,6 +79,7 @@ services:
     working_dir: /app
 
   pillar-cmd:
+    container_name: pillar-cmd
     environment:
       - NODE_ENV development
     volumes:
@@ -74,6 +90,7 @@ services:
     working_dir: /app
 
   content-cmd:
+    container_name: content-cmd
     environment:
       - NODE_ENV development
     volumes:
@@ -84,8 +101,10 @@ services:
     working_dir: /app
 
   mongo:
+    container_name: mongo
     ports:
       - "27017:27017"
   rabbit:
+    container_name: rabbit
     ports:
       - "5672:5672"
