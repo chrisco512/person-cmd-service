@@ -45,7 +45,7 @@ services:
        - mongo
        - rabbit
 
-   pillar-cmd:
+  pillar-cmd:
        image: node:6
        restart: always
        networks:
