@@ -111,6 +111,8 @@ services:
       - "proposal-cmd:proposal-cmd"
       - "product-cmd:product-cmd"
       - "person-cmd:person-cmd"
+      - "pillar-cmd:pillar-cmd"
+      - "content-cmd:content-cmd"
     ports:
       - "8000:8000"
 
