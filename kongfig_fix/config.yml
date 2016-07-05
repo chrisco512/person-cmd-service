@@ -30,6 +30,16 @@ apis:
       upstream_url: http://tenant-cmd/
       request_path: /tenant
       strip_request_path: true
+  - name: pillar-cmd
+    attributes:
+      upstream_url: http://pillar-cmd/
+      request_path: /pillar
+      strip_request_path: true
+  - name: content-cmd
+    attributes:
+      upstream_url: http://content-cmd/
+      request_path: /content
+      strip_request_path: true
   - name: saga-service
     attributes:
       upstream_url: http://saga-service/

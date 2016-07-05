@@ -41,3 +41,11 @@ services:
       environment:
         - NODE_ENV production
       command: npm run start:prod
+  pillar-cmd:
+      environment:
+        - NODE_ENV production
+      command: npm run start:prod
+  content-cmd:
+      environment:
+        - NODE_ENV production
+      command: npm run start:prod

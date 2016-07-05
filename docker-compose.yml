@@ -45,6 +45,24 @@ services:
        - mongo
        - rabbit
 
+  pillar-cmd:
+       image: node:6
+       restart: always
+       networks:
+         - main
+       links:
+        - mongo
+        - rabbit
+
+  content-cmd:
+      image: node:6
+      restart: always
+      networks:
+        - main
+      links:
+       - mongo
+       - rabbit
+
   saga-service:
       image: node:6
       restart: always
