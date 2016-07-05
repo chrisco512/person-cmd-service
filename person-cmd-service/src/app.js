@@ -30,10 +30,12 @@ router.get('/', function *() {
 	this.body = 'Demo Application | Person Service operational.';
 });
 
-router.get('/persons', function* () {
-	this.response.status = 200;
-	this.body = store.getState().persons;
-});
+if(process.env.NODE_ENV === 'development') {
+	router.get('/persons', function* () {
+		this.response.status = 200;
+		this.body = store.getState().persons;
+	});
+}
 
 router.post('/', commandRoute);
 
@@ -44,6 +46,6 @@ app.use(router.allowedMethods());
 co(function* () {
 	yield co(rebuildMeetingsFromEvents());
 	app.listen(80, () => {
-		console.log(`Listening on port: ${port}`);
+		log.info(`Listening on port: ${port}`);
 	});
 });

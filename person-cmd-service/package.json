@@ -6,6 +6,7 @@
   "scripts": {
     "devtool": "devtool ./src/app.js --watch --break",
     "test": "mocha ./src/**/*.spec.js",
+    "test:debug": "devtool node_modules/mocha/bin/_mocha -qc -- ./src/**/*.spec.js --break --watch",
     "test:watch": "npm run test -- --watch",
     "start:prod": "node ./src/app.js",
     "start:dev": "nodemon ./src/app.js"
@@ -29,6 +30,7 @@
     "mongodb": "^2.1.21",
     "mongoose": "^4.4.19",
     "node-uuid": "^1.4.7",
+    "proxyquire": "^1.7.10",
     "redux": "^3.5.2",
     "redux-saga": "^0.10.4",
     "servicebus": "^2.0.1",
