@@ -3,12 +3,12 @@ const {
 } = require('../../commands/event_types');
 const log = require('../../log');
 
-function reducer(persons = [], action ) {
+function reducer(persons = [], event) {
 	log.debug('IN REDUCER');
 
-	switch(action.type) {
+	switch(event.type) {
 		case PERSON_CREATED:
-			return personCreated(persons, action.payload);
+			return personCreated(persons, event.payload);
 	}
 	return persons;
 }
