@@ -1,9 +1,9 @@
 const { combineReducers } = require('redux');
 
-const tenantAggregate = require('./tenant_aggregate/tenant_aggregate.reducer.js');
+const tenants = require('./tenants/tenants.reducer.js');
 
 const reducers = {
-	tenantAggregate,
+	tenants,
 };
 
 module.exports = combineReducers(reducers);

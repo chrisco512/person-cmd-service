@@ -48,7 +48,6 @@ app
 
 //START UP
 co(function* () {
-	// yield chillOut(5000);
 	yield co(rebuildMeetingsFromEvents());
 	app.listen(port, () => {
 		log.info(`Listening on port: ${port}`);
