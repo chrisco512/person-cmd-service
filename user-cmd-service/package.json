@@ -35,7 +35,12 @@
     "servicebus": "^2.0.1",
     "underscore": "^1.8.3",
     "uuid-validate": "0.0.2",
-    "validations": "bitbucket:ultilabs/validations#HEAD"
+    "validations": "bitbucket:ultilabs/validations#HEAD",
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "proxyquire": "^1.7.10",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0"
   },
   "devDependencies": {
     "cross-env": "^1.0.8",

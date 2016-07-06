@@ -3,12 +3,17 @@ const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 const config = require('../config');
 const uri = config.mongo.uri;
+const log = require('../log');
+const { SERVER_ERROR } = require('../error_types');
 
 mongoose.connect(uri);
 
 const EventSchema = new Schema({
 	type      : String,
-	payload   : {}
+	payload   : {},
+	created   : Date,
+	userId    : String,
+	tenantId  : String
 });
 
 const Event = mongoose.model('Event', EventSchema);
@@ -18,7 +23,10 @@ function persistEvent(event) {
 		const newEvent = new Event(event);
 
 		newEvent.save((err, persistedEvent) => {
-			if(err) { reject(err); }
+			if(err) {
+				log.warn('ERROR PERSISTING EVENT: ', event);
+				reject({ type: SERVER_ERROR, err });
+			}
 
 			resolve(persistedEvent);
 		});

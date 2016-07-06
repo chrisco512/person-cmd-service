@@ -4,7 +4,7 @@ const bus = require('servicebus').bus({ url: config.servicebus.uri + "?heartbeat
 
 function publishEvent(event) {
 	bus.publish(event.type, event);
-	return event;
+	return Promise.resolve(event);
 }
 
 module.exports = publishEvent;
