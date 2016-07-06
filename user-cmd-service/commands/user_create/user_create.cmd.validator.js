@@ -10,6 +10,15 @@ const validateUser = createValidator({
   personID: [required, uuid],
   companyIdentifier: [required],
   email: [required]
+}, {
+  tenantID: {
+    primary: '_id',
+    collection: 'tenants'
+  },
+  personID: {
+    primary: '_id',
+    collection: 'people'
+  }
 });
 
 const validateTenant = createValidator({
@@ -24,26 +33,14 @@ function validateUserCreateCommand(payload) {
 	return new Promise((resolve, reject) => {
 		const { userAggregate, tenants, people } = store.getState();
 
-		console.log("tenants - ", tenants);
 		const user = payload;
 
-		console.log("User - ", { _id: user.tenantID });
+		const errors = validateUser(user, null, {
+      tenants: tenants,
+      people: people
+    });
 
-		const userErrors = validateUser(user, null, userAggregate);
-		const tenantErrors = validateTenant({ _id: user.tenantID }, null, tenants);
-		const personErrors = validatePerson({ _id: user.personID }, null, people);
-
-		console.log("Tenant errors - ", tenantErrors);
-
-		if (tenantErrors._id) {
-			userErrors.tenantID = tenantErrors._id;
-		}
-
-		if (personErrors._id) {
-			userErrors.personID = personErrors._id;
-		}
-
-		const isErrors = Object.keys(userErrors).length;
+		const isErrors = Object.keys(errors).length;
 
 		if(isErrors) {
 			reject({ type: VALIDATION_ERROR, errors });
