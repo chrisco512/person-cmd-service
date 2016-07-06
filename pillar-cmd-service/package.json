@@ -16,7 +16,6 @@
   "dependencies": {
     "chai": "^3.5.0",
     "co": "^4.6.0",
-    "js-schema": "^1.0.1",
     "koa": "^1.1.2",
     "koa-cors": "0.0.16",
     "koa-json-body": "^4.0.0",
@@ -32,8 +31,6 @@
     "redux": "^3.5.2",
     "redux-saga": "^0.10.4",
     "servicebus": "^2.0.1",
-    "underscore": "^1.8.3",
-    "uuid-validate": "0.0.2",
     "validations": "bitbucket:ultilabs/validations#HEAD"
   },
   "devDependencies": {

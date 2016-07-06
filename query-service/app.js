@@ -6,197 +6,49 @@ require("babel-polyfill");
 const koa = require('koa');
 const jwt = require('koa-jwt');
 const util = require('util');
-const router = require('koa-router')();
-const {
-    pageNotFound, error, unauthorized, unprotected
-} = require('./middlewares');
+// const router = require('koa-router')();
 const jsonBody = require('koa-json-body');
 const config = require('./config');
 const store = require('./store/store');
 const co = require('co');
 const cors = require('koa-cors');
-const {
-	rebuildQueryModelsFromEvents
-} = require('./utils');
-const bus = require('servicebus').bus({ url: config.servicebus.uri + "?heartbeat=60" });
 const qs = require('koa-qs');
 const mount = require('koa-mount');
 const graphqlHTTP = require('koa-graphql');
-const app = module.exports = koa();
-const port = process.env.PORT || config.port || 8080;
+const schema = require('./schema');
 
-qs(app);
-app.use(cors());
+const bus = require('servicebus').bus({ url: config.servicebus.uri + "?heartbeat=60" });
+
+const {
+    pageNotFound, error, unauthorized, unprotected
+} = require('./middlewares');
+const {
+	rebuildQueryModelsFromEvents
+} = require('./utils');
+
+module.exports = const app = koa();
+const port = process.env.PORT || config.port || 8080;
 
 setupHandlers();
 
-app.use(jsonBody({
-    limit: '10kb'
-}));
+qs(app);
+app.use(cors());
+app.use(jsonBody({ limit: '10kb' }));
 app.use(pageNotFound);
 app.use(error);
 app.use(unauthorized);
 app.use(unprotected);
-router.get('/', function * () {
-    this.response.status = 200;
-    this.body = 'Demo Application | Query Service operational.';
-});
-
-router.get('/data', function * () {
-    console.log('Hit the query model get endpoint');
-    this.response.status = 200;
-    this.body = store.getState();
-});
-
-const {
-    graphql,
-    GraphQLSchema,
-    GraphQLObjectType,
-    GraphQLString,
-    GraphQLNonNull,
-    GraphQLEnumType,
-    GraphQLInt,
-    GraphQLList
-} = require('graphql');
-
-const employeeType = new GraphQLObjectType({
-    name: 'Employee',
-    description: 'Employee description',
-    fields: () => ({
-        _id: {
-            type: new GraphQLNonNull(GraphQLString),
-            description: 'ID of the employee'
-        },
-        eeid: {
-            type: GraphQLInt,
-            description: 'Tenant-provided ID of the employee'
-        },
-        name: {
-            type: GraphQLString,
-            description: 'Name of the employee'
-        },
-        phone: {
-            type: GraphQLInt,
-            description: 'Phone number of the employee'
-        },
-        email: {
-            type: GraphQLString,
-            description: 'Email address of the employee'
-        }
-    })
-});
-
-const tenantContactType = new GraphQLObjectType({
-    name: 'Contact',
-    fields: () => ({
-        name: {
-            type: GraphQLString,
-            description: 'Name of the contact for the tenant'
-        },
-        email: {
-            type: GraphQLString,
-            description: 'Email of the contact for the tenant'
-        },
-        phone: {
-            type: GraphQLInt,
-            description: 'Phone number of the contact for the tenant'
-        }
-    })
-})
-
-const tenantType = new GraphQLObjectType({
-    name: 'Tenant',
-    fields: () => ({
-        _id: {
-            type: new GraphQLNonNull(GraphQLString),
-            description: 'ID of the tenant'
-        },
-        name: {
-            type: GraphQLString,
-            description: 'Name of the tenant'
-        },
-        address: {
-            type: GraphQLString,
-            description: 'Address of the tenant'
-        },
-        contact: {
-            type: tenantContactType,
-            description: 'Main contact for the tenant'
-        },
-        employees: {
-            type: new GraphQLList(employeeType),
-            resolve: (tenant, params, source, fieldsAST) => {
-                return store.getState().employees.filter((employee) => (employee.tenantID === tenant._id));
-            }
-        }
-    })
-});
-
-const personType = new GraphQLObjectType({
-  name: 'Person',
-  fields: () => ({
-        _id: {
-            type: new GraphQLNonNull(GraphQLString),
-            description: 'ID of the person'
-        },
-        first_name: {
-            type: GraphQLString,
-            description: 'First name of the person'
-        },
-        last_name: {
-            type: GraphQLString,
-            description: 'Last name of the person'
-        },
-        email: {
-            type: GraphQLString,
-            description: 'Email of the person'
-        },
-        phone: {
-            type: GraphQLInt,
-            description: 'Phone number of the person'
-        },
-        carrier: {
-            type: GraphQLString,
-            description: 'Cell carrier number of the person'
-        }
-    })
-
-});
-
-let schema = new GraphQLSchema({
-    query: new GraphQLObjectType({
-        name: 'RootQueryType',
-        fields: {
-            tenants: {
-                type: new GraphQLList(tenantType),
-                resolve: function() {
-                    return store.getState().tenants;
-                }
-            },
-            employees: {
-                type: new GraphQLList(employeeType),
-                resolve: function() {
-                    return store.getState().employees;
-                }
-            },
-            persons: {
-                type: new GraphQLList(personType),
-                resolve: function() {
-                    return store.getState().persons;
-                }
-            }
-        }
-    })
-});
 
 app.use(mount('/', graphqlHTTP({
     schema: schema,
     graphiql: true
 })));
 
-app
-    .use(router.routes())
-    .use(router.allowedMethods());
+
+
+// app
+//     .use(router.routes())
+//     .use(router.allowedMethods());
 
 
 //START UP
