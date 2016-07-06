@@ -1,23 +1,5 @@
 version: '2'
 services:
-  product-cmd:
-    image: node:6
-    restart: always
-    networks:
-      - main
-    links:
-     - mongo
-     - rabbit
-
-  proposal-cmd:
-    image: node:6
-    restart: always
-    networks:
-      - main
-    links:
-     - mongo
-     - rabbit
-
   person-cmd:
       image: node:6
       restart: always
@@ -37,6 +19,24 @@ services:
        - rabbit
 
   tenant-cmd:
+      image: node:6
+      restart: always
+      networks:
+        - main
+      links:
+       - mongo
+       - rabbit
+
+  pillar-cmd:
+       image: node:6
+       restart: always
+       networks:
+         - main
+       links:
+        - mongo
+        - rabbit
+
+  content-cmd:
       image: node:6
       restart: always
       networks:
@@ -90,9 +90,9 @@ services:
     links:
       - "kong-database:kong-database"
       - "query-service:query-service"
-      - "proposal-cmd:proposal-cmd"
-      - "product-cmd:product-cmd"
       - "person-cmd:person-cmd"
+      - "pillar-cmd:pillar-cmd"
+      - "content-cmd:content-cmd"
     ports:
       - "8000:8000"
 

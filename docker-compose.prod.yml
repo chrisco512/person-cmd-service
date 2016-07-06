@@ -1,44 +1,40 @@
 version: '2'
 services:
-
   kong:
     ports:
       - "8000:80"
 
-  product-cmd:
-    environment:
-      - NODE_ENV production
-    command: npm run start:production
-
-  proposal-cmd:
-    environment:
-      - NODE_ENV production
-    command: npm run start:production
-
   query-service:
     environment:
       - NODE_ENV production
-    command: npm run start:production
+    command: npm run start:prod
 
   websocket-service:
     environment:
       - NODE_ENV production
-    command: npm run start:production
+    command: npm run start:prod
 
   saga-service:
       environment:
         - NODE_ENV production
-      command: npm run start:production
+      command: npm run start:prod
   person-cmd:
       environment:
         - NODE_ENV production
-      command: npm run start:production
+      command: npm run start:prod
   user-cmd:
       environment:
         - NODE_ENV production
-      command: npm run start:production
+      command: npm run start:prod
   tenant-cmd:
       environment:
         - NODE_ENV production
-      command: npm run start:production
-
+      command: npm run start:prod
+  pillar-cmd:
+      environment:
+        - NODE_ENV production
+      command: npm run start:prod
+  content-cmd:
+      environment:
+        - NODE_ENV production
+      command: npm run start:prod

@@ -1,0 +1,7 @@
+const CONTENT_CREATE = 'command.CONTENT_CREATE';
+const CONTENT_DELETE = 'command.CONTENT_DELETE';
+
+module.exports = {
+	CONTENT_CREATE,
+	CONTENT_DELETE
+};

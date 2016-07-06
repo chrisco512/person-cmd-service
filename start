@@ -11,9 +11,9 @@ if [[ $3 == "-d" ]]; then
 fi
 
 if [[ $1 == "develop" ]]; then
-  docker-compose -f ./docker-compose.yml -f ./docker-compose.develop.yml $opt up
+  docker-compose -f ./docker-compose.yml -f ./docker-compose.develop.yml up $opt
 fi
 
 if [[ $1 == "production" ]]; then
-  docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml $opt up
+  docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml up $opt
 fi

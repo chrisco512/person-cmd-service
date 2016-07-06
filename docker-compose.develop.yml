@@ -1,26 +1,16 @@
 version: '2'
 services:
-  product-cmd:
-    environment:
-      - NODE_ENV development
-    volumes:
-      - ./product-cmd-service:/app
-    ports:
-      - "8001:80"
-    command: npm run start:dev
-    working_dir: /app
+  kong:
+    container_name: kong
 
-  proposal-cmd:
-    environment:
-      - NODE_ENV development
-    volumes:
-      - ./proposal-cmd-service:/app
-    ports:
-      - "8002:80"
-    command: npm run start:dev
-    working_dir: /app
+  kongfig:
+    container_name: kongfig
 
+  kong-database:
+    container_name: kong-db
+    
   query-service:
+    container_name: query-service
     environment:
       - NODE_ENV development
     volumes:
@@ -31,6 +21,7 @@ services:
     working_dir: /app
 
   websocket-service:
+    container_name: websocket-service
     environment:
       - NODE_ENV development
     volumes:
@@ -41,6 +32,7 @@ services:
     working_dir: /app
 
   user-cmd:
+    container_name: user-cmd
     environment:
       - NODE_ENV development
     volumes:
@@ -51,6 +43,7 @@ services:
     working_dir: /app
 
   person-cmd:
+    container_name: person-cmd
     environment:
       - NODE_ENV development
     volumes:
@@ -60,17 +53,8 @@ services:
     command: npm run start:dev
     working_dir: /app/src
 
-  tenant-cmd:
-    environment:
-      - NODE_ENV development
-    volumes:
-      - ./tenant-cmd-service:/app
-    ports:
-      - "8008:80"
-    command: npm run start:dev
-    working_dir: /app
-
   saga-service:
+    container_name: saga-service
     links:
      - person-cmd
      - user-cmd
@@ -83,9 +67,44 @@ services:
     command: npm run start:dev
     working_dir: /app/src
 
+  tenant-cmd:
+    container_name: tenant-cmd
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./tenant-cmd-service:/app
+    ports:
+      - "8008:80"
+    command: npm run start:dev
+    working_dir: /app
+
+  pillar-cmd:
+    container_name: pillar-cmd
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./pillar-cmd-service:/app
+    ports:
+      - "8009:80"
+    command: npm run start:dev
+    working_dir: /app
+
+  content-cmd:
+    container_name: content-cmd
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./content-cmd-service:/app
+    ports:
+      - "8010:80"
+    command: npm run start:dev
+    working_dir: /app
+
   mongo:
+    container_name: mongo
     ports:
       - "27017:27017"
   rabbit:
+    container_name: rabbit
     ports:
       - "5672:5672"
