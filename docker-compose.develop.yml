@@ -8,7 +8,7 @@ services:
 
   kong-database:
     container_name: kong-db
-    
+
   query-service:
     container_name: query-service
     environment:
@@ -36,11 +36,11 @@ services:
     environment:
       - NODE_ENV development
     volumes:
-      - ./user-cmd-service:/app
+      - ./user-cmd-service:/app/src
     ports:
       - "8005:80"
     command: npm run start:dev
-    working_dir: /app
+    working_dir: /app/src
 
   person-cmd:
     container_name: person-cmd
@@ -72,33 +72,33 @@ services:
     environment:
       - NODE_ENV development
     volumes:
-      - ./tenant-cmd-service:/app
+      - ./tenant-cmd-service:/app/src
     ports:
       - "8008:80"
     command: npm run start:dev
-    working_dir: /app
+    working_dir: /app/src
 
   pillar-cmd:
     container_name: pillar-cmd
     environment:
       - NODE_ENV development
     volumes:
-      - ./pillar-cmd-service:/app
+      - ./pillar-cmd-service:/app/src
     ports:
       - "8009:80"
     command: npm run start:dev
-    working_dir: /app
+    working_dir: /app/src
 
   content-cmd:
     container_name: content-cmd
     environment:
       - NODE_ENV development
     volumes:
-      - ./content-cmd-service:/app
+      - ./content-cmd-service:/app/src
     ports:
       - "8010:80"
     command: npm run start:dev
-    working_dir: /app
+    working_dir: /app/src
 
   mongo:
     container_name: mongo
