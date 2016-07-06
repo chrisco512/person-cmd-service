@@ -17,11 +17,8 @@ const USER_CREATE = {
     personId: {type: new GraphQLNonNull(GraphQLString)},
     companyIdentifier: {type: new GraphQLNonNull(GraphQLString)}
   },
-  resolve: (user, args) => {
+  resolve: (_, args) => {
     const type = 'command.USER_CREATE';
-    console.log('USER:', user);
-    console.log('ARGS:', args);
-
     const body = {
       type,
       payload: args
