@@ -7,18 +7,12 @@ const router = require('koa-router')();
 const { pageNotFound, error, unauthorized, unprotected } = require('./middlewares');
 const jsonBody = require('koa-json-body');
 const config = require('./config');
-const store = require('./store/store');
+const store = require('./store');
 const co = require('co');
 const cors = require('koa-cors');
 const bus = require('servicebus').bus({ url: config.servicebus.uri + "?heartbeat=60" });
-const fs = require('fs');
+
 const { VALIDATION_ERROR, SERVER_ERROR } = require('./error_types');
-
-
-const IncomingForm = require('formidable');
-const { Converter } = require("csvtojson");
-const body = require('koa-better-body');
-const form = require('./signupForm');
 const { rebuildMeetingsFromEvents } = require('./utils');
 const commandHandler = require('./commands');
 const { USER_CREATE } = require('./commands/command_types');
@@ -77,76 +71,12 @@ router.post('/', function * () {
 	this.response.body = body;
 });
 
-
-
-// function parse(path, tenantID, type) {
-// 	return new Promise((resolve, reject) => {
-// 		let employeesCreated = 0;
-// 		let errors = 0;
-
-// 		const converter = new Converter({});
-// 		//record_parsed will be emitted each csv row being processed
-// 		converter.on("record_parsed", employee => {
-// 			console.log('Employee received: ', employee);
-// 			const { eeid, name, phone, email } = employee;
-// 			const command = {
-// 				type,
-// 				payload: {
-// 					eeid,
-// 					tenantID,
-// 					name,
-// 					phone,
-// 					email
-// 				}
-// 			};
-
-// 			commandHandler(command).then(event => {
-// 				employeesCreated++;
-// 			}).catch( err => {
-// 				errors++;
-// 			});
-// 		});
-
-// 		//end_parsed will be emitted once parsing finished
-// 		converter.on("end_parsed", () => {
-// 			fs.unlink(path);
-// 			resolve({
-// 				employeesCreated,
-// 				errors
-// 			});
-// 		});
-
-// 		fs.createReadStream(path).pipe(converter);
-// 	});
-// }
-
-// router.post('/csv',
-// 		body({
-// 			IncomingForm: form,
-// 			onerror: (err, ctx) => {
-// 				console.log('Error in koa body - ', err, '. With context - ', ctx);
-// 				throw err;
-// 			}
-// 		}),
-// 		function *() {
-// 			console.log('Hit CSV user endpoint');
-// 			const path = this.body.files.csvFile.path;
-// 			const tenantID = this.body.tenantID;
-// 			const type = this.body.type;
-
-// 			const parseResults = yield parse(path, tenantID, type);
-
-// 			this.response.status = 200;
-// 			this.body = parseResults;
-// 		});
-
 app
 	.use(router.routes())
 	.use(router.allowedMethods());
 
 //START UP
 co(function* () {
-	// yield chillOut(5000);
 	yield co(rebuildMeetingsFromEvents());
 
     bus.subscribe('tenant.*', function (event) {
@@ -163,14 +93,6 @@ co(function* () {
 		console.log(`Listening on port: ${port}`);
 	});
 });
-
-// function chillOut(amount) {
-// 	return new Promise((resolve, reject) => {
-// 		setTimeout(function() {
-// 			return resolve("chilled.");
-// 		}, amount)
-// 	});
-// }
 
 function setupHandlers() {
 	/* Quit Node Properly with Ctrl+C */

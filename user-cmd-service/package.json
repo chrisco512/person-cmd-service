@@ -8,19 +8,16 @@
     "test": "mocha **/*.spec.js",
     "test:watch": "npm run test -- --watch",
     "start:prod": "node app.js",
-    "start:dev": "nodemon app.js --exitcrash"
+    "start:dev": "nodemon app.js --exitcrash",
+    "start:local": "cross-env PORT=1337 RABBIT_URI=amqp://localhost MONGO_URI=mongodb://localhost:27017/culture devtool app.js --watch --break"
   },
   "engine": "node 6.0.0",
   "author": "",
   "license": "ISC",
   "dependencies": {
     "co": "^4.6.0",
-    "csvtojson": "^0.5.12",
-    "dotenv": "^2.0.0",
-    "formidable": "^1.0.17",
     "koa": "^1.1.2",
     "koa-cors": "0.0.16",
-    "koa-better-body": "^2.0.1",
     "koa-json-body": "^4.0.0",
     "koa-jwt": "^1.1.2",
     "koa-router": "^5.4.0",

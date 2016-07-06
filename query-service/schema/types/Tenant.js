@@ -1,3 +1,6 @@
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLNonNull, GraphQLList } = require('graphql');
+const Employee = require('./Employee');
+
 const TenantContact = new GraphQLObjectType({
   name: 'Contact',
   fields: () => ({
@@ -36,8 +39,8 @@ const Tenant = new GraphQLObjectType({
       description: 'Main contact for the tenant'
     },
     employees: {
-      type: new GraphQLList(employeeType),
-      resolve: (tenant, params, source, fieldsAST) => {
+      type: new GraphQLList(Employee),
+      resolve: (tenant, args) => {
         return store.getState().employees
           .filter(employee => employee.tenantID === tenant._id);
       }

@@ -9,7 +9,7 @@ const util = require('util');
 // const router = require('koa-router')();
 const jsonBody = require('koa-json-body');
 const config = require('./config');
-const store = require('./store/store');
+const store = require('./store');
 const co = require('co');
 const cors = require('koa-cors');
 const qs = require('koa-qs');
@@ -26,7 +26,8 @@ const {
 	rebuildQueryModelsFromEvents
 } = require('./utils');
 
-module.exports = const app = koa();
+const app = koa();
+module.exports = app;
 const port = process.env.PORT || config.port || 8080;
 
 setupHandlers();
@@ -40,7 +41,7 @@ app.use(unauthorized);
 app.use(unprotected);
 
 app.use(mount('/', graphqlHTTP({
-    schema: schema,
+    schema,
     graphiql: true
 })));
 

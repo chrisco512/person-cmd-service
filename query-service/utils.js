@@ -1,7 +1,7 @@
 'use strict';
 const config = require('./config');
 const MongoClient = require('mongodb').MongoClient;
-const store = require('./store/store');
+const store = require('./store');
 
 module.exports = {
 	rebuildQueryModelsFromEvents
