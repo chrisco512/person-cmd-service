@@ -5,72 +5,48 @@ services:
       restart: always
       networks:
         - main
-      links:
-       - mongo
-       - rabbit
 
   user-cmd:
       image: node:6
       restart: always
       networks:
         - main
-      links:
-       - mongo
-       - rabbit
 
   tenant-cmd:
       image: node:6
       restart: always
       networks:
         - main
-      links:
-       - mongo
-       - rabbit
 
   pillar-cmd:
        image: node:6
        restart: always
        networks:
          - main
-       links:
-        - mongo
-        - rabbit
 
   content-cmd:
       image: node:6
       restart: always
       networks:
         - main
-      links:
-       - mongo
-       - rabbit
 
   saga-service:
       image: node:6
       restart: always
       networks:
         - main
-      links:
-       - mongo
-       - rabbit
 
   query-service:
     image: node:6
     restart: always
     networks:
       - main
-    links:
-     - mongo
-     - rabbit
 
   websocket-service:
     image: node:6
     restart: always
     networks:
       - main
-    links:
-      - mongo
-      - rabbit
 
   mongo:
     networks:
@@ -87,15 +63,6 @@ services:
     image: mashape/kong
     networks:
       - main
-    links:
-      - "kong-database:kong-database"
-      - "query-service:query-service"
-      - "person-cmd:person-cmd"
-      - "pillar-cmd:pillar-cmd"
-      - "content-cmd:content-cmd"
-      - "saga-service:saga-service"
-      - "tenant-cmd:tenant-cmd"
-      - "user-cmd:user-cmd"
     ports:
       - "8000:8000"
 
@@ -107,8 +74,6 @@ services:
       dockerfile: ./kongfig_fix/kongfig.Dockerfile
     networks:
       - main
-    links:
-      - "kong:kong"
 
   kong-database:
     image: cassandra:2.2.1
