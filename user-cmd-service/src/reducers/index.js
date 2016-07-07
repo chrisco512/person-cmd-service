@@ -1,11 +1,11 @@
 const { combineReducers } = require('redux');
 
-const userAggregate = require('./user_aggregate/user_aggregate.reducer.js');
+const users = require('./users/users.reducer.js');
 const tenants = require('./tenants/tenants.reducer.js');
 const people = require('./people/people.reducer.js');
 
 const reducers = {
-	userAggregate,
+	users,
 	tenants,
 	people
 };
