@@ -25,7 +25,15 @@ app.use(error);
 app.use(unauthorized);
 app.use(unprotected);
 
+router.get('/', function *() {
+	this.response.status = 200;
+	this.body = 'Demo Application | Pillar Service operational.';
+});
+
 router.post('/', commandRoute);
+
+// Need _id to know which pillar to delete
+router.delete('/', commandRoute);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
