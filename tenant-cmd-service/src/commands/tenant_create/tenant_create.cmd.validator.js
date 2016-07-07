@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const store = require('../../store/store');
 const { createValidator, required, minLength, email, integer } = require('validations');
 
