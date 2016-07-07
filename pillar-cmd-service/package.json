@@ -6,6 +6,7 @@
   "scripts": {
     "devtool": "devtool ./src/app.js --watch --break",
     "test": "mocha ./src/**/*.spec.js",
+    "test:debug": "devtool node_modules/mocha/bin/_mocha -qc -- ./src/**/*.spec.js --break --watch",
     "test:watch": "npm run test -- --watch",
     "start:prod": "node ./src/app.js",
     "start:dev": "nodemon ./src/app.js --exitcrash"
@@ -24,7 +25,6 @@
     "lodash": "^4.13.1",
     "loglevel": "^1.4.1",
     "loglevel-message-prefix": "^1.1.1",
-    "mocha": "^2.5.3",
     "mongodb": "^2.1.21",
     "mongoose": "^4.4.19",
     "node-uuid": "^1.4.7",
@@ -35,6 +35,10 @@
   },
   "devDependencies": {
     "devtool": "^2.0.2",
-    "nodemon": "^1.9.2"
+    "mocha": "^2.5.3",
+    "nodemon": "^1.9.2",
+    "proxyquire": "^1.7.10",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0"
   }
 }

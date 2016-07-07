@@ -1,12 +1,7 @@
 'use strict';
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 require("babel-polyfill");
-
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const koa = require('koa');
-const jwt = require('koa-jwt');
-const util = require('util');
-// const router = require('koa-router')();
 const jsonBody = require('koa-json-body');
 const config = require('./config');
 const store = require('./store');
@@ -23,7 +18,7 @@ const {
     pageNotFound, error, unauthorized, unprotected
 } = require('./middlewares');
 const {
-	rebuildQueryModelsFromEvents
+	rebuildQueryModelsFromEvents // TODO: set up handlers here!!!
 } = require('./utils');
 
 const app = koa();
@@ -77,7 +72,7 @@ function setupHandlers() {
     // error handler
     app.on('error', function(err) {
         if (process.env.NODE_ENV != 'test') {
-            console.log('sent error %s to the cloud', util.inspect(err));
+            console.log('sent error %s to the cloud', err);
         }
     });
 }

@@ -93,6 +93,9 @@ services:
       - "person-cmd:person-cmd"
       - "pillar-cmd:pillar-cmd"
       - "content-cmd:content-cmd"
+      - "saga-service:saga-service"
+      - "tenant-cmd:tenant-cmd"
+      - "user-cmd:user-cmd"
     ports:
       - "8000:8000"
 
