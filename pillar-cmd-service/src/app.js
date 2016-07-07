@@ -30,7 +30,10 @@ router.get('/', function *() {
 	this.body = 'Demo Application | Pillar Service operational.';
 });
 
-router.post('/', commandRoute);
+router.post('/', commandRoute);]
+
+// Need _id to know which pillar to delete
+router.delete('/', commandRoute);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
