@@ -25,7 +25,7 @@ app.use(unprotected);
 
 router.get('/', function *() {
 	this.response.status = 200;
-	this.body = 'Demo Application | Tenant Service operational.';
+	this.body = 'Tenant Service operational.';
 });
 
 if(process.env.NODE_ENV === 'development') {

@@ -1,23 +1,7 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLNonNull, GraphQLList } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLList } = require('graphql');
 const Employee = require('./Employee');
-
-const TenantContact = new GraphQLObjectType({
-  name: 'Contact',
-  fields: () => ({
-    name: {
-      type: GraphQLString,
-      description: 'Name of the contact for the tenant'
-    },
-    email: {
-      type: GraphQLString,
-      description: 'Email of the contact for the tenant'
-    },
-    phone: {
-      type: GraphQLInt,
-      description: 'Phone number of the contact for the tenant'
-    }
-  })
-})
+const TenantContact = require('./TenantContact');
+const store = require('../../store');
 
 const Tenant = new GraphQLObjectType({
   name: 'Tenant',

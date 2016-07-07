@@ -19,13 +19,14 @@ const PERSON_CREATE = {
   },
   resolve: (_, args) => {
     const type = 'command.PERSON_CREATE';
-    console.log(args.carrier);
+
     const body = {
       type,
       payload: args
     };
     return axios.post('http://person-cmd/', body)
-                .then( res => {console.log(res.data);return res.data;} );
+                .then( res => {console.log('res:', res); return res.data} );
+                // .then( res => res.data );
   }
 };
 

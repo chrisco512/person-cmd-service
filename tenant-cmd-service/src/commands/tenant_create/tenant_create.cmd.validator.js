@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const store = require('../../store');
 const { createValidator, required, minLength, email, integer } = require('validations');
 
@@ -17,7 +16,7 @@ function validateTenantCreateCommand(payload) {
 		const { tenantAggregate } = store.getState();
 		const tenant = payload;
 
-		const errors = validateTenant(tenant, tenantAggregate);
+		const errors = validateTenant(tenant, null, tenantAggregate);
 		const isErrors = Object.keys(errors).length;
 
 		if(isErrors) {
