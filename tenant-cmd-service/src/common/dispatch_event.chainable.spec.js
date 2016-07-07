@@ -10,7 +10,7 @@ describe('dispatchEvent', () => {
 	it('should call store.dispatch with the event passed in', () => {
 		let dispatch = sinon.spy();
 		let stubs = {
-			'./../store/store': {
+			'../store': {
 				dispatch
 			}
 		};

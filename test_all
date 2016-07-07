@@ -1,0 +1,11 @@
+#!/bin/bash
+
+folders=($(\ls -d *-service))
+
+for i in "${folders[@]}"
+do
+  echo "RUNNING npm test AT $i"
+  cd $i
+  [ -e "package.json" ] && npm test
+  cd ..
+done
