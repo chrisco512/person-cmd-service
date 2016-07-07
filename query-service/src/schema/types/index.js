@@ -2,5 +2,6 @@ module.exports = {
   Employee: require('./Employee'),
   Person: require('./Person'),
   Tenant: require('./Tenant'),
-  User: require('./User')
+  User: require('./User'),
+  CarrierEnum: require('./CarrierEnum')
 };

@@ -4,7 +4,8 @@ const MongoClient = require('mongodb').MongoClient;
 const store = require('./store');
 
 module.exports = {
-	rebuildQueryModelsFromEvents
+	rebuildQueryModelsFromEvents,
+	setupHandlers
 };
 
 function *rebuildQueryModelsFromEvents() {
@@ -37,4 +38,12 @@ function *rebuildQueryModelsFromEvents() {
 
 	eventCursor.close();
 	db.close();
+}
+
+function setupHandlers() {
+    // Quit Node Properly with Ctrl+C
+    process.on('SIGINT', function() {
+        console.log("Gracefully shutting down from SIGINT (Ctrl+C)");
+        process.exit();
+    });
 }

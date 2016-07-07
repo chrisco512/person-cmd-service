@@ -18,7 +18,8 @@ const {
     pageNotFound, error, unauthorized, unprotected
 } = require('./middlewares');
 const {
-	rebuildQueryModelsFromEvents // TODO: set up handlers here!!!
+	rebuildQueryModelsFromEvents,
+  setupHandlers
 } = require('./utils');
 
 const app = koa();
@@ -40,13 +41,6 @@ app.use(mount('/', graphqlHTTP({
     graphiql: true
 })));
 
-
-
-// app
-//     .use(router.routes())
-//     .use(router.allowedMethods());
-
-
 //START UP
 co(function* () {
 	yield co(rebuildQueryModelsFromEvents());
@@ -61,18 +55,3 @@ co(function* () {
 		console.log(`Listening on port: ${port}`);
 	});
 });
-
-function setupHandlers() {
-    // Quit Node Properly with Ctrl+C
-    process.on('SIGINT', function() {
-        console.log("Gracefully shutting down from SIGINT (Ctrl+C)");
-        process.exit();
-    });
-
-    // error handler
-    app.on('error', function(err) {
-        if (process.env.NODE_ENV != 'test') {
-            console.log('sent error %s to the cloud', err);
-        }
-    });
-}

@@ -1,4 +1,6 @@
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLNonNull } = require('graphql');
+const CarrierEnum = require('./CarrierEnum');
+
 const Person = new GraphQLObjectType({
   name: 'Person',
   fields: () => ({
@@ -6,11 +8,11 @@ const Person = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLString),
       description: 'ID of the person'
     },
-    first_name: {
+    firstName: {
       type: GraphQLString,
       description: 'First name of the person'
     },
-    last_name: {
+    lastName: {
       type: GraphQLString,
       description: 'Last name of the person'
     },
@@ -23,7 +25,7 @@ const Person = new GraphQLObjectType({
       description: 'Phone number of the person'
     },
     carrier: {
-      type: GraphQLString,
+      type: CarrierEnum,
       description: 'Cell carrier number of the person'
     }
   })
