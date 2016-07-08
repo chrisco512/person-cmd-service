@@ -12,6 +12,8 @@ const mount = require('koa-mount');
 const graphqlHTTP = require('koa-graphql');
 const schema = require('./schema');
 
+const util = require('util');
+
 const bus = require('servicebus').bus({ url: config.servicebus.uri + "?heartbeat=60" });
 
 const {
@@ -38,7 +40,15 @@ app.use(unprotected);
 
 app.use(mount('/', graphqlHTTP({
     schema,
-    graphiql: true
+    graphiql: true,
+    formatError: err => {
+      if(err.originalError) {
+        return { message: err };
+      } else {
+        return { message: err.message, locations: err.locations };
+      }
+
+    }
 })));
 
 //START UP

@@ -25,8 +25,8 @@ const PERSON_CREATE = {
       payload: args
     };
     return axios.post('http://person-cmd/', body)
-                .then( res => {console.log('res:', res); return res.data} );
-                // .then( res => res.data );
+                .then( res => res.data )
+                .catch(res => { throw res.data });
   }
 };
 

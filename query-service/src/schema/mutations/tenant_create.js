@@ -12,7 +12,6 @@ const TENANT_CREATE = {
   description: 'Creates a Person and sends `command.TENANT_CREATE`',
   args: {
     name: {type: new GraphQLNonNull(GraphQLString)},
-    email: {type: new GraphQLNonNull(GraphQLString)},
     address: {type: new GraphQLNonNull(GraphQLString)},
     contact: {type: new GraphQLNonNull(InputTenantContact)}
   },
@@ -24,7 +23,8 @@ const TENANT_CREATE = {
       payload: args
     };
     return axios.post('http://tenant-cmd/', body)
-                .then( res => res.data} );
+                .then( res => res.data )
+                .catch(err => { throw err.data });
   }
 };
 

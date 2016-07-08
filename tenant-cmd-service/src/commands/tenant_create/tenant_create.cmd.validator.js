@@ -1,5 +1,6 @@
 const store = require('../../store');
 const { createValidator, required, minLength, email, integer } = require('validations');
+const { VALIDATION_ERROR } = require('../../error_types');
 
 const validateTenant = createValidator({
   name: [required, minLength(4)],
@@ -20,7 +21,7 @@ function validateTenantCreateCommand(payload) {
 		const isErrors = Object.keys(errors).length;
 
 		if(isErrors) {
-			reject(errors);
+			reject({ type: VALIDATION_ERROR, errors });
 		}
 		console.log('VALIDATED COMMAND:', payload);
 		resolve(payload);
