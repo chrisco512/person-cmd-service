@@ -1,44 +1,22 @@
-'use strict';
 require("babel-polyfill");
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-const koa = require('koa');
-const jsonBody = require('koa-json-body');
+const co = require('co');
 const config = require('./config');
 const store = require('./store');
-const co = require('co');
-const cors = require('koa-cors');
-const qs = require('koa-qs');
-const mount = require('koa-mount');
-const graphqlHTTP = require('koa-graphql');
 const schema = require('./schema');
-
-const util = require('util');
+const app = require('./express');
 
 const bus = require('servicebus').bus({ url: config.servicebus.uri + "?heartbeat=60" });
-
-const {
-    pageNotFound, error, unauthorized, unprotected
-} = require('./middlewares');
 const {
 	rebuildQueryModelsFromEvents,
   setupHandlers
 } = require('./utils');
 
-const app = koa();
-module.exports = app;
-const port = process.env.PORT || config.port || 8080;
+const { port } = config;
 
 setupHandlers();
 
-qs(app);
-app.use(cors());
-app.use(jsonBody({ limit: '10kb' }));
-app.use(pageNotFound);
-app.use(error);
-app.use(unauthorized);
-app.use(unprotected);
-
-app.use(mount('/', graphqlHTTP({
+app.use( cors() );
+app.use('/graphql', graphqlHTTP({
     schema,
     graphiql: true,
     formatError: err => {
@@ -49,7 +27,7 @@ app.use(mount('/', graphqlHTTP({
       }
 
     }
-})));
+}));
 
 //START UP
 co(function* () {
