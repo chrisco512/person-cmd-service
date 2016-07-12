@@ -5,32 +5,23 @@ const config = require('../config');
 const uri = config.mongo.uri;
 const log = require('../log');
 const { SERVER_ERROR } = require('../error_types');
-
-mongoose.connect(uri);
-
-const EventSchema = new Schema({
-	type      : String,
-	payload   : {},
-	created   : Date,
-	userId    : String,
-	tenantId  : String
-});
-
-const Event = mongoose.model('Event', EventSchema);
+const { db } = require("../utils");
 
 function persistEvent(event) {
-	return new Promise((resolve, reject) => {
-		const newEvent = new Event(event);
+                  console.log("GOT EEEM!");
+        return new Promise((resolve, reject) => {
+                  console.log("GOT EEEM2!");
+                db.collection('events').insertOne(event, function(err, r) {
+                  console.log("GOT EEEM3!");
 
-		newEvent.save((err, persistedEvent) => {
-			if(err) {
-				log.warn('ERROR PERSISTING EVENT: ', event);
-				reject({ type: SERVER_ERROR, err });
-			}
+                        if(err) {
+                                log.warn('ERROR PERSISTING EVENT: ', event);
+                                reject({ type: SERVER_ERROR, err });
+                        }
 
-			resolve(persistedEvent);
-		});
-	});
+                        resolve(r.result);
+                });
+        });
 }
 
 module.exports = persistEvent;

@@ -3,18 +3,36 @@ const config = require('./config');
 const MongoClient = require('mongodb').MongoClient;
 const store = require('./store/store');
 const log = require('./log');
+const MongoHeartBeat = require('mongo-heartbeat');
+
+let db;
 
 module.exports = {
 	rebuildMeetingsFromEvents,
-	setupHandlers
+	setupHandlers,
+        db
 };
+
+
+function heartbeat(db) {
+  let hb = MongoHeartBeat(db, {
+    interval: 5000,
+    timeout: 10000,
+    tolerance: 2
+  });
+
+  hb.on('error', function(err) {
+    conole.log("mongo is dead :(")
+    process.exit(1)
+  });
+}
 
 function *rebuildMeetingsFromEvents() {
 	log.info('Rebuilding state from events...');
 	let eventCounter = 0;
 
 	let url = config.mongo.uri;
-	let db = yield MongoClient.connect(url);
+	db = yield MongoClient.connect(url);
 	let eventCursor = db.collection('events').find();
 
 	let startTime = new Date();
@@ -34,7 +52,8 @@ function *rebuildMeetingsFromEvents() {
 	log.info(`Processed ${eventCounter} events in ${processTime} ms.`);
 
 	eventCursor.close();
-	db.close();
+
+        heartbeat(db);
 }
 
 function setupHandlers() {
