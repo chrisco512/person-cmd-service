@@ -17,7 +17,7 @@ const PERSON_CREATE = {
     firstName: {type: new GraphQLNonNull(GraphQLString)},
   	lastName: {type: new GraphQLNonNull(GraphQLString)}
   },
-  resolve: (_, args) => {
+  resolve: (rootValue, args) => {
     const type = 'command.PERSON_CREATE';
 
     const body = {

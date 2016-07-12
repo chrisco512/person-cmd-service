@@ -15,7 +15,7 @@ const TENANT_CREATE = {
     address: {type: new GraphQLNonNull(GraphQLString)},
     contact: {type: new GraphQLNonNull(InputTenantContact)}
   },
-  resolve: (_, args) => {
+  resolve: (rootValue, args) => {
     const type = 'command.TENANT_CREATE';
 
     const body = {

@@ -5,6 +5,7 @@ const { employeeImportSaga } = require('../sagas');
 
 function* employeeRecordImportRoute () {
 	log.info('Hit CSV user endpoint');
+	log.info(this.body);
 	const path = this.body.files.csvFile.path;
 	const tenantID = this.body.tenantID;
 	const type = this.body.type;
