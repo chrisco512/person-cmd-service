@@ -7,6 +7,7 @@ const {
 const fs = require('fs');
 
 const axios = require('axios');
+const FormData = require('form-data');
 // const { Tenant, InputTenantContact } = require('../types');
 
 const UploadedFileType = new GraphQLObjectType({
@@ -33,19 +34,33 @@ const EMPLOYEE_IMPORT_SAGA = {
       payload: args
     };
 
-    console.log(rootValue.request.file);
+    console.log('💥');
 
-    // fs.createReadStream(rootValue.request.file).pipe(axios.post('http://saga-service/'));
+    const form = new FormData();
+    console.log('💥');
+    form.append('csvFile', fs.createReadStream(rootValue.request.file.path) );
+    console.log('💥');
+    form.append('tenantId', rootValue.request.body.tenantId);
+    console.log('💥');
+
+
+    console.log('🤔', rootValue.request);
+    console.log('🔥',rootValue.request.headers);
+
     // return rootValue.request.file
-    console.log('About to post!!!');
     // TODO: DELETE in the then.
-    try {
-      return axios.post('http://saga-service/employee_record_import', fs.createReadStream(rootValue.request.file.path))
-                .then( res => { console.log(res.data); return res.data })
-                .catch( err => { console.log('ERROR');console.log(err); throw err.data });
-              } catch(err) {
-                console.log(err);
-              }
+    return new Promise( (resolve, reject) => {
+      form.submit('http://saga-service/employee_record_import', function(err, res) {
+        console.log('❄️ ', res);
+        console.log('❄️ ', err);
+        if(err) reject(err);
+        resolve(res);
+      });
+    }).then( res => { console.log(res); return res })
+      .catch( err => { console.log('ERROR');console.log(err); throw err });
+    // axios.post('http://saga-service/employee_record_import', form)
+    //
+
 
 
   }

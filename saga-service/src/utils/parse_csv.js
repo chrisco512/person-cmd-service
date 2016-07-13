@@ -1,7 +1,7 @@
 const { Converter } = require("csvtojson");
 const fs = require('fs');
 
-function parse(path, tenantID, type) {
+function parse(path, tenantId, type) {
  	return new Promise((resolve, reject) => {
 	  let employees = [];
 

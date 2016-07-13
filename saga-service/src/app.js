@@ -31,7 +31,7 @@ router.get('/', function *() {
 	this.body = 'Demo Application | Saga Service operational.';
 });
 
-router.post('/employee_record_import', function*() {log.info('BOOM');log.info(this)},
+router.post('/employee_record_import',
   body({
     IncomingForm: new IncomingForm(),
     onerror: (err, ctx) => {
