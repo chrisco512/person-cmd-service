@@ -1,8 +1,9 @@
 const { TENANT_CREATED } = require('../event_types');
+const log = require('../../log');
 const uuid = require('node-uuid');
 
 function tenantCreated({ name, address, contact }) {
-	console.log('EVENT CREATOR:', { name, address, contact });
+	log.info(TENANT_CREATED, ' : ', { name, address, contact });
 	const _id = uuid.v4();
 
 	return {

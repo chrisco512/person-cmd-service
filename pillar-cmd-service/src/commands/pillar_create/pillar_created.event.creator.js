@@ -2,6 +2,7 @@ const { PILLAR_CREATED } = require('../event_types');
 const log = require('../../log');
 
 function pillarCreated({ _id, tenantId, name, content, isSelected, isDeleted }) {
+	isDeleted = false;
 	log.info(PILLAR_CREATED, ' : ', { _id, tenantId, name, content, isSelected, isDeleted });
 
 	return Promise.resolve({
