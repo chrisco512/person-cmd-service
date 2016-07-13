@@ -3,6 +3,7 @@ const config = require('../config');
 const log = require('../log');
 const { SERVER_ERROR } = require('../error_types');
 const MongoSingle = require('../mongo_single');
+const MongoClient = require('mongodb').MongoClient;
 
 function persistEvent(event) {
 	log.info('Persisting event...');

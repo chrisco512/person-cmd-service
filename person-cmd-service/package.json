@@ -27,6 +27,7 @@
     "loglevel": "^1.4.1",
     "loglevel-message-prefix": "^1.1.1",
     "mocha": "^2.5.3",
+    "mongo-heartbeat": "^1.1.0",
     "mongodb": "^2.1.21",
     "mongoose": "^4.4.19",
     "node-uuid": "^1.4.7",
