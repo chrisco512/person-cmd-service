@@ -10,8 +10,8 @@ const log = require('../../log');
 // AKA "soft" delete
 
 function pillarDeleteCommandHandler(payload) {
+	log.info('RECEIVED PILLAR DELETE COMMAND 💃');
 	payload._id = uuid.v4();
-
 	return validateCommand(payload)
 		.then(createEvent)
 		.then(dispatchEvent)

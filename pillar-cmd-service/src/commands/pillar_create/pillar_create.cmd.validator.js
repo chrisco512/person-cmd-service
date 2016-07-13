@@ -1,10 +1,11 @@
 const store = require('../../store');
 const { unique, required, uuid, minLength, createValidator } = require('validations');
 const { VALIDATION_ERROR } = require('../../error_types');
+const log = require('../../log');
 
 const validatePillar = createValidator({
 	_id: [required, unique, uuid],
-	tenantId: [unique],
+	tenantId: [required],
 	name: [required, minLength(1)],
 	content: [],
 	isSelected: [],
@@ -20,6 +21,7 @@ function validatePillarCreateCommand(payload) {
 		const isErrors = Object.keys(errors).length;
 
 		if(isErrors) {
+			log.info('ERROR 😡', errors);
 			return reject({ type: VALIDATION_ERROR, errors });
 		}
 

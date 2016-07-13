@@ -25,6 +25,19 @@ app.use(error);
 app.use(unauthorized);
 app.use(unprotected);
 
+
+if(process.env.NODE_ENV === 'development') {
+	router.get('/contents', function* () {
+		this.response.status = 200;
+		this.body = store.getState().contents;
+	});
+} else {
+	router.get('/', function *() {
+		this.response.status = 200;
+		this.body = 'Content Service Operational!'
+	});
+}
+
 router.post('/', commandRoute);
 
 app.use(router.routes());

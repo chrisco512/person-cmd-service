@@ -4,13 +4,13 @@ const { VALIDATION_ERROR } = require('../../error_types');
 
 const validatePillar = createValidator({
 	_id: [required, unique, uuid],
-	tenantId: [unique],
+	tenantId: [required],
 	name: [required, minLength(1)],
 	content: [],
 	isSelected: [],
 	isDeleted: []
 });
-//not sure what to do here....
+
 function validatePillarDeleteCommand(payload) {
 	return new Promise((resolve, reject) => {
 		const { pillars } = store.getState();
@@ -20,6 +20,7 @@ function validatePillarDeleteCommand(payload) {
 		const isErrors = Object.keys(errors).length;
 
 		if(isErrors) {
+			log.info('ERROR 😡', errors);
 			return reject({ type: VALIDATION_ERROR, errors });
 		}
 
