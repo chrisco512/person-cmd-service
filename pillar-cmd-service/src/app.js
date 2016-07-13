@@ -30,17 +30,14 @@ if(process.env.NODE_ENV === 'development') {
 		this.response.status = 200;
 		this.body = store.getState().pillars;
 	});
-} else {
-	router.get('/', function *() {
-		this.response.status = 200;
-		this.body = 'Pillar Service Operational!'
-	});
 }
 
-router.post('/', commandRoute);
+router.get('/', function *() {
+	this.response.status = 200;
+	this.body = 'Pillar Service Operational!'
+});
 
-// Need _id to know which pillar to delete
-router.delete('/', commandRoute);
+router.post('/', commandRoute);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
