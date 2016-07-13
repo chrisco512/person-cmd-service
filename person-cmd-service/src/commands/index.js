@@ -11,6 +11,7 @@ function commandHandler(command) {
 		case PERSON_CREATE:
 			return personCreateCommandHandler(payload);
 	}
+	//TODO: Handle case where command not found
 }
 
 module.exports = commandHandler;

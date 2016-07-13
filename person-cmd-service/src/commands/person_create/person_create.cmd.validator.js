@@ -20,7 +20,10 @@ function validatePersonCreateCommand(payload) {
 		const isErrors = Object.keys(errors).length;
 		
 		if(isErrors) {
-			return reject({ type: VALIDATION_ERROR, errors });
+			return reject({
+				type: VALIDATION_ERROR,
+				errors
+			});
 		}
 		
 		return resolve(payload);
