@@ -27,6 +27,7 @@
     "multer": "^1.1.0",
     "redux": "^3.5.2",
     "redux-saga": "^0.10.4",
+    "request": "^2.73.0",
     "servicebus": "^2.0.1"
   },
   "devDependencies": {

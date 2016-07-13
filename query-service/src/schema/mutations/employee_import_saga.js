@@ -5,64 +5,35 @@ const {
   GraphQLObjectType
 } = require('graphql');
 const fs = require('fs');
-
 const axios = require('axios');
 const FormData = require('form-data');
-// const { Tenant, InputTenantContact } = require('../types');
-
-const UploadedFileType = new GraphQLObjectType({
-  name: 'UploadedFile',
-  fields: {
-    originalname: {type: GraphQLString},
-    mimetype: {type: GraphQLString}
-  }
-})
+const { EmployeeImportSaga } = require('../types');
+const request = require('request');
 
 const EMPLOYEE_IMPORT_SAGA = {
-  type: UploadedFileType,
-  description: 'Imports Employees CSV and sends `command.EMPLOYEE_IMPORT_SAGA`',
-  // args: {
-  //   name: {type: new GraphQLNonNull(GraphQLString)},
-  //   address: {type: new GraphQLNonNull(GraphQLString)},
-  //   contact: {type: new GraphQLNonNull(InputTenantContact)}
-  // },
+  type: EmployeeImportSaga,
+  description: 'Imports Employees CSV and sends `command.EMPLOYEE_IMPORT_SAGA` a multipart form with csvFile and tenantId fields are expected.',
   resolve: (rootValue, args) => {
     const type = 'command.EMPLOYEE_IMPORT_SAGA';
 
-    const body = {
-      type,
-      payload: args
+    // const form = new FormData();
+    // form.append('csvFile', fs.createReadStream(rootValue.request.file.path) );
+    // form.append('tenantId', rootValue.request.body.tenantId);
+
+    const formData = {
+      csvFile: fs.createReadStream(rootValue.request.file.path),
+      tenantId: rootValue.request.body.tenantId
     };
 
-    console.log('💥');
-
-    const form = new FormData();
-    console.log('💥');
-    form.append('csvFile', fs.createReadStream(rootValue.request.file.path) );
-    console.log('💥');
-    form.append('tenantId', rootValue.request.body.tenantId);
-    console.log('💥');
-
-
-    console.log('🤔', rootValue.request);
-    console.log('🔥',rootValue.request.headers);
-
-    // return rootValue.request.file
-    // TODO: DELETE in the then.
     return new Promise( (resolve, reject) => {
-      form.submit('http://saga-service/employee_record_import', function(err, res) {
-        console.log('❄️ ', res);
-        console.log('❄️ ', err);
+      request.post({ url: 'http://saga-service/employee_record_import', formData }, function(err, res, body) {
         if(err) reject(err);
-        resolve(res);
+        resolve(body);
       });
-    }).then( res => { console.log(res); return res })
+    })
+      .then(body => JSON.parse(body))
+      .then( body => { fs.unlinkSync(rootValue.request.file.path); return body;})
       .catch( err => { console.log('ERROR');console.log(err); throw err });
-    // axios.post('http://saga-service/employee_record_import', form)
-    //
-
-
-
   }
 };
 
