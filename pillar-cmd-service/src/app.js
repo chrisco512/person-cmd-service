@@ -25,10 +25,17 @@ app.use(error);
 app.use(unauthorized);
 app.use(unprotected);
 
-router.get('/', function *() {
-	this.response.status = 200;
-	this.body = 'Demo Application | Pillar Service operational.';
-});
+if(process.env.NODE_ENV === 'development') {
+	router.get('/pillars', function* () {
+		this.response.status = 200;
+		this.body = store.getState().pillars;
+	});
+} else {
+	router.get('/', function *() {
+		this.response.status = 200;
+		this.body = 'Pillar Service Operational!'
+	});
+}
 
 router.post('/', commandRoute);
 
