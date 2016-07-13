@@ -1,5 +1,5 @@
 {
-  "name": "demo-research-service",
+  "name": "saga-service",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -19,7 +19,6 @@
     "co": "^4.6.0",
     "csvtojson": "^1.0.0",
     "formidable": "^1.0.17",
-    "js-schema": "^1.0.1",
     "koa": "^1.1.2",
     "koa-better-body": "^2.0.1",
     "koa-cors": "0.0.16",
@@ -36,8 +35,6 @@
     "redux": "^3.5.2",
     "redux-saga": "^0.10.4",
     "servicebus": "^2.0.1",
-    "underscore": "^1.8.3",
-    "uuid-validate": "0.0.2",
     "validations": "bitbucket:ultilabs/validations#HEAD"
   },
   "devDependencies": {

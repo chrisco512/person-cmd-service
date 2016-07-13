@@ -1,4 +1,4 @@
-const store = require('../../store/store');
+const store = require('../../store');
 const { unique, required, email, uuid, minLength, integer, createValidator } = require('validations');
 const { VALIDATION_ERROR } = require('../../error_types');
 

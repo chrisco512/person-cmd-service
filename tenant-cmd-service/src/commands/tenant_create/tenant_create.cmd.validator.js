@@ -1,5 +1,6 @@
-const store = require('../../store/store');
+const store = require('../../store');
 const { createValidator, required, minLength, email, integer } = require('validations');
+const { VALIDATION_ERROR } = require('../../error_types');
 
 const validateTenant = createValidator({
   name: [required, minLength(4)],
@@ -16,11 +17,11 @@ function validateTenantCreateCommand(payload) {
 		const { tenantAggregate } = store.getState();
 		const tenant = payload;
 
-		const errors = validateTenant(tenant, tenantAggregate);
+		const errors = validateTenant(tenant, null, tenantAggregate);
 		const isErrors = Object.keys(errors).length;
 
 		if(isErrors) {
-			reject(errors);
+			reject({ type: VALIDATION_ERROR, errors });
 		}
 		console.log('VALIDATED COMMAND:', payload);
 		resolve(payload);

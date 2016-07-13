@@ -6,8 +6,8 @@ const { VALIDATION_ERROR } = require('../../error_types');
 describe('validatePersonCreateCommand', () => {
 	it('should reject a command without an id that is a valid uuid', () => {
 		return validatePersonCreateCommand({
-			first_name: 'chris',
-			last_name: 'cordle',
+			firstName: 'chris',
+			lastName: 'cordle',
 			phone: 342,
 			email: 'chris@cordle.com'
 		})
