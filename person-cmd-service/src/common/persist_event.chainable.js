@@ -20,8 +20,8 @@ function persistEvent(event) {
 						  reject({ type: SERVER_ERROR, err });
 					  }
 
-					  log.info('Persisted event: ', r.result);
-					  resolve(r.result);
+					  log.info('Persisted event: ', r.ops[0]);
+					  resolve(r.ops[0]);
 			    });
 		  });
   });
