@@ -1,0 +1,25 @@
+{
+  "name": "communication-service",
+  "version": "1.0.0",
+  "description": "Communication Microservice",
+  "main": "index.js",
+  "scripts": {
+    "devtool": "devtool ./src/app.js --watch --break",
+    "test": "mocha ./src/**/*.spec.js",
+    "test:watch": "npm run test -- --watch",
+    "start:prod": "node ./src/app.js",
+    "start:dev": "nodemon ./src/app.js --exitcrash"
+  },
+  "author": "Ben Botwin",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^2.5.0",
+    "servicebus": "^2.0.2"
+  },
+  "devDependencies": {
+    "cross-env": "^1.0.8",
+    "devtool": "^2.0.2",
+    "mocha": "^2.5.3",
+    "nodemon": "^1.9.2"
+  }
+}
