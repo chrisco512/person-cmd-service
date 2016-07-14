@@ -9,8 +9,8 @@ function* employeeImport(employee, tenantId) {
 	const createPersonCommand = {
 		type: PERSON_CREATE,
 		payload: {
-			first_name: employee.first_name,
-			last_name: employee.last_name,
+			firstName: employee.firstName,
+			lastName: employee.lastName,
 			phone: employee.phone,
 			carrier: employee.carrier,
 			email: employee.email
@@ -35,10 +35,10 @@ function* employeeImport(employee, tenantId) {
 		type: USER_CREATE,
 		payload: {
 			role: employee.role,
-			tenantID: tenantId,
-			auth0ID: "letmein123abc",
-			personID: personPayload._id,
-			companyIdentifier: employee.company_identifier,
+			tenantId: tenantId,
+			auth0Id: "letmein123abc",
+			personId: personPayload._id,
+			companyIdentifier: employee.companyIdentifier,
 			email: employee.email
 		}
 	};

@@ -6,7 +6,7 @@ const {
 function reducer(persons = [], action ) {
 	switch(action.type) {
 		case PERSON_CREATED:
-			return personCreated(perons, action);
+			return personCreated(persons, action);
 	}
 	return persons;
 }

@@ -1,8 +1,8 @@
 'use strict';
 const config = require('./config');
 const MongoClient = require('mongodb').MongoClient;
-const store = require('./store/store');
 const log = require('./log');
+const store = require('./store');
 
 module.exports = {
 	rebuildMeetingsFromEvents,

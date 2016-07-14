@@ -11,6 +11,8 @@ function tenantCreateCommandHandler(payload) {
 		.then(persistEvent)
 		.then(publishEvent)
 		.catch(function(err) {
+			console.log('ERRRRRRRORRORORORORO');
+			console.log(err);
 			throw err;
 		});
 }

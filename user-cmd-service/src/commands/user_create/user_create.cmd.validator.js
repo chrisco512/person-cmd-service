@@ -1,13 +1,13 @@
 const _ = require('lodash');
-const store = require('../../store/store');
+const store = require('../../store');
 const { createValidator, required, minLength, integer, email, uuid, valueExistsInCollection } = require('validations');
 const { VALIDATION_ERROR } = require("../../error_types");
 
 const validateUser = createValidator({
   role: [required],
-  tenantID: [required, uuid],
-  auth0ID: [required],
-  personID: [required, uuid],
+  tenantId: [required, uuid],
+  auth0Id: [required],
+  personId: [required, uuid],
   companyIdentifier: [required],
   email: [required]
 }, {

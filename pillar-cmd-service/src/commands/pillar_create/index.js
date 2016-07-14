@@ -7,8 +7,8 @@ const uuid = require('node-uuid');
 const log = require('../../log');
 
 function pillarCreateCommandHandler(payload) {
+	log.info('RECEIVED PILLAR CREATE COMMAND 💃');
 	payload._id = uuid.v4();
-
 	return validateCommand(payload)
 		.then(createEvent)
 		.then(dispatchEvent)
