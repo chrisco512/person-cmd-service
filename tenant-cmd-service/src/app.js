@@ -13,13 +13,14 @@ const cors = require('koa-cors');
 const fs = require('fs');
 const log = require('./log');
 const body = require('koa-better-body');
-const { rebuildMeetingsFromEvents, setupHandlers } = require('./utils');
+const { rebuildMeetingsFromEvents, setupHandlers, setupHeartbeat } = require('./utils');
 const commandHandler = require('./commands');
 const { commandRoute } = require('./routes');
 const app = module.exports = koa();
 const port = process.env.PORT || config.port || 8080;
 
 setupHandlers();
+setupHeartbeat();
 
 app.use(cors());
 app.use(jsonBody({ limit: '10kb' }));
