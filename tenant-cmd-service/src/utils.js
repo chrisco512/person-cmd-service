@@ -1,20 +1,38 @@
 'use strict';
 const config = require('./config');
-const MongoClient = require('mongodb').MongoClient;
 const store = require('./store/store');
 const log = require('./log');
+const MongoSingle = require("./mongo_single.js");
 
 module.exports = {
 	rebuildMeetingsFromEvents,
-	setupHandlers
+        setupHandlers,
+        setupHeartbeat
 };
+
+function setupHeartbeat() {
+	MongoSingle
+		.connect()
+		.then((db) => {
+			let hb = MongoHeartbeat(db, {
+				interval: 5000,
+				timeout: 10000,
+				tolerance: 2
+			});
+
+			hb.on('error', function() {
+				log.error('mongo is dead :(');
+				process.exit(1)
+			});
+		});
+}
 
 function *rebuildMeetingsFromEvents() {
 	log.info('Rebuilding state from events...');
 	let eventCounter = 0;
 
 	let url = config.mongo.uri;
-	let db = yield MongoClient.connect(url);
+	let db = yield MongoSingle.connect();
 	let eventCursor = db.collection('events').find();
 
 	let startTime = new Date();
