@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const store = require('../../store/store');
+const store = require('../../store');
 const { createValidator, required, minLength, integer, email } = require('validations');
 
 const validateEmployee = createValidator({

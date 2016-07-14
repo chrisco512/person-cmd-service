@@ -2,7 +2,7 @@
 const config = require('./config');
 const MongoSingle = require('./mongo_single');
 const MongoHeartbeat = require('mongo-heartbeat');
-const store = require('./store/store');
+const store = require('./store');
 const log = require('./log');
 
 module.exports = {

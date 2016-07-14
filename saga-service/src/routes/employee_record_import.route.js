@@ -6,14 +6,15 @@ const { employeeImportSaga } = require('../sagas');
 function* employeeRecordImportRoute () {
 	log.info('Hit CSV user endpoint');
 	const path = this.body.files.csvFile.path;
-	const tenantID = this.body.tenantID;
+	const tenantId = this.body.tenantId;
 	const type = this.body.type;
-
+	log.info(tenantId);
 	let status = 200;
 	let body = '';
 	let employees;
 	try {
-		employees = yield parse(path, tenantID, type);
+		employees = yield parse(path, tenantId, type);
+		log.info(employees);
 	} catch (err) {
 		status = 400;
 		body = err;
@@ -25,7 +26,7 @@ function* employeeRecordImportRoute () {
 	if (employees) {
 		for (const employee of employees) {
 			try {
-				yield co(employeeImportSaga(employee, tenantID));
+				yield co(employeeImportSaga(employee, tenantId));
 				employeesCreated++;
 			} catch (err) {
 				errorCount++;

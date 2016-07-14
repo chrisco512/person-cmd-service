@@ -1,6 +1,6 @@
 'use strict';
 const config = require('./config');
-const store = require('./store/store');
+const store = require('./store');
 const log = require('./log');
 const MongoSingle = require('./mongo_single.js')
 

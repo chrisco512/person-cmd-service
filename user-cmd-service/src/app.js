@@ -1,19 +1,16 @@
 'use strict';
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const koa = require('koa');
-const jwt = require('koa-jwt');
 const util = require('util');
 const router = require('koa-router')();
 const { pageNotFound, error, unauthorized, unprotected } = require('./middlewares');
 const jsonBody = require('koa-json-body');
 const config = require('./config');
-const store = require('./store/store');
+const store = require('./store');
 const co = require('co');
 const cors = require('koa-cors');
 const bus = require('servicebus').bus({ url: config.servicebus.uri + "?heartbeat=60" });
-const body = require('koa-better-body');
 const { rebuildMeetingsFromEvents, setupHandlers, setupHeartbeat } = require('./utils');
-
 const { commandRoute } = require('./routes');
 const app = module.exports = koa();
 const port = process.env.PORT || config.port || 1996;

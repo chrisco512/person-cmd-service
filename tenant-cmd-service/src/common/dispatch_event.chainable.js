@@ -1,4 +1,4 @@
-const store = require('./../store/store');
+const store = require('../store');
 
 function dispatchEvent(event) {
 	store.dispatch(event);

@@ -1,5 +1,5 @@
 {
-  "name": "content-cmd-service",
+  "name": "content-cmd",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -14,9 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chai": "^3.5.0",
     "co": "^4.6.0",
-    "js-schema": "^1.0.1",
     "koa": "^1.1.2",
     "koa-cors": "0.0.16",
     "koa-json-body": "^4.0.0",
@@ -25,7 +23,6 @@
     "lodash": "^4.13.1",
     "loglevel": "^1.4.1",
     "loglevel-message-prefix": "^1.1.1",
-    "mocha": "^2.5.3",
     "mongo-heartbeat": "^1.1.0",
     "mongodb": "^2.1.21",
     "mongoose": "^4.4.19",
@@ -33,12 +30,12 @@
     "redux": "^3.5.2",
     "redux-saga": "^0.10.4",
     "servicebus": "^2.0.1",
-    "underscore": "^1.8.3",
-    "uuid-validate": "0.0.2",
     "validations": "bitbucket:ultilabs/validations#HEAD"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "devtool": "^2.0.2",
+    "mocha": "^2.5.3",
     "nodemon": "^1.9.2"
   }
 }

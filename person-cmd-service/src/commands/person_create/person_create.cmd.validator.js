@@ -1,13 +1,31 @@
-const store = require('../../store/store');
-const { unique, required, email, uuid, minLength, integer, createValidator } = require('validations');
+const store = require('../../store');
+const { unique, required, email, uuid, minLength, integer, createValidator, oneOf } = require('validations');
 const { VALIDATION_ERROR } = require('../../error_types');
+
+const carrierEnum = [
+ 'AT&T',
+ 'T-Mobile',
+ 'Verizon',
+ 'Sprint',
+ 'Virgin Mobile',
+ 'Tracfone',
+ 'Metro PCS',
+ 'Boost Mobile',
+ 'Cricket',
+ 'Nextel',
+ 'Alltel',
+ 'Ptel',
+ 'Suncom',
+ 'Qwest',
+ 'U.S. Cellular'
+];
 
 const validatePerson = createValidator({
 	_id: [required, unique, uuid],
-	first_name: [required, minLength(1)],
-	last_name: [required, minLength(1)],
+	firstName: [required, minLength(1)],
+	lastName: [required, minLength(1)],
 	phone: [required, integer],
-	carrier: [],
+	carrier: [oneOf(carrierEnum)],
 	email: [required, email]
 });
 
@@ -18,11 +36,14 @@ function validatePersonCreateCommand(payload) {
 
 		const errors = validatePerson(person, null, persons);
 		const isErrors = Object.keys(errors).length;
-		
+
 		if(isErrors) {
-			return reject({ type: VALIDATION_ERROR, errors });
+			return reject({
+				type: VALIDATION_ERROR,
+				errors
+			});
 		}
-		
+
 		return resolve(payload);
 	});
 }
