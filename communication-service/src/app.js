@@ -1,5 +1,7 @@
 const config = require('./config');
 const bus = require('servicebus').bus({ url: config.servicebus.uri + '?heartbeat=60' });
+const nodemailer = require('nodemailer');
+var ses = require('nodemailer-ses-transport');
 
 let transporter = nodemailer.createTransport(ses({
         accessKeyId: 'AKIAINFX7ENSQB3GYXYA',
