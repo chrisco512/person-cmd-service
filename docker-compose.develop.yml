@@ -100,6 +100,17 @@ services:
     command: npm run start:dev
     working_dir: /app/src
 
+  communication-service:
+    container_name: communication-service
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./communication-service:/app
+    ports:
+      - "8011:80"
+    command: npm run start:dev
+    working_dir: /app
+
   mongo:
     container_name: mongo
     ports:
