@@ -22,10 +22,16 @@ function sendEmail(payload) {
         console.log(`sending mail to, ${payload.firstName} ${payload.lastName}`);
 
         transporter.sendMail({
-                from: 'team@ultilabs.xyz',
+                from: 'culture@ultilabs.xyz',
                 to: payload.email,
                 subject: "Welcome to CultureShock!",
-                html: "You have been assimilated"
+                html: `
+                &#128293; Welcomt to Culture Shock! &#128293; 
+                <br/>
+                <br/>
+                <strong>You have been assimilated</strong>
+                <p>Please go to <a href="culture.ultilabs.xyz"> this site </a> to finish your registration.</p>
+                `
         }, function(error, info) {
                 if (error) {
                         console.log(`OH NOES! ERROR: ${error}`);
