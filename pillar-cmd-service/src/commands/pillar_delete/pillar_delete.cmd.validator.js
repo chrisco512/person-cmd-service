@@ -1,5 +1,6 @@
 const store = require('../../store');
 const { unique, required, email, uuid, minLength, integer, createValidator } = require('validations');
+const log = require('../../log');
 const { VALIDATION_ERROR } = require('../../error_types');
 
 const validatePillar = createValidator({
@@ -15,6 +16,7 @@ function validatePillarDeleteCommand(payload) {
 	return new Promise((resolve, reject) => {
 		const { pillars } = store.getState();
 		const pillar = payload;
+		log.info('validatePillarDeleteCommand PAYLOAD', pillar);
 
 		const errors = validatePillar(pillar, null, pillars);
 		const isErrors = Object.keys(errors).length;
@@ -23,7 +25,7 @@ function validatePillarDeleteCommand(payload) {
 			log.info('ERROR 😡', errors);
 			return reject({ type: VALIDATION_ERROR, errors });
 		}
-
+		log.info('VALIDATIONS PASSED 👏');
 		return resolve(payload);
 	});
 }

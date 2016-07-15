@@ -12,6 +12,7 @@ function* commandRoute() {
 		status = 200;
 		body = payload;
 	} catch(err) {
+		log.info('ERROR 😡', err);
 		if(err.type === VALIDATION_ERROR) {
 			status = 400;
 			body = err.errors;
