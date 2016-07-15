@@ -48,6 +48,12 @@ services:
     networks:
       - main
 
+  communication-service:
+    image: node:6
+    restart: always
+    networks:
+      - main
+
   mongo:
     networks:
       - main

@@ -1,36 +1,30 @@
 //Will be in charge of persisting to mongo
-const mongoose = require('mongoose');
-const { Schema } = require('mongoose');
 const config = require('../config');
-const uri = config.mongo.uri;
 const log = require('../log');
 const { SERVER_ERROR } = require('../error_types');
-
-mongoose.connect(uri);
-
-const EventSchema = new Schema({
-	type      : String,
-	payload   : {},
-	created   : Date,
-	userId    : String,
-	tenantId  : String
-});
-
-const Event = mongoose.model('Event', EventSchema);
+const MongoSingle = require('../mongo_single');
+const MongoClient = require('mongodb').MongoClient;
 
 function persistEvent(event) {
-	return new Promise((resolve, reject) => {
-		const newEvent = new Event(event);
+	log.info('Persisting event...');
+	log.debug('event: ', event);
 
-		newEvent.save((err, persistedEvent) => {
-			if(err) {
-				log.warn('ERROR PERSISTING EVENT: ', event);
-				reject({ type: SERVER_ERROR, err });
-			}
+  return new Promise((resolve, reject) => {
+	  MongoSingle
+		  .connect()
+		  .then((db) => {
+			  db.collection('events')
+				  .insertOne(event, function(err, r) {
+					  if(err) {
+						  log.error('ERROR PERSISTING EVENT: ', event);
+						  reject({ type: SERVER_ERROR, err });
+					  }
 
-			resolve(persistedEvent);
-		});
-	});
+					  log.info('Persisted event: ', r.ops[0]);
+					  resolve(r.ops[0]);
+			    });
+		  });
+  });
 }
 
 module.exports = persistEvent;
