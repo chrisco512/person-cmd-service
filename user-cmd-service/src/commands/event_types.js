@@ -4,8 +4,11 @@ const TENANT_CREATED = 'tenant.TENANT_CREATED';
 
 const PERSON_CREATED = 'person.PERSON_CREATED';
 
+const MANAGER_ADDED = 'user.MANAGER_ADDED';
+
 module.exports = {
 	USER_CREATED,
 	TENANT_CREATED,
-	PERSON_CREATED
+        PERSON_CREATED,
+        MANAGER_ADDED
 };

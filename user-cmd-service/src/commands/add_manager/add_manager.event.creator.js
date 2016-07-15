@@ -1,0 +1,15 @@
+const { MANAGER_ADDED } = require('../event_types');
+
+function managerAdded({ userId, managerId }) {
+  console.log('EVENT CREATOR:', { userId: managerId });
+
+  return {
+    type: MANAGER_ADDED,
+    payload: {
+      userId: userId,
+      managerId: managerId
+    }
+  }
+}
+
+module.exports = managerAdded;
