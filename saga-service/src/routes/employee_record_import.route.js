@@ -9,7 +9,7 @@ function* employeeRecordImportRoute () {
 	const tenantId = this.body.tenantId;
 	const type = this.body.type;
 	log.info(tenantId);
-	let status = 200;
+	let status = 500;
 	let body = '';
 	let employees;
 	try {
