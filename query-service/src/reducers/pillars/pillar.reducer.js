@@ -10,8 +10,9 @@ function reducer(pillars = [], action ) {
 			return pillarCreated(pillars, action.payload);
 		case PILLAR_DELETED:
 			return pillarDeleted(pillars, action.payload);
+		default:
+			return pillars;
 	}
-	return pillars;
 }
 
 function pillarCreated(pillars, payload) {
@@ -20,7 +21,7 @@ function pillarCreated(pillars, payload) {
 
 function pillarDeleted(pillars, payload) {
 	console.log('pillarDeletedPayload:', payload);
-	var pillarIndex = _.findIndex(pillars, function(i) {
+	const pillarIndex = _.findIndex(pillars, function(i) {
 		return i._id === payload._id;
 	});
 	console.log(pillarIndex);
@@ -32,7 +33,7 @@ function pillarDeleted(pillars, payload) {
 		...pillars.slice(0, pillarIndex),
 		newPillar,
 		...pillars.slice(pillarIndex + 1)
-	]
+	];
 
 }
 

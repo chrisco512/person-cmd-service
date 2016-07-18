@@ -1,5 +1,5 @@
 const config = require('./config');
-const bus = require('servicebus').bus({ url: 'amqp://rabbit/' + '?heartbeat=60' });
+const bus = require('servicebus').bus({ url: `${config.servicebus.uri}?heartbeat=60` });
 const nodemailer = require('nodemailer');
 var ses = require('nodemailer-ses-transport');
 
@@ -26,7 +26,7 @@ function sendEmail(payload) {
                 to: payload.email,
                 subject: "Welcome to CultureShock!",
                 html: `
-                &#128293; Welcomt to Culture Shock! &#128293; 
+                &#128293; Welcomt to Culture Shock! &#128293;
                 <br/>
                 <br/>
                 <strong>You have been assimilated</strong>
