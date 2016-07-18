@@ -1,10 +1,10 @@
 const store = require('../../store');
-const { unique, required, email, uuid, minLength, integer, createValidator } = require('validations');
+const { unique, required, email, uuid, minLength, integer, createValidator, valueExistsInCollection } = require('validations');
 const log = require('../../log');
 const { VALIDATION_ERROR } = require('../../error_types');
 
 const validatePillar = createValidator({
-	_id: [required, unique, uuid],
+	_id: [required, uuid, valueExistsInCollection],
 	tenantId: [required],
 	name: [required, minLength(1)],
 	content: [],

@@ -26,11 +26,17 @@ function pillarCreated(pillars, payload) {
 }
 
 function pillarDeleted(pillars, payload) {
-	console.log('pillarDeletedPayload:', payload);
 	var pillarIndex = _.findIndex(pillars, function(i) {
 		return i._id === payload._id;
 	});
-	console.log(pillarIndex);
+	const newPillar = Object.assign({}, pillars[pillarIndex], {
+		 isDeleted: true
+	});
+	return [
+		...pillars.slice(0, pillarIndex),
+		newPillar,
+		...pillars.slice(pillarIndex + 1)
+	]
 }
 
 module.exports = reducer;
