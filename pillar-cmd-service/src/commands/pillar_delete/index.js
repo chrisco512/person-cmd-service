@@ -11,7 +11,7 @@ const log = require('../../log');
 function pillarDeleteCommandHandler(payload) {
 	log.info('RECEIVED PILLAR DELETE COMMAND 💃');
 	return validateCommand(payload)
-		.then(something => {console.log(something); return something;})
+		.then(something => {console.log('SOMETHING: ', something); return something;})
 		.then(createEvent)
 		.then(dispatchEvent)
 		.then(persistEvent)

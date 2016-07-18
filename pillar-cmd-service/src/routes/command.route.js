@@ -4,7 +4,7 @@ const log = require('../log');
 
 function* commandRoute() {
 	const request = this.request.body;
-	let status = 200;
+	let status = 500;
 	let body = '';
 
 	try {
