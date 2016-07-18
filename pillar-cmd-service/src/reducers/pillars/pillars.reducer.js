@@ -13,19 +13,18 @@ function reducer(pillars = [], action ) {
 			return pillarCreated(pillars, action.payload);
 		case PILLAR_DELETED:
 			return pillarDeleted(pillars, action.payload);
-		// case PILLAR_NAME_CHANGED:
-		// 	return pillarNameChanged(pillars, action.payload);
+		case PILLAR_NAME_CHANGED:
+			return pillarNameChanged(pillars, action.payload);
 	}
 	return pillars;
 }
 
 function pillarCreated(pillars, payload) {
-	log.info('pillars', pillars);
-	log.info('payload', payload);
 	return [...pillars, payload];
 }
 
 function pillarDeleted(pillars, payload) {
+	log.info('PILLARDELETED REDUCER 😰', payload);
 	var pillarIndex = _.findIndex(pillars, function(i) {
 		return i._id === payload._id;
 	});
@@ -36,7 +35,19 @@ function pillarDeleted(pillars, payload) {
 		...pillars.slice(0, pillarIndex),
 		newPillar,
 		...pillars.slice(pillarIndex + 1)
-	]
+	];
+}
+
+function pillarNameChanged(pillars, payload) {
+	const { pillarName, index } = payload;
+	const newPillar = Object.assign({}, pillars[index], {
+		name: pillarName
+	});
+	return [
+		...pillars.slice(0, index),
+		newPillar,
+		...pillars.slice(index+1)
+	];
 }
 
 module.exports = reducer;

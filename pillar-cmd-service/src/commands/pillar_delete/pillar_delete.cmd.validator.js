@@ -8,7 +8,6 @@ const validatePillar = createValidator({
 	tenantId: [required],
 	name: [required, minLength(1)],
 	content: [],
-	isSelected: [],
 	isDeleted: []
 });
 
