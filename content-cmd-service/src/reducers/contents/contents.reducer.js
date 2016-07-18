@@ -10,8 +10,9 @@ function reducer(contents = [], action ) {
 	switch(action.type) {
 		case CONTENT_CREATED:
 			return contentCreated(contents, action.payload);
+		default:
+			return contents;
 	}
-	return contents;
 }
 
 function contentCreated(contents, payload) {
