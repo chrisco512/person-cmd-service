@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "devtool": "^2.0.2",
+    "eslint": "^3.1.1",
     "nodemon": "^1.9.2"
   }
 }
