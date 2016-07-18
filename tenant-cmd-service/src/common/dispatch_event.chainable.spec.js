@@ -8,15 +8,15 @@ chai.use(sinonChai);
 
 describe('dispatchEvent', () => {
 	it('should call store.dispatch with the event passed in', () => {
-		let dispatch = sinon.spy();
-		let stubs = {
+		const dispatch = sinon.spy();
+		const stubs = {
 			'../store': {
 				dispatch
 			}
 		};
 
-		let dispatchEvent = proxyquire('./dispatch_event.chainable', stubs);
-		let event = { type: 'test' };
+		const dispatchEvent = proxyquire('./dispatch_event.chainable', stubs);
+		const event = { type: 'test' };
 
 		dispatchEvent(event);
 

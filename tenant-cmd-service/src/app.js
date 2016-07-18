@@ -25,7 +25,7 @@ app.use(error);
 app.use(unauthorized);
 app.use(unprotected);
 
-router.get('/', function *() {
+router.get('/', function* () {
 	this.response.status = 200;
 	this.body = 'Tenant Service operational.';
 });

@@ -2,7 +2,7 @@ const {
   USER_CREATE
 } = require('./command_types');
 const {
-	SERVER_ERROR
+	INVALID_COMMAND
 } = require('../error_types');
 
 const userCreateCommandHandler = require('./user_create');
@@ -16,7 +16,7 @@ function commandHandler(command) {
     case USER_CREATE:
       return userCreateCommandHandler(payload);
 		default:
-			throw { type: SERVER_ERROR };
+			throw { type: INVALID_COMMAND };
   }
 }
 
