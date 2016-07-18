@@ -10,7 +10,7 @@ module.exports = {
   mongo: {
       uri: process.env.MONGO_URI || "mongodb://mongo/culture"
   },
-  root: path.normalize(__dirname + '/../../..'), // Root path of server
+  root: path.normalize(`${__dirname}/../../..`), // Root path of server
   secrets: {
       session: 'culture-shock-secret'
   }
