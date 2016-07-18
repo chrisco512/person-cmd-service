@@ -5,7 +5,9 @@ const ObjectTypes = {
   TenantContact: require('./TenantContact'),
   User: require('./User'),
   CarrierEnum: require('./CarrierEnum'),
-  EmployeeImportSaga: require('./EmployeeImportSaga')
+  EmployeeImportSaga: require('./EmployeeImportSaga'),
+  Pillar: require('./Pillar'),
+  Content: require('./Content')
 };
 
 const InputTypes = require('./input_types');
