@@ -15,7 +15,6 @@ function validatePillarDeleteCommand(payload) {
 	return new Promise((resolve, reject) => {
 		const { pillars } = store.getState();
 		const pillar = payload;
-		log.info('validatePillarDeleteCommand PAYLOAD', pillar);
 
 		const errors = validatePillar(pillar, null, pillars);
 		const isErrors = Object.keys(errors).length;

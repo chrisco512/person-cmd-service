@@ -7,7 +7,7 @@ const {
 } = require('../../commands/event_types');
 
 function reducer(pillars = [], action ) {
-	log.debug('IN REDUCER 😨');
+	log.debug('IN PILLAR REDUCER 👷');
 	switch(action.type) {
 		case PILLAR_CREATED:
 			return pillarCreated(pillars, action.payload);
@@ -24,7 +24,6 @@ function pillarCreated(pillars, payload) {
 }
 
 function pillarDeleted(pillars, payload) {
-	log.info('PILLARDELETED REDUCER 😰', payload);
 	var pillarIndex = _.findIndex(pillars, function(i) {
 		return i._id === payload._id;
 	});
