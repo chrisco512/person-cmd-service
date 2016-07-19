@@ -4,6 +4,7 @@ const ObjectTypes = {
   Tenant: require('./Tenant'),
   TenantContact: require('./TenantContact'),
   User: require('./User'),
+  Manager: require('./Manager'),
   CarrierEnum: require('./CarrierEnum'),
   EmployeeImportSaga: require('./EmployeeImportSaga')
 };
