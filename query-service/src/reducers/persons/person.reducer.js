@@ -31,9 +31,9 @@ function personCreated(persons, payload) {
 }
 
 function personFirstNameChanged(persons, payload) {
-	const personIndex = _.findIndex(persons, function(person) {
-		return person._id === payload._id;
-	});
+	const personIndex = _.findIndex(persons, person =>
+		person._id === payload._id
+	);
 	const modifiedPerson = Object.assign({}, persons[personIndex], {
 		 firstName: payload.firstName
 	});
@@ -45,9 +45,9 @@ function personFirstNameChanged(persons, payload) {
 }
 
 function personLastNameChanged(persons, payload) {
-	const personIndex = _.findIndex(persons, function(person) {
-		return person._id === payload._id;
-	});
+	const personIndex = _.findIndex(persons, person =>
+		person._id === payload._id
+	);
 	const modifiedPerson = Object.assign({}, persons[personIndex], {
 		 lastName: payload.lastName
 	});
@@ -59,9 +59,9 @@ function personLastNameChanged(persons, payload) {
 }
 
 function personEmailChanged(persons, payload) {
-	const personIndex = _.findIndex(persons, function(person) {
-		return person._id === payload._id;
-	});
+	const personIndex = _.findIndex(persons, person =>
+		person._id === payload._id
+	);
 	const modifiedPerson = Object.assign({}, persons[personIndex], {
 		 email: payload.email
 	});
@@ -73,9 +73,9 @@ function personEmailChanged(persons, payload) {
 }
 
 function personPhoneChanged(persons, payload) {
-	const personIndex = _.findIndex(persons, function(person) {
-		return person._id === payload._id;
-	});
+	const personIndex = _.findIndex(persons, person =>
+		person._id === payload._id
+	);
 	const modifiedPerson = Object.assign({}, persons[personIndex], {
 		 phone: payload.phone
 	});
@@ -87,9 +87,9 @@ function personPhoneChanged(persons, payload) {
 }
 
 function personCarrierChanged(persons, payload) {
-	const personIndex = _.findIndex(persons, function(person) {
-		return person._id === payload._id;
-	});
+	const personIndex = _.findIndex(persons, person =>
+		person._id === payload._id
+	);
 	const modifiedPerson = Object.assign({}, persons[personIndex], {
 		 carrier: payload.carrier
 	});

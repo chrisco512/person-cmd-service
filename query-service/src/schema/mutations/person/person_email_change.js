@@ -4,7 +4,7 @@ const {
 } = require('graphql');
 
 const axios = require('axios');
-const { Person } = require('../types');
+const { Person } = require('../../types');
 
 const PERSON_EMAIL_CHANGE = {
   type: Person,

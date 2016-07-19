@@ -1,16 +1,16 @@
 const {
   GraphQLNonNull,
-  GraphQLInt
+  GraphQLFloat
 } = require('graphql');
 
 const axios = require('axios');
-const { Person } = require('../types');
+const { Person } = require('../../types');
 
 const PERSON_PHONE_CHANGE = {
   type: Person,
   description: 'sends `command.PERSON_PHONE_CHANGE`',
   args: {
-    phone: {type: new GraphQLNonNull(GraphQLInt)},
+    phone: {type: new GraphQLNonNull(GraphQLFloat)},
   },
   resolve: (rootValue, args) => {
     const type = 'command.PERSON_PHONE_CHANGE';

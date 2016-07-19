@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLNonNull } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLFloat, GraphQLNonNull } = require('graphql');
 const CarrierEnum = require('./CarrierEnum');
 
 const Person = new GraphQLObjectType({
@@ -21,7 +21,7 @@ const Person = new GraphQLObjectType({
       description: 'Email of the person'
     },
     phone: {
-      type: GraphQLInt,
+      type: GraphQLFloat,
       description: 'Phone number of the person'
     },
     carrier: {
