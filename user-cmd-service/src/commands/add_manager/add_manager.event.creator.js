@@ -6,8 +6,8 @@ function managerAdded({ userId, managerId }) {
   return {
     type: MANAGER_ADDED,
     payload: {
-      userId: userId,
-      managerId: managerId
+      userId,
+      managerId
     }
   }
 }
