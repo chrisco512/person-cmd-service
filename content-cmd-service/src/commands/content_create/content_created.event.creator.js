@@ -2,9 +2,6 @@ const { CONTENT_CREATED } = require('../event_types');
 const log = require('../../log');
 
 function contentCreated({ _id, pillarId, type, data, isDeleted }) {
-
-	isDeleted = false;
-
 	log.info(CONTENT_CREATED, ' : ', { _id, pillarId, type, data, isDeleted });
 	return Promise.resolve({
 		type: CONTENT_CREATED,

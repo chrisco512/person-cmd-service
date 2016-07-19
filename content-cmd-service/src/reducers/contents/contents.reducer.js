@@ -6,8 +6,7 @@ const log = require('../../log');
 const _ = require('lodash');
 
 function reducer(contents = [], action ) {
-	log.debug('IN REDUCER');
-
+	log.debug('IN CONTENT REDUCER 👷');
 	switch(action.type) {
 		case CONTENT_CREATED:
 			return contentCreated(contents, action.payload);
