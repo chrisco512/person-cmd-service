@@ -17,16 +17,16 @@ function* employeeImport(employee, tenantId) {
 		}
 	};
 
-	console.log("Node environ variable - ", process.env.NODE_ENV);
+	console.log('Node environ variable - ', process.env.NODE_ENV);
 	log.info('CREATING USER - url: ', personCommandUrl, '; command: ', createPersonCommand);
 
 	let personPayload;
 	try {
-		let { data } = yield axios.post(personCommandUrl, createPersonCommand);
+		const { data } = yield axios.post(personCommandUrl, createPersonCommand);
 		personPayload = data;
-		log.info("person created - ", personPayload);
+		log.info('person created - ', personPayload);
 	} catch (err) {
-		log.warn("Error on importing employee - ", err);
+		log.warn('Error on importing employee - ', err);
 		throw err;
 	}
 
@@ -35,25 +35,25 @@ function* employeeImport(employee, tenantId) {
 		type: USER_CREATE,
 		payload: {
 			role: employee.role,
-			tenantId: tenantId,
-			auth0Id: "letmein123abc",
+			tenantId,
+			auth0Id: 'letmein123abc',
 			personId: personPayload._id,
 			companyIdentifier: employee.companyIdentifier,
 			email: employee.email
 		}
 	};
 
-	console.log("Node environ variable - ", process.env.NODE_ENV);
+	console.log('Node environ variable - ', process.env.NODE_ENV);
 
 	log.info('CREATING USER - url: ', userCommandUrl, '; command: ', createUserCommand);
 
 	let userPayload;
 	try {
-		let { data } = yield axios.post(userCommandUrl, createUserCommand);
+		const { data } = yield axios.post(userCommandUrl, createUserCommand);
 		userPayload = data;
-		log.info("user created - ", userPayload);
+		log.info('user created - ', userPayload);
 	} catch (err) {
-		log.warn("Error on creating user from imported employee - ", err);
+		log.warn('Error on creating user from imported employee - ', err);
 		throw err;
 	}
 

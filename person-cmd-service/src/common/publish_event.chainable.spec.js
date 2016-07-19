@@ -8,19 +8,19 @@ chai.use(sinonChai);
 
 describe('publishEvent', () => {
 	it('should call bus.publish with the event passed in', () => {
-		let publish = sinon.spy();
-		let stubs = {
+		const publish = sinon.spy();
+		const stubs = {
 			'servicebus': {
-				bus: function() {
+				bus() {
 					return {
 						publish
-					}
+					};
 				}
 			}
 		};
 
-		let publishEvent = proxyquire('./publish_event.chainable', stubs);
-		let event = { type: 'test' };
+		const publishEvent = proxyquire('./publish_event.chainable', stubs);
+		const event = { type: 'test' };
 
 		publishEvent(event);
 

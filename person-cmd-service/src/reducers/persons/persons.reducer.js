@@ -9,8 +9,9 @@ function reducer(persons = [], event) {
 	switch(event.type) {
 		case PERSON_CREATED:
 			return personCreated(persons, event.payload);
+		default:
+			return persons;
 	}
-	return persons;
 }
 
 function personCreated(persons, payload) {

@@ -31,9 +31,9 @@ if(process.env.NODE_ENV === 'development') {
 	});
 }
 
-router.get('/', function *() {
+router.get('/', function* () {
 	this.response.status = 200;
-	this.body = 'Pillar Service Operational!'
+	this.body = 'Pillar Service Operational!';
 });
 
 router.post('/', commandRoute);

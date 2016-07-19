@@ -15,7 +15,7 @@ app.use( cors() );
 
 app.use('/graphql', multer({
   storage,
-  fileFilter: (req, file, cb) => file.originalname.endsWith('.csv') ? cb(null, true) : cb(null, false)
+  fileFilter: (req, file, cb) => { return file.originalname.endsWith('.csv') ? cb(null, true) : cb(null, false); }
 }).single('file'));
 
 app.use('/graphql', graphqlHTTP( request => ({

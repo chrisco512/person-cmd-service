@@ -1,27 +1,32 @@
 const commandHandler = require('../commands');
-const { VALIDATION_ERROR, SERVER_ERROR } = require('../error_types');
+const {
+  VALIDATION_ERROR,
+  SERVER_ERROR
+} = require('../error_types');
 
 function* commandRoute() {
-	const request = this.request.body;
-	let status = 500;
-	let body = '';
+  const request = this.request.body;
+  let status = 500;
+  let body = '';
 
-	try {
-		const { payload } = yield commandHandler(request);
-		status = 200;
-		body = payload;
-	} catch(err) {
-		if(err.type === VALIDATION_ERROR) {
-			status = 400;
-			body = err.errors;
-		}
-		if(err.type === SERVER_ERROR) {
-			status = 500;
-		}
-	}
+  try {
+    const {
+      payload
+    } = yield commandHandler(request);
+    status = 200;
+    body = payload;
+  } catch (err) {
+    if (err.type === VALIDATION_ERROR) {
+      status = 400;
+      body = err.errors;
+    }
+    if (err.type === SERVER_ERROR) {
+      status = 500;
+    }
+  }
 
-	this.response.status = status;
-	this.response.body = body;
+  this.response.status = status;
+  this.response.body = body;
 }
 
 module.exports = commandRoute;

@@ -33,7 +33,7 @@ const EMPLOYEE_IMPORT_SAGA = {
     })
       .then(body => JSON.parse(body))
       .then( body => { fs.unlinkSync(rootValue.request.file.path); return body;})
-      .catch( err => { console.log('ERROR');console.log(err); throw err });
+      .catch( err => { console.log('ERROR');console.log(err); throw err; });
   }
 };
 

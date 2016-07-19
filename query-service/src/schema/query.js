@@ -1,5 +1,4 @@
 const {
-  GraphQLSchema,
   GraphQLObjectType,
   GraphQLList
 } = require('graphql');
@@ -20,29 +19,29 @@ const query = new GraphQLObjectType({
   fields: {
     tenants: {
       type: new GraphQLList(Tenant),
-      resolve: function() {
+      resolve() {
         return store.getState().tenants;
       }
     },
     employees: {
       type: new GraphQLList(Employee),
-      resolve: function() {
+      resolve() {
         return store.getState().employees;
       }
     },
     persons: {
       type: new GraphQLList(Person),
-      resolve: function() {
+      resolve() {
         return store.getState().persons;
       }
     },
     pillars: {
       type: new GraphQLList(Pillar),
-      resolve: function() {
+      resolve() {
         return store.getState().pillars;
       }
     }
   }
-})
+});
 
 module.exports = query;

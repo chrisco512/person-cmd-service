@@ -3,6 +3,7 @@ const {
 	CONTENT_DELETED
 } = require('../../commands/event_types');
 const log = require('../../log');
+const _ = require('lodash');
 
 function reducer(contents = [], action ) {
 	log.debug('IN REDUCER');
@@ -12,18 +13,17 @@ function reducer(contents = [], action ) {
 			return contentCreated(contents, action.payload);
 		case CONTENT_DELETED:
 			return contentDeleted(contents, action.payload);
+		default:
+			return contents;
 	}
-	return contents;
 }
 
 function contentCreated(contents, payload) {
-	console.log('contents', contents);
-	console.log('payload', payload);
 	return [...contents, payload];
 }
 
 function contentDeleted(contents, payload) {
-	var contentIndex = _.findIndex(contents, function(i) {
+	const contentIndex = _.findIndex(contents, function(i) {
 		return i._id === payload._id;
 	});
 	const newContent = Object.assign({}, contents[contentIndex], {

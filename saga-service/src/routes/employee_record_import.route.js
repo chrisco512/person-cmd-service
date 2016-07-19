@@ -30,7 +30,7 @@ function* employeeRecordImportRoute () {
 				employeesCreated++;
 			} catch (err) {
 				errorCount++;
-				log.info("Error on employee import - ", err);
+				log.info('Error on employee import - ', err);
 			}
 		}
 
