@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "devtool": "devtool ./src/app.js --watch --break",
-    "test": "mocha ./src/**/*.spec.js",
+    "test": "mocha ./src/**/**/*.spec.js",
     "test:debug": "devtool node_modules/mocha/bin/_mocha -qc -- ./src/**/*.spec.js --break --watch",
     "test:watch": "npm run test -- --watch",
     "start:prod": "node ./src/app.js",
