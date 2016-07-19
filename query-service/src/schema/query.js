@@ -7,7 +7,8 @@ const {
 const {
   Tenant,
   Employee,
-  Person
+  Person,
+  User
 } = require('./types');
 
 const store = require('../store');
@@ -33,6 +34,12 @@ const query = new GraphQLObjectType({
       type: new GraphQLList(Person),
       resolve: function() {
         return store.getState().persons;
+      }
+    },
+    users: {
+      type: new GraphQLList(User),
+      resolve: function() {
+        return store.getState().users
       }
     }
   }
