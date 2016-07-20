@@ -5,7 +5,7 @@ const {
 } = require('graphql');
 
 const axios = require('axios');
-const { Tenant, InputTenantContact } = require('../types');
+const { Tenant, InputTenantContact } = require('../../types');
 
 const TENANT_CREATE = {
   type: Tenant,

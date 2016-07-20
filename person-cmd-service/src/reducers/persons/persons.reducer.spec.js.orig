@@ -34,6 +34,8 @@ describe('persons.reducer', () => {
 
 		});
 	});
+<<<<<<< HEAD
+=======
 	describe('personFirstNameChanged', () => {
 		it('should modify the first name of the person with the specified id', () => {
 
@@ -179,4 +181,5 @@ describe('persons.reducer', () => {
 
 		});
 	});
+>>>>>>> mutate-person-fields
 });

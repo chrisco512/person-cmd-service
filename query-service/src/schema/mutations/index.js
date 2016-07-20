@@ -14,11 +14,3 @@ module.exports = {
   TENANT_CREATE: TENANT.CREATE,
   EMPLOYEE_IMPORT_SAGA: SAGA.EMPLOYEE_IMPORT,
 };
-
-
-// module.exports = {
-//   USER_CREATE: require('./user_create'),
-//   PERSON_CREATE: require('./person_create'),
-//   TENANT_CREATE: require('./tenant_create'),
-//   EMPLOYEE_IMPORT_SAGA: require('./employee_import_saga'),
-// };

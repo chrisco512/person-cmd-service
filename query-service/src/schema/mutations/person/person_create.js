@@ -5,7 +5,7 @@ const {
 } = require('graphql');
 
 const axios = require('axios');
-const { Person, CarrierEnum } = require('../types');
+const { Person, CarrierEnum } = require('../../types');
 
 const PERSON_CREATE = {
   type: Person,

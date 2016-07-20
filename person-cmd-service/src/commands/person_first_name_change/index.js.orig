@@ -18,4 +18,8 @@ function personFirstNameChangeCommandHandler(payload) {
 		});
 }
 
+<<<<<<< HEAD
+module.exports = personCreateCommandHandler;
+=======
 module.exports = personFirstNameChangeCommandHandler;
+>>>>>>> mutate-person-fields

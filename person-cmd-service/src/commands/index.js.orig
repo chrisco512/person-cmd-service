@@ -23,6 +23,10 @@ function commandHandler(command) {
 	switch (command.type) {
 		case PERSON_CREATE:
 			return personCreateCommandHandler(payload);
+<<<<<<< HEAD
+		default:
+			throw { type: INVALID_COMMAND };
+=======
 		case PERSON_FIRST_NAME_CHANGE:
 			return personFirstNameChangeHandler(payload);
 		case PERSON_LAST_NAME_CHANGE:
@@ -33,8 +37,7 @@ function commandHandler(command) {
 			return personPhoneChangeHandler(payload);
 		case PERSON_CARRIER_CHANGE:
 			return personCarrierChangeHandler(payload);
-		default:
-			throw { type: INVALID_COMMAND };
+>>>>>>> mutate-person-fields
 	}
 	//TODO: Handle case where command not found
 }

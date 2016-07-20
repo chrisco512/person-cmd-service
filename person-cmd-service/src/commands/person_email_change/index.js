@@ -1,12 +1,12 @@
-const validateCommand = require('./person_first_name_change.cmd.validator');
-const createEvent = require('./person_first_name_changed.event.creator');
+const validateCommand = require('./person_email_change.cmd.validator');
+const createEvent = require('./person_email_changed.event.creator');
 const dispatchEvent = require('../../common/dispatch_event.chainable');
 const persistEvent = require('../../common/persist_event.chainable');
 const publishEvent = require('../../common/publish_event.chainable');
 const uuid = require('node-uuid');
 const log = require('../../log');
 
-function personFirstNameChangeCommandHandler(payload) {
+function personEmailChangeCommandHandler(payload) {
 
 	return validateCommand(payload)
 		.then(createEvent)
@@ -18,4 +18,4 @@ function personFirstNameChangeCommandHandler(payload) {
 		});
 }
 
-module.exports = personFirstNameChangeCommandHandler;
+module.exports = personEmailChangeCommandHandler;
