@@ -1,17 +1,16 @@
 const { CONTENT_DELETED } = require('../event_types');
 const log = require('../../log');
 
-function contentRemoved({ _id, first_name, last_name, phone, carrier }) {
-	log.info(CONTENT_DELETED, ' : ', { _id, first_name, last_name, phone, carrier });
-
+function contentRemoved({ _id, pillarId, type, data, isDeleted }) {
+	log.info(CONTENT_DELETED, ' : ', { _id, pillarId, type, data, isDeleted });
 	return Promise.resolve({
 		type: CONTENT_DELETED,
 		payload: {
-			// _id,
-			// first_name,
-			// last_name,
-			// phone,
-			// carrier,
+			_id,
+			pillarId,
+			type,
+			data,
+			isDeleted
 		}
 	});
 }

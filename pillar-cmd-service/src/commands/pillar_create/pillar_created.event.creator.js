@@ -1,12 +1,8 @@
 const { PILLAR_CREATED } = require('../event_types');
 const log = require('../../log');
 
-function pillarCreated({ _id, tenantId, name, content, isSelected, isDeleted }) {
-
-	isSelected = true;
-	isDeleted = false;
-	
-	log.info(PILLAR_CREATED, ' : ', { _id, tenantId, name, content, isSelected, isDeleted });
+function pillarCreated({ _id, tenantId, name, content, isDeleted }) {
+	log.info(PILLAR_CREATED, ' : ', { _id, tenantId, name, content, isDeleted });
 	return Promise.resolve({
 		type: PILLAR_CREATED,
 		payload: {
@@ -14,7 +10,6 @@ function pillarCreated({ _id, tenantId, name, content, isSelected, isDeleted }) 
 			tenantId,
 			name,
 			content,
-			isSelected,
 			isDeleted
 		}
 	});

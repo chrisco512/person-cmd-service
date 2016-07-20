@@ -3,7 +3,7 @@ const config = require('./config');
 const MongoSingle = require('./mongo_single');
 const store = require('./store/store');
 const log = require('./log');
-const MongoHeartBeat = require('mongo-heartbeat');
+const MongoHeartbeat = require('mongo-heartbeat');
 
 module.exports = {
 	rebuildMeetingsFromEvents,
@@ -16,7 +16,7 @@ function setupHeartbeat() {
 	MongoSingle
 		.connect()
 		.then((db) => {
-			let hb = MongoHeartbeat(db, {
+			const hb = MongoHeartbeat(db, {
 				interval: 5000,
 				timeout: 10000,
 				tolerance: 2
@@ -24,24 +24,24 @@ function setupHeartbeat() {
 
 			hb.on('error', function() {
 				log.error('mongo is dead :(');
-				process.exit(1)
+				process.exit(1);
 			});
 		});
 }
 
-function *rebuildMeetingsFromEvents() {
+function* rebuildMeetingsFromEvents() {
 	log.info('Rebuilding state from events...');
 	let eventCounter = 0;
 
-	let url = config.mongo.uri;
-	let db = yield MongoSingle.connect()
-	let eventCursor = db.collection('events').find();
+	const url = config.mongo.uri;
+	const db = yield MongoSingle.connect();
+	const eventCursor = db.collection('events').find();
 
-	let startTime = new Date();
+	const startTime = new Date();
 
 	while(yield eventCursor.hasNext()) {
 		try {
-			let event = yield eventCursor.next();
+			const event = yield eventCursor.next();
 			store.dispatch(event);
 			eventCounter += 1;
 		} catch(err) {
@@ -49,8 +49,8 @@ function *rebuildMeetingsFromEvents() {
 		}
 	}
 
-	let endTime = new Date();
-	let processTime = endTime - startTime;
+	const endTime = new Date();
+	const processTime = endTime - startTime;
 	log.info(`Processed ${eventCounter} events in ${processTime} ms.`);
 
 	eventCursor.close();

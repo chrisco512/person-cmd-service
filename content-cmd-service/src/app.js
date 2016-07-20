@@ -33,9 +33,9 @@ if(process.env.NODE_ENV === 'development') {
 		this.body = store.getState().contents;
 	});
 } else {
-	router.get('/', function *() {
+	router.get('/', function* () {
 		this.response.status = 200;
-		this.body = 'Content Service Operational!'
+		this.body = 'Content Service Operational!';
 	});
 }
 

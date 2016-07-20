@@ -1,5 +1,4 @@
 const {
-  GraphQLSchema,
   GraphQLObjectType,
   GraphQLList
 } = require('graphql');
@@ -9,11 +8,12 @@ const {
   Employee,
   Person,
   User,
-  Manager
+  Manager,
+  Pillar,
+  Content
 } = require('./types');
 
 const store = require('../store');
-
 
 const query = new GraphQLObjectType({
   name: 'Query',
@@ -21,19 +21,19 @@ const query = new GraphQLObjectType({
   fields: {
     tenants: {
       type: new GraphQLList(Tenant),
-      resolve: function() {
+      resolve() {
         return store.getState().tenants;
       }
     },
     employees: {
       type: new GraphQLList(Employee),
-      resolve: function() {
+      resolve() {
         return store.getState().employees;
       }
     },
     persons: {
       type: new GraphQLList(Person),
-      resolve: function() {
+      resolve() {
         return store.getState().persons;
       }
     },
@@ -50,8 +50,20 @@ const query = new GraphQLObjectType({
           return user.roles.includes("manager")
         });
       }
+    },
+    pillars: {
+      type: new GraphQLList(Pillar),
+      resolve() {
+        return store.getState().pillars;
+      }
+    },
+    contents: {
+      type: new GraphQLList(Content),
+      resolve() {
+        return store.getState().contents;
+      }
     }
   }
-})
+});
 
 module.exports = query;

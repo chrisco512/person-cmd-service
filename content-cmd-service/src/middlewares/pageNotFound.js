@@ -2,7 +2,7 @@
 module.exports = function* pageNotFound(next) {
 	yield next;
 
-	if (404 != this.status) return;
+	if (this.status != 404) return;
 
 	// we need to explicitly set 404 here
 	// so that koa doesn't assign 200 on body=

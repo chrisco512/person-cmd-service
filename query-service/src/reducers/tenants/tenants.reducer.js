@@ -7,8 +7,9 @@ function reducer(tenants = [], action ) {
 	switch(action.type) {
 		case TENANT_CREATED:
 			return tenantCreated(tenants, action);
+		default:
+			return tenants;
 	}
-	return tenants;
 }
 
 

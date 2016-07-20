@@ -7,8 +7,8 @@ const uuid = require('node-uuid');
 const log = require('../../log');
 
 function contentCreateCommandHandler(payload) {
+	log.info('RECEIVED CONTENT CREATE COMMAND 💃');
 	payload._id = uuid.v4();
-
 	return validateCommand(payload)
 		.then(createEvent)
 		.then(dispatchEvent)

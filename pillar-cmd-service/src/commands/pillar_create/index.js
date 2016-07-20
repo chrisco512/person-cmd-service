@@ -15,6 +15,7 @@ function pillarCreateCommandHandler(payload) {
 		.then(persistEvent)
 		.then(publishEvent)
 		.catch(function(err) {
+			log.info('ERROR 😡', err);
 			throw err;
 		});
 }

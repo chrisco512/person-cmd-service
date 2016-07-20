@@ -24,7 +24,7 @@ const TENANT_CREATE = {
     };
     return axios.post('http://tenant-cmd/', body)
                 .then( res => res.data )
-                .catch(err => { throw err.data });
+                .catch(err => { throw err.data; });
   }
 };
 

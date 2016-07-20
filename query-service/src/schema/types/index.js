@@ -6,10 +6,14 @@ const ObjectTypes = {
   User: require('./User'),
   Manager: require('./Manager'),
   CarrierEnum: require('./CarrierEnum'),
-  EmployeeImportSaga: require('./EmployeeImportSaga')
+  ContentTypeEnum: require('./ContentTypeEnum'),
+  EmployeeImportSaga: require('./EmployeeImportSaga'),
+  Pillar: require('./Pillar'),
+  Content: require('./Content')
 };
 
 const InputTypes = require('./input_types');
+// const EnumTypes = require('./enum_types');
 
 const exportedTypes = Object.assign({}, ObjectTypes, InputTypes);
 

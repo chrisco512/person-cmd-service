@@ -5,24 +5,24 @@ const { uri } = config.mongo;
 let dbInstance;
 
 function connect() {
-	return new Promise((resolve, reject) => {
-		if (dbInstance !== undefined) {
-			resolve(dbInstance);
+  return new Promise((resolve, reject) => {
+    if (dbInstance !== undefined) {
+      resolve(dbInstance);
 		}
 
-		MongoClient.connect(uri, function (err, db) {
-			if(err) {
-				reject(err);
+	  MongoClient.connect(uri, function (err, db) {
+	    if(err) {
+	      reject(err);
 			}
 
-			if(db) {
-				dbInstance = db;
-				resolve(dbInstance);
+      if(db) {
+        dbInstance = db;
+        resolve(dbInstance);
 			}
 		});
 	});
 }
 
 module.exports = {
-	connect
+  connect
 };
