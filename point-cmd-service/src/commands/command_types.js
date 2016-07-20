@@ -1,0 +1,7 @@
+const POINT_INCREMENT = 'command.POINTS_INCREMENT';
+const POINT_DECREMENT = 'command.POINTS_DECREMENT';
+
+module.exports = {
+	POINT_INCREMENT,
+	POINT_DECREMENT
+};
