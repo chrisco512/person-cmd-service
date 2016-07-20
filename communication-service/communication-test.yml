@@ -1,0 +1,11 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source: {repository: node, tag: "6"}
+inputs:
+  - name: culture-develop
+run:
+  path: npm
+  args: [run, test]
+  dir: ./culture-develop/communication-service

@@ -1,0 +1,23 @@
+---
+resource_types:
+- name: slack
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+resources:
+  - name: culture-develop
+    type: git
+    source:
+      uri: git@bitbucket.org:ultilabs/culture-shock-server.git
+      branch: ci
+      private_key: {{bitbucket-key}}
+  - name: slack
+    type: slack
+    source:
+      url: {{slack-hook}}
+jobs:
+  - name: test-communication
+    plan:
+      - get: culture-develop
+        file: culture-develop/communication-service/communication-test.yml
+        trigger: true
