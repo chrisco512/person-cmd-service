@@ -6,7 +6,7 @@ const { VALIDATION_ERROR } = require('../../error_types');
 describe('validatePersonCarrierChangeCommand', () => {
 	it('should reject a command without an id that is a valid uuid', () => {
 		return validatePersonCarrierChangeCommand({
-			carrier: "Verizon"
+			carrier: 'Verizon'
 		})
 		.then(personCarrierChanged => {
 			expect(personCarrierChanged).to.equal(undefined);

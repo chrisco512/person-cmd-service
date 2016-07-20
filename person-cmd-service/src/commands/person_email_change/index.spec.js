@@ -55,7 +55,7 @@ describe('personEmailChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personEmailChangeCommandHandler({})
@@ -76,7 +76,7 @@ describe('personEmailChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personEmailChangeCommandHandler({})

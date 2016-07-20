@@ -22,7 +22,7 @@ const PERSON_FIRST_NAME_CHANGE = {
     };
     return axios.post('http://person-cmd/', body)
                 .then( res => res.data )
-                .catch(res => { throw res.data });
+                .catch(res => { throw res.data; });
   }
 };
 

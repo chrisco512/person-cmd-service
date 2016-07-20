@@ -37,7 +37,7 @@ describe('persons.reducer', () => {
 	describe('personFirstNameChanged', () => {
 		it('should modify the first name of the person with the specified id', () => {
 
-			let personFirstNameChangedEvent = {
+			const personFirstNameChangedEvent = {
 				type: PERSON_FIRST_NAME_CHANGED,
 				payload: {
 					_id: '123',
@@ -45,7 +45,7 @@ describe('persons.reducer', () => {
 				}
 			};
 
-			let state = [
+			const state = [
 				{
 					_id: '456',
 					firstName: 'Ben'
@@ -54,9 +54,9 @@ describe('persons.reducer', () => {
 					_id: '123',
 					firstName: 'Chris'
 				}
-			]
+			];
 
-			let persons = personsReducer(state, personFirstNameChangedEvent);
+			const persons = personsReducer(state, personFirstNameChangedEvent);
 
 			expect(persons.length).to.equal(2);
 			expect(persons[1].firstName).to.equal('James');
@@ -66,7 +66,7 @@ describe('persons.reducer', () => {
 	describe('personLastNameChanged', () => {
 		it('should modify the last name of the person with the specified id', () => {
 
-			let personLastNameChangedEvent = {
+			const personLastNameChangedEvent = {
 				type: PERSON_LAST_NAME_CHANGED,
 				payload: {
 					_id: '123',
@@ -74,7 +74,7 @@ describe('persons.reducer', () => {
 				}
 			};
 
-			let state = [
+			const state = [
 				{
 					_id: '456',
 					lastName: 'Botwin'
@@ -83,9 +83,9 @@ describe('persons.reducer', () => {
 					_id: '123',
 					lastName: 'Cordle'
 				}
-			]
+			];
 
-			let persons = personsReducer(state, personLastNameChangedEvent);
+			const persons = personsReducer(state, personLastNameChangedEvent);
 
 			expect(persons.length).to.equal(2);
 			expect(persons[1].lastName).to.equal('McLaughlin');
@@ -95,7 +95,7 @@ describe('persons.reducer', () => {
 	describe('personEmailChanged', () => {
 		it('should modify the email of the person with the specified id', () => {
 
-			let personEmailChangedEvent = {
+			const personEmailChangedEvent = {
 				type: PERSON_EMAIL_CHANGED,
 				payload: {
 					_id: '123',
@@ -103,7 +103,7 @@ describe('persons.reducer', () => {
 				}
 			};
 
-			let state = [
+			const state = [
 				{
 					_id: '456',
 					email: 'first@gmail.com'
@@ -112,9 +112,9 @@ describe('persons.reducer', () => {
 					_id: '123',
 					email: 'second@gmail.com'
 				}
-			]
+			];
 
-			let persons = personsReducer(state, personEmailChangedEvent);
+			const persons = personsReducer(state, personEmailChangedEvent);
 
 			expect(persons.length).to.equal(2);
 			expect(persons[1].email).to.equal('test@gmail.com');
@@ -124,7 +124,7 @@ describe('persons.reducer', () => {
 	describe('personPhoneChanged', () => {
 		it('should modify the phone number of the person with the specified id', () => {
 
-			let personPhoneChangedEvent = {
+			const personPhoneChangedEvent = {
 				type: PERSON_PHONE_CHANGED,
 				payload: {
 					_id: '123',
@@ -132,7 +132,7 @@ describe('persons.reducer', () => {
 				}
 			};
 
-			let state = [
+			const state = [
 				{
 					_id: '456',
 					phone: 1111111111
@@ -141,9 +141,9 @@ describe('persons.reducer', () => {
 					_id: '123',
 					phone: 2222222222
 				}
-			]
+			];
 
-			let persons = personsReducer(state, personPhoneChangedEvent);
+			const persons = personsReducer(state, personPhoneChangedEvent);
 
 			expect(persons.length).to.equal(2);
 			expect(persons[1].phone).to.equal(7777777777);
@@ -153,7 +153,7 @@ describe('persons.reducer', () => {
 	describe('personCarrierChanged', () => {
 		it('should modify the carrier of the person with the specified id', () => {
 
-			let personCarrierChangedEvent = {
+			const personCarrierChangedEvent = {
 				type: PERSON_CARRIER_CHANGED,
 				payload: {
 					_id: '123',
@@ -161,7 +161,7 @@ describe('persons.reducer', () => {
 				}
 			};
 
-			let state = [
+			const state = [
 				{
 					_id: '456',
 					carrier: 'Verizon'
@@ -170,9 +170,9 @@ describe('persons.reducer', () => {
 					_id: '123',
 					carrier: 'Cricket'
 				}
-			]
+			];
 
-			let persons = personsReducer(state, personCarrierChangedEvent);
+			const persons = personsReducer(state, personCarrierChangedEvent);
 
 			expect(persons.length).to.equal(2);
 			expect(persons[1].carrier).to.equal('Sprint');

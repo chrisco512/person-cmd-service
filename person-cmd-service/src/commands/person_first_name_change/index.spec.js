@@ -55,7 +55,7 @@ describe('personFirstNameChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personFirstNameChangeCommandHandler({})
@@ -76,7 +76,7 @@ describe('personFirstNameChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personFirstNameChangeCommandHandler({})

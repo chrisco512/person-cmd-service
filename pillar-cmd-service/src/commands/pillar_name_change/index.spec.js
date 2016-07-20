@@ -57,7 +57,7 @@ describe('pillarNameChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return pillarNameChangeCommandHandler({})
@@ -78,7 +78,7 @@ describe('pillarNameChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return pillarNameChangeCommandHandler({})

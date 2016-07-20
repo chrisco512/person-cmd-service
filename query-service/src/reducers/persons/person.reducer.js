@@ -7,7 +7,6 @@ const {
 	PERSON_PHONE_CHANGED,
 	PERSON_CARRIER_CHANGED
 } = require('../../event_types');
-const _ = require('lodash');
 
 function reducer(persons = [], event) {
 	switch(event.type) {

@@ -55,7 +55,7 @@ describe('personPhoneChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personPhoneChangeCommandHandler({})
@@ -76,7 +76,7 @@ describe('personPhoneChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personPhoneChangeCommandHandler({})

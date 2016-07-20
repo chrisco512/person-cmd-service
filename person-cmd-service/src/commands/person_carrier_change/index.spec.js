@@ -55,7 +55,7 @@ describe('personCarrierChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personCarrierChangeCommandHandler({})
@@ -76,7 +76,7 @@ describe('personCarrierChangeCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personCarrierChangeCommandHandler({})

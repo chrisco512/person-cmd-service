@@ -55,7 +55,7 @@ describe('personCreateCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personCreateCommandHandler({})
@@ -76,7 +76,7 @@ describe('personCreateCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return personCreateCommandHandler({})

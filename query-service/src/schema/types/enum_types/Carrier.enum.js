@@ -6,11 +6,11 @@ const CarrierEnum = new GraphQLEnumType({
   values: {
     ATT: {
       value: 'AT&T',
-      description: 'AT&T (@txt.att.net)',
+      description: 'AT&T (@txt.att.net)'
     },
     T_MOBILE: {
       value: 'T-Mobile',
-      description: 'T-Mobile (@tmomail.net)',
+      description: 'T-Mobile (@tmomail.net)'
     },
     VERIZON: {
       value: 'Verizon',

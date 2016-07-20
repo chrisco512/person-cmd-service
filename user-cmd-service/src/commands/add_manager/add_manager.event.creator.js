@@ -9,7 +9,7 @@ function managerAdded({ userId, managerId }) {
       userId,
       managerId
     }
-  }
+  };
 }
 
 module.exports = managerAdded;

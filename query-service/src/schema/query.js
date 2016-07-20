@@ -39,15 +39,15 @@ const query = new GraphQLObjectType({
     },
     users: {
       type: new GraphQLList(User),
-      resolve: function() {
-        return store.getState().users
+      resolve() {
+        return store.getState().users;
       }
     },
     managers: {
       type: new GraphQLList(Manager),
-      resolve: function() {
+      resolve() {
         return store.getState().users.filter((user) => {
-          return user.roles.includes("manager")
+          return user.roles.includes('manager');
         });
       }
     },
