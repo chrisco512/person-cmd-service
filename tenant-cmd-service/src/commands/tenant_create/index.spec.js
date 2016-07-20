@@ -55,7 +55,7 @@ describe('tenantCreateCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return tenantCreateCommandHandler({})
@@ -76,7 +76,7 @@ describe('tenantCreateCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return tenantCreateCommandHandler({})

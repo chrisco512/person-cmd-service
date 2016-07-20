@@ -7,7 +7,14 @@ const proxyquire = require('proxyquire').noCallThru();
 chai.use(sinonChai);
 
 const personsReducer = require('./persons.reducer');
-const { PERSON_CREATED } = require('../../commands/event_types');
+const {
+	PERSON_CREATED,
+	PERSON_FIRST_NAME_CHANGED,
+	PERSON_LAST_NAME_CHANGED,
+	PERSON_EMAIL_CHANGED,
+	PERSON_PHONE_CHANGED,
+	PERSON_CARRIER_CHANGED
+} = require('../../commands/event_types');
 
 describe('persons.reducer', () => {
 	describe('personCreated', () => {
@@ -24,6 +31,151 @@ describe('persons.reducer', () => {
 
 			expect(persons.length).to.equal(1);
 			expect(persons[0]._id).to.equal('123');
+
+		});
+	});
+	describe('personFirstNameChanged', () => {
+		it('should modify the first name of the person with the specified id', () => {
+
+			const personFirstNameChangedEvent = {
+				type: PERSON_FIRST_NAME_CHANGED,
+				payload: {
+					_id: '123',
+					firstName: 'James'
+				}
+			};
+
+			const state = [
+				{
+					_id: '456',
+					firstName: 'Ben'
+				},
+				{
+					_id: '123',
+					firstName: 'Chris'
+				}
+			];
+
+			const persons = personsReducer(state, personFirstNameChangedEvent);
+
+			expect(persons.length).to.equal(2);
+			expect(persons[1].firstName).to.equal('James');
+
+		});
+	});
+	describe('personLastNameChanged', () => {
+		it('should modify the last name of the person with the specified id', () => {
+
+			const personLastNameChangedEvent = {
+				type: PERSON_LAST_NAME_CHANGED,
+				payload: {
+					_id: '123',
+					lastName: 'McLaughlin'
+				}
+			};
+
+			const state = [
+				{
+					_id: '456',
+					lastName: 'Botwin'
+				},
+				{
+					_id: '123',
+					lastName: 'Cordle'
+				}
+			];
+
+			const persons = personsReducer(state, personLastNameChangedEvent);
+
+			expect(persons.length).to.equal(2);
+			expect(persons[1].lastName).to.equal('McLaughlin');
+
+		});
+	});
+	describe('personEmailChanged', () => {
+		it('should modify the email of the person with the specified id', () => {
+
+			const personEmailChangedEvent = {
+				type: PERSON_EMAIL_CHANGED,
+				payload: {
+					_id: '123',
+					email: 'test@gmail.com'
+				}
+			};
+
+			const state = [
+				{
+					_id: '456',
+					email: 'first@gmail.com'
+				},
+				{
+					_id: '123',
+					email: 'second@gmail.com'
+				}
+			];
+
+			const persons = personsReducer(state, personEmailChangedEvent);
+
+			expect(persons.length).to.equal(2);
+			expect(persons[1].email).to.equal('test@gmail.com');
+
+		});
+	});
+	describe('personPhoneChanged', () => {
+		it('should modify the phone number of the person with the specified id', () => {
+
+			const personPhoneChangedEvent = {
+				type: PERSON_PHONE_CHANGED,
+				payload: {
+					_id: '123',
+					phone: 7777777777
+				}
+			};
+
+			const state = [
+				{
+					_id: '456',
+					phone: 1111111111
+				},
+				{
+					_id: '123',
+					phone: 2222222222
+				}
+			];
+
+			const persons = personsReducer(state, personPhoneChangedEvent);
+
+			expect(persons.length).to.equal(2);
+			expect(persons[1].phone).to.equal(7777777777);
+
+		});
+	});
+	describe('personCarrierChanged', () => {
+		it('should modify the carrier of the person with the specified id', () => {
+
+			const personCarrierChangedEvent = {
+				type: PERSON_CARRIER_CHANGED,
+				payload: {
+					_id: '123',
+					carrier: 'Sprint'
+				}
+			};
+
+			const state = [
+				{
+					_id: '456',
+					carrier: 'Verizon'
+				},
+				{
+					_id: '123',
+					carrier: 'Cricket'
+				}
+			];
+
+			const persons = personsReducer(state, personCarrierChangedEvent);
+
+			expect(persons.length).to.equal(2);
+			expect(persons[1].carrier).to.equal('Sprint');
 
 		});
 	});

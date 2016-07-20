@@ -57,7 +57,7 @@ describe('pillarCreateCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return pillarCreateCommandHandler({})
@@ -78,7 +78,7 @@ describe('pillarCreateCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return pillarCreateCommandHandler({})

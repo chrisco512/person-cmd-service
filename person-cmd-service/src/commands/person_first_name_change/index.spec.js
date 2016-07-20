@@ -2,12 +2,12 @@ const chai = require('chai');
 const { expect } = chai;
 const proxyquire = require('proxyquire').noCallThru();
 
-describe('personCreateCommandHandler', () => {
+describe('personFirstNameChangeCommandHandler', () => {
 	it('should call methods in established order: validate, createEvent, dispatch, persist, publish', () => {
 		let callCounter = 0;
 
-		const personCreateCommandHandler = proxyquire('./index', {
-			'./person_create.cmd.validator': () => {
+		const personFirstNameChangeCommandHandler = proxyquire('./index', {
+			'./person_first_name_change.cmd.validator': () => {
 				expect(callCounter).to.equal(0);
 
 				if(callCounter === 0) {
@@ -16,7 +16,7 @@ describe('personCreateCommandHandler', () => {
 				}
 				return Promise.reject({});
 			},
-			'./person_created.event.creator': () => {
+			'./person_first_name_changed.event.creator': () => {
 				expect(callCounter).to.equal(1);
 
 				if(callCounter === 1) {
@@ -55,31 +55,31 @@ describe('personCreateCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
-		return personCreateCommandHandler({})
+		return personFirstNameChangeCommandHandler({})
 			.catch(err => {
 				expect(err).to.equal(undefined);
 			});
 	});
 
 	it('should throw an error when a validation fails', () => {
-		const personCreateCommandHandler = proxyquire('./index', {
-			'./person_create.cmd.validator': () => {
+		const personFirstNameChangeCommandHandler = proxyquire('./index', {
+			'./person_first_name_change.cmd.validator': () => {
 				return Promise.reject({ err: 'ERROR' });
 			},
-			'./person_created.event.creator': () => null,
+			'./person_first_name_changed.event.creator': () => null,
 			'../../common/dispatch_event.chainable': () => null,
 			'../../common/persist_event.chainable': () => null,
 			'../../common/publish_event.chainable': () => null,
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
-		return personCreateCommandHandler({})
+		return personFirstNameChangeCommandHandler({})
 			.catch(err => {
 				expect(err).to.be.an('object');
 				expect(err.err).to.equal('ERROR');

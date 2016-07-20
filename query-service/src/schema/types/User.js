@@ -35,11 +35,11 @@ const User = new GraphQLObjectType({
       type: User, 
       resolve: (user) => {
         const manager = store.getState().users.filter((u) => {
-          return u._id === user.managerId
+          return u._id === user.managerId;
         });
 
         if(manager.length > 0) {
-          return manager[0]
+          return manager[0];
         }
 
         return null;

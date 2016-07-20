@@ -12,7 +12,7 @@ function managerAddCommandHandler(payload) {
 		.then(persistEvent)
 		.then(publishEvent)
 		.catch(function(err) {
-                  console.log(err)
+                  console.log(err);
 			throw err;
 		});
 }

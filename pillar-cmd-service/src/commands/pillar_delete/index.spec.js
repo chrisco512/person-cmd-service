@@ -57,7 +57,7 @@ describe('pillarDeleteCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return pillarDeleteCommandHandler({})
@@ -78,7 +78,7 @@ describe('pillarDeleteCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return pillarDeleteCommandHandler({})

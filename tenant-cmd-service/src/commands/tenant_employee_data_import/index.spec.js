@@ -55,7 +55,7 @@ describe('tenantEmployeeImportDataCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return tenantEmployeeImportDataCommandHandler({})
@@ -76,7 +76,7 @@ describe('tenantEmployeeImportDataCommandHandler', () => {
 			'node-uuid': {
 				v4: () => undefined
 			},
-			'../../log': () => null,
+			'../../log': () => null
 		});
 
 		return tenantEmployeeImportDataCommandHandler({})

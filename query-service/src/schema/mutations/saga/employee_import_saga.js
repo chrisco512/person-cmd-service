@@ -7,7 +7,7 @@ const {
 const fs = require('fs');
 const axios = require('axios');
 const FormData = require('form-data');
-const { EmployeeImportSaga } = require('../types');
+const { EmployeeImportSaga } = require('../../types');
 const request = require('request');
 
 const EMPLOYEE_IMPORT_SAGA = {

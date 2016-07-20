@@ -1,11 +1,11 @@
 const _ = require('lodash');
 const store = require('../../store');
 const { contains, createValidator, required, minLength, integer, email, uuid, valueExistsInCollection } = require('validations');
-const { VALIDATION_ERROR } = require("../../error_types");
+const { VALIDATION_ERROR } = require('../../error_types');
 
 const validateCommand = createValidator({
         userId: [required],
-        roles: [contains("manager")]
+        roles: [contains('manager')]
 }, {
         userId: {
                 primary: '_id',
@@ -22,7 +22,7 @@ function validateAddManagerCommand(payload) {
                 });
 
                 if(user.length < 1) {
-                        return reject({type: VALIDATION_ERROR, errors: {managerId: "Invalid User Id"}});
+                        return reject({type: VALIDATION_ERROR, errors: {managerId: 'Invalid User Id'}});
                 }
 
                 const errors = validateCommand(user[0], null, { users });
@@ -33,7 +33,7 @@ function validateAddManagerCommand(payload) {
                         return reject({ type: VALIDATION_ERROR, errors });
                 }
 
-                console.log('asfasdf')
+                console.log('asfasdf');
 
                 resolve(payload);
         });
