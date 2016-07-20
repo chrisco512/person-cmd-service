@@ -1,6 +1,7 @@
 const { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLList } = require('graphql');
 const Employee = require('./Employee');
 const TenantContact = require('./TenantContact');
+// const TenantContact = require('./input_types/TenantContact.input');
 const store = require('../../store');
 
 const Tenant = new GraphQLObjectType({
@@ -24,7 +25,7 @@ const Tenant = new GraphQLObjectType({
     },
     employees: {
       type: new GraphQLList(Employee),
-      resolve: (tenant, args) => {
+      resolve: (tenant) => {
         return store.getState().employees
           .filter(employee => employee.tenantID === tenant._id);
       }

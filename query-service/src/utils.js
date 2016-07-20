@@ -8,32 +8,32 @@ module.exports = {
 	setupHandlers
 };
 
-function *rebuildQueryModelsFromEvents() {
+function* rebuildQueryModelsFromEvents() {
 	console.log('Rebuilding state from events...');
 	let eventCounter = 0;
 
-	let url = config.mongo.uri;
-	console.log("Connecting to mongo", url);
-	let db = yield MongoClient.connect(url);
-	let eventCursor = db.collection('events').find();
+	const url = config.mongo.uri;
+	console.log('Connecting to mongo', url);
+	const db = yield MongoClient.connect(url);
+	const eventCursor = db.collection('events').find();
 
-	let startTime = new Date();
-	let cursorCount = yield eventCursor.count();
+	const startTime = new Date();
+	const cursorCount = yield eventCursor.count();
 	console.log(`starting mongo event reads with current cursor length - ${cursorCount}`);
 	while(yield eventCursor.hasNext()) {
 		try {
-			let event = yield eventCursor.next();
+			const event = yield eventCursor.next();
 			store.dispatch(event);
 			eventCounter += 1;
 			console.log(eventCounter);
 		} catch(err) {
-			console.log("mongo error", err);
+			console.log('mongo error', err);
 			throw Error(err);
 		}
 	}
 
-	let endTime = new Date();
-	let processTime = endTime - startTime;
+	const endTime = new Date();
+	const processTime = endTime - startTime;
 	console.log(`Processed ${eventCounter} events in ${processTime} ms.`);
 
 	eventCursor.close();
@@ -43,7 +43,7 @@ function *rebuildQueryModelsFromEvents() {
 function setupHandlers() {
     // Quit Node Properly with Ctrl+C
     process.on('SIGINT', function() {
-        console.log("Gracefully shutting down from SIGINT (Ctrl+C)");
+        console.log('Gracefully shutting down from SIGINT (Ctrl+C)');
         process.exit();
     });
 }

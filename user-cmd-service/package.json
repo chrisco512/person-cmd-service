@@ -9,7 +9,8 @@
     "test:watch": "npm run test -- --watch",
     "start:prod": "./src/node app.js",
     "start:dev": "nodemon ./src/app.js --exitcrash",
-    "start:local": "cross-env PORT=1337 RABBIT_URI=amqp://localhost MONGO_URI=mongodb://localhost:27017/culture devtool ./src/app.js --watch --break"
+    "start:local": "cross-env PORT=1337 RABBIT_URI=amqp://localhost MONGO_URI=mongodb://localhost:27017/culture devtool ./src/app.js --watch --break",
+    "lint": "eslint src/** --fix"
   },
   "engine": "node 6.0.0",
   "author": "",
@@ -38,6 +39,7 @@
     "chai": "^3.5.0",
     "cross-env": "^1.0.8",
     "devtool": "^2.0.2",
+    "eslint": "^3.1.1",
     "mocha": "^2.5.3",
     "nodemon": "^1.9.2",
     "proxyquire": "^1.7.10",

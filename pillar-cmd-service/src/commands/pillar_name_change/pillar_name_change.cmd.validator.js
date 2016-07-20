@@ -1,15 +1,16 @@
 const store = require('../../store');
-const { unique, required, uuid, minLength, createValidator } = require('validations');
+const { unique, required, uuid, minLength, createValidator, valueExistsInCollection } = require('validations');
 const { VALIDATION_ERROR } = require('../../error_types');
 const log = require('../../log');
 
 const validatePillar = createValidator({
-	_id: [required, unique, uuid],
-	tenantId: [required],
-	name: [required, minLength(1)],
-	content: [],
-	isSelected: [],
-	isDeleted: []
+	// _id: [required, uuid, valueExistsInCollection],
+	// tenantId: [required],
+	pillarName: [required, minLength(1)],
+	index: []
+	// content: [],
+	// isSelected: [],
+	// isDeleted: []
 });
 
 function validatePillarNameChangeCommand(payload) {

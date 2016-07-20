@@ -13,14 +13,14 @@ describe('persons.reducer', () => {
 	describe('personCreated', () => {
 		it('should return a new persons collection with new person added', () => {
 
-			let personCreatedEvent = {
+			const personCreatedEvent = {
 				type: PERSON_CREATED,
 				payload: {
 					_id: '123'
 				}
 			};
 
-			let persons = personsReducer([], personCreatedEvent);
+			const persons = personsReducer([], personCreatedEvent);
 
 			expect(persons.length).to.equal(1);
 			expect(persons[0]._id).to.equal('123');

@@ -8,7 +8,6 @@ const validatePillar = createValidator({
 	tenantId: [required],
 	name: [required, minLength(1)],
 	content: [],
-	isSelected: [],
 	isDeleted: []
 });
 
@@ -24,7 +23,7 @@ function validatePillarCreateCommand(payload) {
 			log.info('ERROR 😡', errors);
 			return reject({ type: VALIDATION_ERROR, errors });
 		}
-
+		log.info('VALIDATIONS PASSED 👏');
 		return resolve(payload);
 	});
 }

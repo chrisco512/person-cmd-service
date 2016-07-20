@@ -1,10 +1,11 @@
 const store = require('../../store/store');
 const { unique, required, uuid, minLength, createValidator } = require('validations');
 const { VALIDATION_ERROR } = require('../../error_types');
+const log = require('../../log');
 
 const validateContent = createValidator({
 	_id: [required, unique, uuid],
-	pillarId: [unique],
+	pillarId: [required],
 	type: [required, minLength(1)],
 	data: {
 		//for type: video
@@ -17,7 +18,8 @@ const validateContent = createValidator({
 		//for type: lunch meeting (lunch roulette)
 		recipient: [],
 		recipientPosition: []
-	}
+	},
+	isDeleted: []
 });
 
 function validateContentCreateCommand(payload) {
@@ -29,9 +31,10 @@ function validateContentCreateCommand(payload) {
 		const isErrors = Object.keys(errors).length;
 
 		if(isErrors) {
+			log.info('ERROR 😡', errors);
 			return reject({ type: VALIDATION_ERROR, errors });
 		}
-
+		log.info('VALIDATIONS PASSED 👏');
 		return resolve(payload);
 	});
 }

@@ -8,7 +8,6 @@ const validatePillar = createValidator({
 	tenantId: [required],
 	name: [required, minLength(1)],
 	content: [],
-	isSelected: [],
 	isDeleted: []
 });
 
@@ -16,7 +15,6 @@ function validatePillarDeleteCommand(payload) {
 	return new Promise((resolve, reject) => {
 		const { pillars } = store.getState();
 		const pillar = payload;
-		log.info('validatePillarDeleteCommand PAYLOAD', pillar);
 
 		const errors = validatePillar(pillar, null, pillars);
 		const isErrors = Object.keys(errors).length;

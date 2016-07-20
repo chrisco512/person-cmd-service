@@ -1,10 +1,10 @@
-require("babel-polyfill");
+require('babel-polyfill');
 const co = require('co');
 const config = require('./config');
 const store = require('./store');
 const app = require('./express');
 
-const bus = require('servicebus').bus({ url: config.servicebus.uri + "?heartbeat=60" });
+const bus = require('servicebus').bus({ url: `${config.servicebus.uri}?heartbeat=60` });
 const {
 	rebuildQueryModelsFromEvents,
   setupHandlers

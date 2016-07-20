@@ -1,28 +1,39 @@
 const store = require('../../store/store');
-const { unique, required, email, uuid, minLength, integer, createValidator } = require('validations');
+const { unique, required, email, uuid, minLength, integer, createValidator, valueExistsInCollection } = require('validations');
 const { VALIDATION_ERROR } = require('../../error_types');
 
-// const validateContent = createValidator({
-// 	_id: [required, unique, uuid],
-// 	first_name: [required, minLength(1)],
-// 	last_name: [required, minLength(1)],
-// 	phone: [required, integer],
-// 	carrier: [],
-// 	email: [required, email]
-// });
-//not sure what to do here....
+const validateContent = createValidator({
+	_id: [required, valueExistsInCollection, uuid],
+	pillarId: [required],
+	type: [required, minLength(1)],
+	data: {
+		//for type: video
+		title: [],
+		description: [],
+		url: [],
+		//for type: quote
+		quote: [],
+		author: [],
+		//for type: lunch meeting (lunch roulette)
+		recipient: [],
+		recipientPosition: []
+	},
+	isDeleted: []
+});
+
 function validateContentDeleteCommand(payload) {
 	return new Promise((resolve, reject) => {
 		const { contents } = store.getState();
 		const content = payload;
 
-		// const errors = validateContent(content, null, contents);
-		// const isErrors = Object.keys(errors).length;
-		//
-		// if(isErrors) {
-		// 	return reject({ type: VALIDATION_ERROR, errors });
-		// }
+		const errors = validateContent(content, null, contents);
+		const isErrors = Object.keys(errors).length;
 
+		if(isErrors) {
+			log.info('ERROR 😡', errors);
+			return reject({ type: VALIDATION_ERROR, errors });
+		}
+		log.info('VALIDATIONS PASSED 👏');
 		return resolve(payload);
 	});
 }

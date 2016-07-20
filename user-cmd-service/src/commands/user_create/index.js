@@ -5,14 +5,14 @@ const persistEvent = require('../../common/persist_event.chainable');
 const publishEvent = require('../../common/publish_event.chainable');
 
 function userCreateCommandHandler(payload) {
-	return validateCommand(payload)
-		.then(createEvent)
-		.then(dispatchEvent)
-		.then(persistEvent)
-		.then(publishEvent)
-		.catch(function(err) {
-			throw err;
-		});
+  return validateCommand(payload)
+    .then(createEvent)
+    .then(dispatchEvent)
+    .then(persistEvent)
+    .then(publishEvent)
+    .catch(function(err) {
+      throw err;
+    });
 }
 
 module.exports = userCreateCommandHandler;

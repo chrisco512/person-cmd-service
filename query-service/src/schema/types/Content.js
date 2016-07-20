@@ -1,5 +1,6 @@
 const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = require('graphql');
 const ContentTypeEnum = require('./ContentTypeEnum');
+// const ContentTypeEnum = require('./enum_types/ContentType.enum');
 
 const ContentData = new GraphQLObjectType({
   name: 'ContentData',

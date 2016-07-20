@@ -8,7 +8,8 @@
     "test": "mocha ./src/**/*.spec.js",
     "test:watch": "npm run test -- --watch",
     "start:prod": "node ./src/app.js",
-    "start:dev": "nodemon ./src/app.js --exitcrash"
+    "start:dev": "nodemon ./src/app.js --exitcrash",
+    "lint": "eslint src/** --fix"
   },
   "engine": "node 6.0.0",
   "author": "",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "devtool": "^2.0.2",
+    "eslint": "^3.1.1",
     "nodemon": "^1.9.2"
   }
 }

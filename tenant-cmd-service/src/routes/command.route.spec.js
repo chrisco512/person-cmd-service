@@ -9,20 +9,20 @@ const { VALIDATION_ERROR, SERVER_ERROR } = require('../error_types');
 
 describe('commandRoute', () => {
 	it('should call store.dispatch with the event passed in', () => {
-		let stubs = {
-			'../commands': function() {}
+		const stubs = {
+			'../commands'() {}
 		};
 
-		let context = {
+		const context = {
 			request: {
 				body: {}
 			},
 			response: {}
 		};
 
-		let commandRoute = proxyquire('./command.route', stubs);
+		const commandRoute = proxyquire('./command.route', stubs);
 
-		let commandRouteGenObj = commandRoute.call(context);
+		const commandRouteGenObj = commandRoute.call(context);
 
 		commandRouteGenObj.next();
 		commandRouteGenObj.next({ payload: 'Yay' });
@@ -32,20 +32,20 @@ describe('commandRoute', () => {
 	});
 
 	it('should throw a validation error with a 400 and the associated errors', () => {
-		let stubs = {
-			'../commands': function() {}
+		const stubs = {
+			'../commands'() {}
 		};
 
-		let context = {
+		const context = {
 			request: {
 				body: {}
 			},
 			response: {}
 		};
 
-		let commandRoute = proxyquire('./command.route', stubs);
+		const commandRoute = proxyquire('./command.route', stubs);
 
-		let commandRouteGenObj = commandRoute.call(context);
+		const commandRouteGenObj = commandRoute.call(context);
 
 		commandRouteGenObj.next();
 		commandRouteGenObj.throw({ type: VALIDATION_ERROR, errors: 'Errors' });
@@ -55,20 +55,20 @@ describe('commandRoute', () => {
 	});
 
 	it('should throw a server error with an empty body', () => {
-		let stubs = {
-			'../commands': function() {}
+		const stubs = {
+			'../commands'() {}
 		};
 
-		let context = {
+		const context = {
 			request: {
 				body: {}
 			},
 			response: {}
 		};
 
-		let commandRoute = proxyquire('./command.route', stubs);
+		const commandRoute = proxyquire('./command.route', stubs);
 
-		let commandRouteGenObj = commandRoute.call(context);
+		const commandRouteGenObj = commandRoute.call(context);
 
 		commandRouteGenObj.next();
 		commandRouteGenObj.throw({ type: SERVER_ERROR, errors: 'Errors' });

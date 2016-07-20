@@ -7,11 +7,9 @@ const log = require('../../log');
 
 // Pillar delete just changes the isDeleted property to false
 // AKA "soft" delete
-
 function pillarDeleteCommandHandler(payload) {
 	log.info('RECEIVED PILLAR DELETE COMMAND 💃');
 	return validateCommand(payload)
-		.then(something => {console.log(something); return something})
 		.then(createEvent)
 		.then(dispatchEvent)
 		.then(persistEvent)

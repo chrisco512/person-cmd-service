@@ -1,8 +1,10 @@
+const store = require('../../store');
 const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLList
 } = require('graphql');
 
 const User = new GraphQLObjectType({
@@ -28,6 +30,20 @@ const User = new GraphQLObjectType({
     personId: {
       type: GraphQLString,
       description: 'PersonId of the User'
+    },
+    manager: {
+      type: User, 
+      resolve: (user) => {
+        const manager = store.getState().users.filter((u) => {
+          return u._id === user.managerId
+        });
+
+        if(manager.length > 0) {
+          return manager[0]
+        }
+
+        return null;
+      }
     },
     companyIdentifier: {
       type: GraphQLString,

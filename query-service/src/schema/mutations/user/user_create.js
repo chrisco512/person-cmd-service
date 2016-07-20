@@ -26,7 +26,7 @@ const USER_CREATE = {
     console.log(body);
     return axios.post('http://user-cmd/', body)
                 .then( res => res.data)
-                .catch(err => { throw err.data });
+                .catch(err => { throw err.data; });
   }
 };
 

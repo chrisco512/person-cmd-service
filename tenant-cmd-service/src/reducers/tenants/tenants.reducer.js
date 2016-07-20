@@ -4,16 +4,17 @@ const {
 } = require('../../commands/event_types');
 
 function reducer(tenants = [], action ) {
-	console.log("In tenant reducer - ", action);
+	console.log('In tenant reducer - ', action);
 	switch(action.type) {
 		case TENANT_CREATED:
 			return tenantCreated(tenants, action.payload);
+		default:
+			return tenants;
 	}
-	return tenants;
 }
 
 function tenantCreated(tenants, payload) {
-	console.log("Making tenant with action - ", TENANT_CREATED);
+	console.log('Making tenant with action - ', TENANT_CREATED);
 	return [...tenants, payload];
 }
 
