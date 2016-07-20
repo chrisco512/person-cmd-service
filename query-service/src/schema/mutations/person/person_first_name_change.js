@@ -10,7 +10,8 @@ const PERSON_FIRST_NAME_CHANGE = {
   type: Person,
   description: 'sends `command.PERSON_FIRST_NAME_CHANGE`',
   args: {
-    firstName: {type: new GraphQLNonNull(GraphQLString)},
+    _id: {type: new GraphQLNonNull(GraphQLString)},
+    firstName: {type: new GraphQLNonNull(GraphQLString)}
   },
   resolve: (rootValue, args) => {
     const type = 'command.PERSON_FIRST_NAME_CHANGE';

@@ -10,7 +10,8 @@ const PERSON_CARRIER_CHANGE = {
   type: Person,
   description: 'sends `command.PERSON_CARRIER_CHANGE`',
   args: {
-    carrier: {type: new GraphQLNonNull(GraphQLString)},
+    _id: {type: new GraphQLNonNull(GraphQLString)},
+    carrier: {type: new GraphQLNonNull(GraphQLString)}
   },
   resolve: (rootValue, args) => {
     const type = 'command.PERSON_CARRIER_CHANGE';

@@ -1,5 +1,6 @@
 const {
   GraphQLNonNull,
+  GraphQLString,
   GraphQLFloat
 } = require('graphql');
 
@@ -10,7 +11,8 @@ const PERSON_PHONE_CHANGE = {
   type: Person,
   description: 'sends `command.PERSON_PHONE_CHANGE`',
   args: {
-    phone: {type: new GraphQLNonNull(GraphQLFloat)},
+    _id: {type: new GraphQLNonNull(GraphQLString)},
+    phone: {type: new GraphQLNonNull(GraphQLFloat)}
   },
   resolve: (rootValue, args) => {
     const type = 'command.PERSON_PHONE_CHANGE';

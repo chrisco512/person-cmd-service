@@ -10,7 +10,8 @@ const PERSON_EMAIL_CHANGE = {
   type: Person,
   description: 'sends `command.PERSON_EMAIL_CHANGE`',
   args: {
-    email: {type: new GraphQLNonNull(GraphQLString)},
+    _id: {type: new GraphQLNonNull(GraphQLString)},
+    email: {type: new GraphQLNonNull(GraphQLString)}
   },
   resolve: (rootValue, args) => {
     const type = 'command.PERSON_EMAIL_CHANGE';
