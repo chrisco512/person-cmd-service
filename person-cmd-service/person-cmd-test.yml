@@ -7,7 +7,7 @@ inputs:
   - name: culture-develop
 run:
   path: sh
-  exex: -|
+  exec: -|
     npm install
     npm run test
   dir: ./culture-develop/person-cmd-service
