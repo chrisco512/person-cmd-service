@@ -111,6 +111,17 @@ services:
     command: npm run start:dev
     working_dir: /app
 
+  point-cmd:
+    container_name: point-cmd
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./point-cmd-service:/app
+    ports:
+      - "8012:80"
+    command: npm run start:dev
+    working_dir: /app/src
+
   mongo:
     container_name: mongo
     ports:

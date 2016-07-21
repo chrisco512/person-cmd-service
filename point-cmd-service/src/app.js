@@ -13,6 +13,7 @@ const { rebuildMeetingsFromEvents, setupHandlers, setupHeartbeat } = require('./
 const { commandRoute } = require('./routes');
 const app = module.exports = koa();
 const port = process.env.PORT || config.port || 8080;
+const bus = require('servicebus').bus({ url: `${config.servicebus.uri}?heartbeat=60` });
 
 setupHandlers();
 setupHeartbeat();
@@ -48,4 +49,8 @@ co(function* () {
 	app.listen(port, () => {
 		log.info(`Listening on port: ${port}`);
 	});
+
+	bus.subscribe('user.*', function (event) {
+    store.dispatch(event);
+  });
 });
