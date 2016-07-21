@@ -8,8 +8,8 @@ inputs:
 run:
   path: sh
   args: 
-    - exec 
+    - -exec 
     - |
-    npm install
-    npm run test
+      npm install
+      npm run test
   dir: ./culture-develop/pillar-cmd-service

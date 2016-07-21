@@ -7,9 +7,9 @@ inputs:
   - name: culture-develop
 run:
   path: sh
-  exec: -|
-  args: 
-      - npm n
-      s tall
-    npm run test
+  args:
+    - -exec
+    - |
+      npm install
+      npm run test
   dir: ./culture-develop/websocket-service
