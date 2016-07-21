@@ -10,4 +10,4 @@ run:
   exex: -|
     npm install
     npm run test
-  dir: ./culture-develop/communication-service
+  dir: ./culture-develop/content-cmd-service
