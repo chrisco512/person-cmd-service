@@ -7,7 +7,9 @@ inputs:
   - name: culture-develop
 run:
   path: sh
-  exec: -|
+  args: 
+    - exec 
+    - |
     npm install
     npm run test
   dir: ./culture-develop/saga-service

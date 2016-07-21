@@ -8,6 +8,8 @@ inputs:
 run:
   path: sh
   exec: -|
-    npm install
+  args: 
+      - npm n
+      s tall
     npm run test
   dir: ./culture-develop/websocket-service
