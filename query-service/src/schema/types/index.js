@@ -9,7 +9,8 @@ const ObjectTypes = {
   ContentTypeEnum: require('./ContentTypeEnum'),
   EmployeeImportSaga: require('./EmployeeImportSaga'),
   Pillar: require('./Pillar'),
-  Content: require('./Content')
+  Content: require('./Content'),
+  Point: require('./Point')
 };
 
 const InputTypes = require('./input_types');

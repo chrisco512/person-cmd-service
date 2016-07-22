@@ -57,3 +57,7 @@ services:
       environment:
         - NODE_ENV production
       command: npm run start:prod
+  point-cmd:
+      environment:
+        - NODE_ENV production
+      command: npm run start:prod

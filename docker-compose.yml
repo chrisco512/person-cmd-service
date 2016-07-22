@@ -54,6 +54,12 @@ services:
     networks:
       - main
 
+  point-cmd:
+    image: node:6
+    restart: always
+    networks:
+      - main
+
   mongo:
     networks:
       - main

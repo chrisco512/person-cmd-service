@@ -2,6 +2,7 @@ const PERSON = require('./person');
 const USER = require('./user');
 const TENANT = require('./tenant');
 const SAGA = require('./saga');
+const POINT = require('./point');
 
 module.exports = {
   USER_CREATE: USER.CREATE,
@@ -12,5 +13,7 @@ module.exports = {
   PERSON_PHONE_CHANGE: PERSON.PHONE_CHANGE,
   PERSON_CARRIER_CHANGE: PERSON.CARRIER_CHANGE,
   TENANT_CREATE: TENANT.CREATE,
-  EMPLOYEE_IMPORT_SAGA: SAGA.EMPLOYEE_IMPORT
+  EMPLOYEE_IMPORT_SAGA: SAGA.EMPLOYEE_IMPORT,
+  POINT_INCREMENT: POINT.INCREMENT,
+  POINT_DECREMENT: POINT.DECREMENT
 };
