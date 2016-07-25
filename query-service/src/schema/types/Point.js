@@ -2,8 +2,8 @@ const { GraphQLObjectType, GraphQLFloat } = require('graphql');
 const User = require('./User');
 const store = require('../../store');
 
-const Person = new GraphQLObjectType({
-  name: 'Person',
+const Point = new GraphQLObjectType({
+  name: 'Point',
   fields: () => ({
     user: {
       type: User,
@@ -17,4 +17,7 @@ const Person = new GraphQLObjectType({
   })
 });
 
-module.exports = Person;
+console.log('⚡️');
+console.log(User);
+
+module.exports = Point;

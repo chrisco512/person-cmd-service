@@ -1,5 +1,5 @@
 const validateCommand = require('./point_increment.cmd.validator');
-const createEvent = require('./point_increment.event.creator');
+const createEvent = require('./point_incremented.event.creator');
 const dispatchEvent = require('../../common/dispatch_event.chainable');
 const persistEvent = require('../../common/persist_event.chainable');
 const publishEvent = require('../../common/publish_event.chainable');
