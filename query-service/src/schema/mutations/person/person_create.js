@@ -1,6 +1,6 @@
 const {
   GraphQLNonNull,
-  GraphQLInt,
+  GraphQLFloat,
   GraphQLString
 } = require('graphql');
 
@@ -13,7 +13,7 @@ const PERSON_CREATE = {
   args: {
     email: {type: new GraphQLNonNull(GraphQLString)},
     carrier: {type: CarrierEnum},
-    phone: {type: new GraphQLNonNull(GraphQLInt)},
+    phone: {type: new GraphQLNonNull(GraphQLFloat)},
     firstName: {type: new GraphQLNonNull(GraphQLString)},
   	lastName: {type: new GraphQLNonNull(GraphQLString)}
   },

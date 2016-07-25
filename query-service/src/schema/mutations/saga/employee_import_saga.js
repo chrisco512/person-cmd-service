@@ -1,24 +1,13 @@
-const {
-  GraphQLNonNull,
-  GraphQLInt,
-  GraphQLString,
-  GraphQLObjectType
-} = require('graphql');
 const fs = require('fs');
-const axios = require('axios');
-const FormData = require('form-data');
 const { EmployeeImportSaga } = require('../../types');
 const request = require('request');
+const log = require('../../../log');
 
 const EMPLOYEE_IMPORT_SAGA = {
   type: EmployeeImportSaga,
   description: 'Imports Employees CSV and sends `command.EMPLOYEE_IMPORT_SAGA` a multipart form with csvFile and tenantId fields are expected.',
-  resolve: (rootValue, args) => {
-    const type = 'command.EMPLOYEE_IMPORT_SAGA';
-
-    // const form = new FormData();
-    // form.append('csvFile', fs.createReadStream(rootValue.request.file.path) );
-    // form.append('tenantId', rootValue.request.body.tenantId);
+  resolve: (rootValue) => {
+    // const type = 'command.EMPLOYEE_IMPORT_SAGA';
 
     const formData = {
       csvFile: fs.createReadStream(rootValue.request.file.path),
@@ -33,7 +22,7 @@ const EMPLOYEE_IMPORT_SAGA = {
     })
       .then(body => JSON.parse(body))
       .then( body => { fs.unlinkSync(rootValue.request.file.path); return body;})
-      .catch( err => { console.log('ERROR');console.log(err); throw err; });
+      .catch( err => { log.error('ERROR'); log.error(err); throw err; });
   }
 };
 

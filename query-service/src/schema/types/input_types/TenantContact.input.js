@@ -1,4 +1,9 @@
-const { GraphQLInputObjectType, GraphQLString, GraphQLInt, GraphQLNonNull } = require('graphql');
+const {
+  GraphQLInputObjectType,
+  GraphQLString,
+  GraphQLFloat,
+  GraphQLNonNull
+} = require('graphql');
 
 const InputTenantContact = new GraphQLInputObjectType({
   name: 'InputTenantContact',
@@ -12,7 +17,7 @@ const InputTenantContact = new GraphQLInputObjectType({
       description: 'Email of the contact for the tenant'
     },
     phone: {
-      type: new GraphQLNonNull(GraphQLInt),
+      type: new GraphQLNonNull(GraphQLFloat),
       description: 'Phone number of the contact for the tenant'
     }
   })

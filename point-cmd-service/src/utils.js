@@ -51,7 +51,6 @@ function* rebuildMeetingsFromEvents() {
 	log.info(`Processed ${eventCounter} events in ${processTime} ms.`);
 
 	eventCursor.close();
-	db.close();
 }
 
 function setupHandlers() {

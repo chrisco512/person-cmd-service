@@ -11,6 +11,7 @@ function tenantEmployeeImportDataCommandHandler(payload) {
 		.then(persistEvent)
 		.then(publishEvent)
 		.catch(function(err) {
+			console.log('ERROR');
 			throw err;
 		});
 }

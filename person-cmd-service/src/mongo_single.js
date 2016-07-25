@@ -7,12 +7,12 @@ let dbInstance;
 function connect() {
 	return new Promise((resolve, reject) => {
 		if (dbInstance !== undefined) {
-			resolve(dbInstance);
+			return resolve(dbInstance);
 		}
 
 		MongoClient.connect(uri, function (err, db) {
 			if(err) {
-				reject(err);
+				return reject(err);
 			}
 
 			if(db) {
