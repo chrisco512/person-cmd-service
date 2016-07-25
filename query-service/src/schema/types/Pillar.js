@@ -22,10 +22,12 @@ const Pillar = new GraphQLObjectType({
       description: 'Array of content ids',
       resolve: (pillar) => {
         const contents = store.getState().contents;
-        return pillar.content.map( (contentId) => {
-          // TODO error check.
+        const joinedContents = pillar.content.map( (contentId) => {
+          // TODO: error check
           return contents.filter(content => content._id === contentId )[0];
         });
+
+        return joinedContents || null;
       }
     },
     isDeleted: {

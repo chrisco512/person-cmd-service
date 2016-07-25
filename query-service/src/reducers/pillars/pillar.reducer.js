@@ -23,7 +23,6 @@ function pillarCreated(pillars, payload) {
 }
 
 function pillarDeleted(pillars, payload) {
-	console.log('pillarDeletedPayload:', payload);
 	const pillarIndex = _.findIndex(pillars, function(i) {
 		return i._id === payload._id;
 	});
@@ -38,7 +37,8 @@ function pillarDeleted(pillars, payload) {
 }
 
 function pillarNameChanged(pillars, payload) {
-	const { pillarName, index } = payload;
+	const { index } = payload;
+	const pillarName = payload.name;
 	const newPillar = Object.assign({}, pillars[index], {
 		name: pillarName
 	});
