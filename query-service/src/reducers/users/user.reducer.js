@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const {
     USER_CREATED,
     MANAGER_ADDED

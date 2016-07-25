@@ -82,7 +82,9 @@ const query = new GraphQLObjectType({
       },
       type: new GraphQLList(User),
       resolve(source, { begin, end }) {
+        // lodash _.sortBy sorts ascending, so we reverse it.
         const orderedUserIds = _.sortBy(store.getState().points, (p) => p.count)
+                                .reverse()
                                 .map( (p) => p.userId);
 
         const subset = orderedUserIds.slice(begin, end);
