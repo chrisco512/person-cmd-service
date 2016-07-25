@@ -12,7 +12,7 @@ function connect() {
 
 		MongoClient.connect(uri, function (err, db) {
 			if(err) {
-				reject(err);
+				return reject(err);
 			}
 
 			if(db) {

@@ -1,5 +1,4 @@
 'use strict';
-const config = require('./config');
 const MongoSingle = require('./mongo_single');
 const store = require('./store/store');
 const log = require('./log');
@@ -33,7 +32,6 @@ function* rebuildMeetingsFromEvents() {
 	log.info('Rebuilding state from events...');
 	let eventCounter = 0;
 
-	const url = config.mongo.uri;
 	const db = yield MongoSingle.connect();
 	const eventCursor = db.collection('events').find();
 

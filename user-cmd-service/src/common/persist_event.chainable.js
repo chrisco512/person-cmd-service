@@ -1,5 +1,4 @@
-//Will be in charge of persisting to mongo
-const config = require('../config');
+// Will be in charge of persisting to mongo
 const log = require('../log');
 const {
   SERVER_ERROR
@@ -18,7 +17,7 @@ function persistEvent(event) {
           .insertOne(event, function(err, r) {
             if (err) {
               log.error('ERROR PERSISTING EVENT: ', event);
-              reject({
+              return reject({
                 type: SERVER_ERROR,
                 err
               });

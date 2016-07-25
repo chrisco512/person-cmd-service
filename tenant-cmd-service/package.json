@@ -30,7 +30,7 @@
     "loglevel": "^1.4.1",
     "loglevel-message-prefix": "^1.1.1",
     "mongo-heartbeat": "^1.1.0",
-    "mongodb": "^2.1.21",
+    "mongodb": "^2.2.4",
     "mongoose": "^4.4.19",
     "node-uuid": "^1.4.7",
     "redux": "^3.5.2",
