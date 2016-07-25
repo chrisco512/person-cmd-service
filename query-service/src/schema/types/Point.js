@@ -1,14 +1,11 @@
-const { GraphQLObjectType, GraphQLFloat } = require('graphql');
-const User = require('./User');
-const store = require('../../store');
+const { GraphQLObjectType, GraphQLFloat, GraphQLString } = require('graphql');
 
 const Point = new GraphQLObjectType({
   name: 'Point',
   fields: () => ({
-    user: {
-      type: User,
-      description: 'User with the points',
-      resolve: (point) => store.getState().users.filter( u => u._id === point.userId )
+    userId: {
+      type: GraphQLString,
+      description: 'User id with the points'
     },
     count: {
       type: GraphQLFloat,
@@ -16,8 +13,5 @@ const Point = new GraphQLObjectType({
     }
   })
 });
-
-console.log('⚡️');
-console.log(User);
 
 module.exports = Point;

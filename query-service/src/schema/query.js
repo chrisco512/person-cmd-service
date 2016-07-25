@@ -72,29 +72,29 @@ const query = new GraphQLObjectType({
         return store.getState().points;
       }
     },
-    // leaderboard: {
-    //   args: {
-    //     begin: {
-    //       type: GraphQLInt,
-    //       defaultValue: 0
-    //     },
-    //     end: { type:new GraphQLNonNull(GraphQLInt)}
-    //   },
-    //   type: new GraphQLList(User),
-    //   resolve(source, { begin, end }) {
-    //     const orderedUserIds = _.sortBy(store.getState().points, (p) => p.count)
-    //                             .map( (p) => p.userId);
-    //
-    //     const subset = orderedUserIds.slice(begin, end);
-    //
-    //     return subset.map( userId =>
-    //         _.find(
-    //           store.getState().users,
-    //           user => user._id === userId
-    //         )
-    //       );
-    //   }
-    // }
+    leaderboard: {
+      args: {
+        begin: {
+          type: GraphQLInt,
+          defaultValue: 0
+        },
+        end: {type: new GraphQLNonNull(GraphQLInt)}
+      },
+      type: new GraphQLList(User),
+      resolve(source, { begin, end }) {
+        const orderedUserIds = _.sortBy(store.getState().points, (p) => p.count)
+                                .map( (p) => p.userId);
+
+        const subset = orderedUserIds.slice(begin, end);
+
+        return subset.map( userId =>
+            _.find(
+              store.getState().users,
+              user => user._id === userId
+            )
+          );
+      }
+    }
   }
 });
 
