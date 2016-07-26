@@ -6,6 +6,7 @@ const {
   GraphQLNonNull
 } = require('graphql');
 const {
+  Analytics,
   Tenant,
   Employee,
   Person,
@@ -22,6 +23,12 @@ const query = new GraphQLObjectType({
   name: 'Query',
   description: 'Root Query',
   fields: {
+    analytics: {
+      type: new GraphQLList(Analytics),
+      resolve() {
+        return store.getState().analytics;
+      }
+    },
     tenants: {
       type: new GraphQLList(Tenant),
       resolve() {
