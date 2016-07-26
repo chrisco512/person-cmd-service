@@ -1,7 +1,22 @@
 const _ = require('lodash');
 
 const {
-	TENANT_EMPLOYEE_DATA_IMPORTED
+	TENANT_CREATED,
+	TENANT_EMPLOYEE_DATA_IMPORTED,
+  PERSON_CREATED,
+  MANAGER_ADDED,
+  USER_CREATED,
+	PERSON_FIRST_NAME_CHANGED,
+	PERSON_LAST_NAME_CHANGED,
+	PERSON_EMAIL_CHANGED,
+	PERSON_PHONE_CHANGED,
+	PERSON_CARRIER_CHANGED,
+	PILLAR_CREATED,
+	PILLAR_DELETED,
+	PILLAR_NAME_CHANGED,
+	POINT_INCREMENTED,
+	POINT_DECREMENTED
+
 	} = require('../../event_types');
 
 function reducer(analytics = {}, action) {
@@ -35,9 +50,6 @@ function reducer(analytics = {}, action) {
 	}
 	return analytics;
 }
-
-// So, a crappy thing about getting analytics like this is that we have to reimplement a lot of
-// reducers and rules.  For instance, user create/delete etc
 
 function noop(analytics, action) {
   return analytics;

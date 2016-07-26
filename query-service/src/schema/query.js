@@ -24,9 +24,10 @@ const query = new GraphQLObjectType({
   description: 'Root Query',
   fields: {
     analytics: {
-      type: new GraphQLList(Analytics),
+      type: Analytics,
       resolve() {
-        return store.getState().analytics;
+        // console.log(store.getState());
+        return { tenantCount: store.getState().tenants.length };
       }
     },
     tenants: {

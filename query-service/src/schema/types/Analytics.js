@@ -3,9 +3,9 @@ const Analytics = new GraphQLObjectType({
   name: 'Analytics',
   description: 'All the stats',
   fields: () => ({
-    employeeCount: {
+    tenantCount: {
       type: GraphQLInt,
-      description: 'The number of employees imported'
+      description: 'The number of tenants'
     }
   })
 });
