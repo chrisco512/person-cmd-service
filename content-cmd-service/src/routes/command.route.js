@@ -1,5 +1,6 @@
 const commandHandler = require('../commands');
-const { VALIDATION_ERROR, SERVER_ERROR } = require('../error_types');
+const log = require('../log');
+const { VALIDATION_ERROR, SERVER_ERROR, BAD_REQUEST } = require('../error_types');
 
 function* commandRoute() {
 	const request = this.request.body;
@@ -11,12 +12,16 @@ function* commandRoute() {
 		status = 200;
 		body = payload;
 	} catch(err) {
+		log.info('ERROR 😡', err);
 		if(err.type === VALIDATION_ERROR) {
 			status = 400;
 			body = err.errors;
 		}
 		if(err.type === SERVER_ERROR) {
 			status = 500;
+		}
+		if(err.type === BAD_REQUEST) {
+			status = 400;
 		}
 	}
 

@@ -1,8 +1,10 @@
+const _ = require('lodash');
 const {
   GraphQLObjectType,
-  GraphQLList
+  GraphQLList,
+  GraphQLInt,
+  GraphQLNonNull
 } = require('graphql');
-
 const {
   Tenant,
   Employee,
@@ -10,7 +12,8 @@ const {
   User,
   Manager,
   Pillar,
-  Content
+  Content,
+  Point
 } = require('./types');
 
 const store = require('../store');
@@ -61,6 +64,37 @@ const query = new GraphQLObjectType({
       type: new GraphQLList(Content),
       resolve() {
         return store.getState().contents;
+      }
+    },
+    points: {
+      type: new GraphQLList(Point),
+      resolve() {
+        return store.getState().points;
+      }
+    },
+    leaderboard: {
+      args: {
+        begin: {
+          type: GraphQLInt,
+          defaultValue: 0
+        },
+        end: {type: new GraphQLNonNull(GraphQLInt)}
+      },
+      type: new GraphQLList(User),
+      resolve(source, { begin, end }) {
+        // lodash _.sortBy sorts ascending, so we reverse it.
+        const orderedUserIds = _.sortBy(store.getState().points, (p) => p.count)
+                                .reverse()
+                                .map( (p) => p.userId);
+
+        const subset = orderedUserIds.slice(begin, end);
+
+        return subset.map( userId =>
+            _.find(
+              store.getState().users,
+              user => user._id === userId
+            )
+          );
       }
     }
   }

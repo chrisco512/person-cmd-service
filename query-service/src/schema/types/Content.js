@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLBoolean } = require('graphql');
 const ContentTypeEnum = require('./ContentTypeEnum');
 // const ContentTypeEnum = require('./enum_types/ContentType.enum');
 
@@ -27,11 +27,11 @@ const ContentData = new GraphQLObjectType({
       description: 'Author of the quote'
     },
     // For type: Lunch
-    fullName: {
+    recipient: {
       type: GraphQLString,
       description: 'Full name of the lunch meeting recipient'
     },
-    position: {
+    recipientPosition: {
       type: GraphQLString,
       description: 'Position of the recipient for the lunch meeting'
     }
@@ -56,6 +56,10 @@ const Content = new GraphQLObjectType({
     data: {
       type: ContentData,
       description: 'All of the different types of data a content can have'
+    },
+    isDeleted: {
+      type: GraphQLBoolean,
+      description: 'Is the content deleted or not?'
     }
   })
 });

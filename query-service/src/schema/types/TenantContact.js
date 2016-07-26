@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLFloat } = require('graphql');
 
 const TenantContact = new GraphQLObjectType({
   name: 'TenantContact',
@@ -12,7 +12,7 @@ const TenantContact = new GraphQLObjectType({
       description: 'Email of the contact for the tenant'
     },
     phone: {
-      type: GraphQLInt,
+      type: GraphQLFloat,
       description: 'Phone number of the contact for the tenant'
     }
   })

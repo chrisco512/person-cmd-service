@@ -1,8 +1,27 @@
 version: '2'
 services:
+
   kong:
+    restart: always
+    image: mashape/kong
+    networks:
+      - main
     ports:
       - "8000:80"
+
+  kongfig:
+    depends_on:
+      - kong
+    build:
+      context: .
+      dockerfile: ./kongfig_fix/kongfig.Dockerfile
+    networks:
+      - main
+
+  kong-database:
+    image: cassandra:2.2.1
+    networks:
+      - main
 
   query-service:
     environment:
@@ -35,6 +54,10 @@ services:
         - NODE_ENV production
       command: npm run start:prod
   content-cmd:
+      environment:
+        - NODE_ENV production
+      command: npm run start:prod
+  point-cmd:
       environment:
         - NODE_ENV production
       command: npm run start:prod

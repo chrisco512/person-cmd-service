@@ -54,6 +54,12 @@ services:
     networks:
       - main
 
+  point-cmd:
+    image: node:6
+    restart: always
+    networks:
+      - main
+
   mongo:
     networks:
       - main
@@ -63,28 +69,6 @@ services:
     networks:
       - main
     image: rabbitmq
-
-  kong:
-    restart: always
-    image: mashape/kong
-    networks:
-      - main
-    ports:
-      - "8000:8000"
-
-  kongfig:
-    depends_on:
-      - kong
-    build:
-      context: .
-      dockerfile: ./kongfig_fix/kongfig.Dockerfile
-    networks:
-      - main
-
-  kong-database:
-    image: cassandra:2.2.1
-    networks:
-      - main
 
 networks:
   main:

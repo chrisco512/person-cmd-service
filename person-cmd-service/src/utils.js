@@ -1,5 +1,4 @@
 'use strict';
-const config = require('./config');
 const MongoSingle = require('./mongo_single');
 const MongoHeartbeat = require('mongo-heartbeat');
 const store = require('./store');

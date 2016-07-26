@@ -1,6 +1,7 @@
 const store = require('../../store/store');
-const { unique, required, email, uuid, minLength, integer, createValidator, valueExistsInCollection } = require('validations');
+const { required, uuid, minLength, createValidator, valueExistsInCollection } = require('validations');
 const { VALIDATION_ERROR } = require('../../error_types');
+const log = require('../../log');
 
 const validateContent = createValidator({
 	_id: [required, valueExistsInCollection, uuid],

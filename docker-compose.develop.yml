@@ -1,14 +1,5 @@
 version: '2'
 services:
-  kong:
-    container_name: kong
-
-  kongfig:
-    container_name: kongfig
-
-  kong-database:
-    container_name: kong-db
-
   query-service:
     container_name: query-service
     environment:
@@ -110,6 +101,17 @@ services:
       - "8011:80"
     command: npm run start:dev
     working_dir: /app
+
+  point-cmd:
+    container_name: point-cmd
+    environment:
+      - NODE_ENV development
+    volumes:
+      - ./point-cmd-service:/app
+    ports:
+      - "8012:80"
+    command: npm run start:dev
+    working_dir: /app/src
 
   mongo:
     container_name: mongo

@@ -2,7 +2,7 @@
 module.exports = function* pageNotFound(next) {
 	yield next;
 
-	if (this.status != 404) return;
+	if (this.status != 404) return; // eslint-disable-line
 
 	// we need to explicitly set 404 here
 	// so that koa doesn't assign 200 on body=
