@@ -24,7 +24,7 @@ const PILLAR_DELETE = {
     };
     return axios.post('http://pillar-cmd/', body)
                 .then( res => res.data)
-                .catch(err => { throw err.data; });
+                .catch(res => {throw JSON.stringify(res.data); });
   }
 };
 

@@ -25,7 +25,7 @@ const TENANT_CREATE = {
     };
     return axios.post('http://tenant-cmd/', body)
                 .then( res => res.data )
-                .catch(err => { log.error('💥 TENANT_CREATE ERROR ', err.data); throw err.data; });
+                .catch(res => {throw JSON.stringify(res.data); });
   }
 };
 

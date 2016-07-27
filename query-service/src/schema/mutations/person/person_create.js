@@ -26,7 +26,7 @@ const PERSON_CREATE = {
     };
     return axios.post('http://person-cmd/', body)
                 .then( res => res.data )
-                .catch(res => { throw res.data; });
+                .catch(res => {throw JSON.stringify(res.data); });
   }
 };
 

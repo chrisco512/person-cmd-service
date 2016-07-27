@@ -21,15 +21,7 @@ app.use('/graphql', multer({
 app.use('/graphql', graphqlHTTP( request => ({
     schema,
     graphiql: true,
-    rootValue: { request },
-    formatError: err => {
-      if(err.originalError) {
-        return { message: err };
-      } else {
-        return { message: err.message, locations: err.locations };
-      }
-
-    }
+    rootValue: { request }
 })));
 
 module.exports = app;

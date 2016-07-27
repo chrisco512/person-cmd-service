@@ -22,7 +22,7 @@ const EMPLOYEE_IMPORT_SAGA = {
     })
       .then(body => JSON.parse(body))
       .then( body => { fs.unlinkSync(rootValue.request.file.path); return body;})
-      .catch( err => { log.error('ERROR'); log.error(err); throw err; });
+      .catch( err => { log.error('ERROR'); log.error(err); throw JSON.stringify(err); });
   }
 };
 

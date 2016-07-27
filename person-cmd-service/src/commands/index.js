@@ -36,7 +36,6 @@ function commandHandler(command) {
 		default:
 			throw { type: INVALID_COMMAND };
 	}
-	//TODO: Handle case where command not found
 }
 
 module.exports = commandHandler;

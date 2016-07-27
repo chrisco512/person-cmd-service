@@ -20,7 +20,7 @@ const POINT_DECREMENT = {
     };
     return axios.post('http://point-cmd/', body)
                 .then( res => res.data)
-                .catch(err => { throw err.data; });
+                .catch(res => {throw JSON.stringify(res.data); });
   }
 };
 

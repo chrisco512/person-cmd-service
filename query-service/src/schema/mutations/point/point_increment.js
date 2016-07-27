@@ -22,7 +22,7 @@ const POINT_INCREMENT = {
     };
     return axios.post('http://point-cmd/', body)
                 .then( res => res.data)
-                .catch(err => { throw err.data; });
+                .catch(res => {throw JSON.stringify(res.data); });
   }
 };
 

@@ -5,6 +5,7 @@ const {
   GraphQLNonNull,
 } = require('graphql');
 const Point = require('./Point');
+const Person = require('./Person');
 
 const User = new GraphQLObjectType({
   name: 'User',
@@ -26,9 +27,11 @@ const User = new GraphQLObjectType({
       type: GraphQLString,
       description: 'Auth0Id of the User'
     },
-    personId: {
-      type: GraphQLString,
-      description: 'PersonId of the User'
+    person: {
+      type: Person,
+      description: 'The Person associated with the user',
+      resolve: (user) =>
+        store.getState().persons.filter( p => p._id === user.personId)[0] || null
     },
     points: {
       type: Point,

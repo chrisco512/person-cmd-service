@@ -24,7 +24,7 @@ const PILLAR_NAME_CHANGE = {
     };
     return axios.post('http://pillar-cmd/', body)
                 .then( res => res.data )
-                .catch(res => { throw res.data; });
+                .catch(res => {throw JSON.stringify(res.data); });
   }
 };
 

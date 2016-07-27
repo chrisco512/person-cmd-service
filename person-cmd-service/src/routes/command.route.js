@@ -13,6 +13,7 @@ function* commandRoute() {
 	} catch(err) {
 		if(err.type === VALIDATION_ERROR) {
 			status = 400;
+			console.log('😡', err);
 			body = err.errors;
 		}
 		if(err.type === SERVER_ERROR) {
