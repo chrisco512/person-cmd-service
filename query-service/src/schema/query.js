@@ -26,8 +26,22 @@ const query = new GraphQLObjectType({
     analytics: {
       type: Analytics,
       resolve() {
-        // console.log(store.getState());
-        return { tenantCount: store.getState().tenants.length };
+        console.log(store.getState());
+        return {
+          tenantCount: store.getState().tenants.length,
+          userCount: store.getState().users.length,
+          managerCount: store.getState().users.filter((user) => {
+            return user.roles.includes('manager');
+          }).length,
+          employeeCount: store.getState().users.length - store.getState().users.filter((user) => {
+            return user.roles.includes('employee');
+          }).length,
+          totalPoints: store.getState().points.reduce((acc, x) => {
+            return acc + x.count;
+          }, 0),
+          pillarCount: store.getState().pillars.length
+          // contentCount: store.getState().contents.length
+         };
       }
     },
     tenants: {

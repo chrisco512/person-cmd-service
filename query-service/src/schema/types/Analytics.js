@@ -6,6 +6,30 @@ const Analytics = new GraphQLObjectType({
     tenantCount: {
       type: GraphQLInt,
       description: 'The number of tenants'
+    },
+    userCount: {
+      type: GraphQLInt,
+      description: 'The number of daily active users'
+    },
+    managerCount: {
+      type: GraphQLInt,
+      description: 'The number of managers'
+    },
+    employeeCount: {
+      type: GraphQLInt,
+      description: 'The number of employees'
+    },
+    totalPoints: {
+      type: GraphQLInt,
+      description: 'The total number of points'
+    },
+    pillarCount: {
+      type: GraphQLInt,
+      description: 'The number of pillars'
+    },
+    contentCount: {
+      type: GraphQLInt,
+      description: 'The number of contents'
     }
   })
 });
