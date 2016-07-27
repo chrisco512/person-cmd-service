@@ -1,12 +1,10 @@
+const _ = require('lodash');
 const {
 	CONTENT_CREATED,
 	CONTENT_DELETED
-} = require('../../commands/event_types');
-const log = require('../../log');
-const _ = require('lodash');
+} = require('../../event_types');
 
 function reducer(contents = [], action ) {
-	log.info('IN CONTENT REDUCER 👷');
 	switch(action.type) {
 		case CONTENT_CREATED:
 			return contentCreated(contents, action.payload);
@@ -22,11 +20,9 @@ function contentCreated(contents, payload) {
 }
 
 function contentDeleted(contents, payload) {
-	const contentIndex = _.findIndex(contents, function(i) {
-		return i._id === payload._id;
-	});
+	const contentIndex = _.findIndex(contents, (content) => content._id === payload._id);
 	const newContent = Object.assign({}, contents[contentIndex], {
-		 isDeleted: true
+		isDeleted: true
 	});
 	return [
 		...contents.slice(0, contentIndex),

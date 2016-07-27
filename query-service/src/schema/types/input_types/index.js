@@ -1,3 +1,4 @@
 module.exports = {
-  InputTenantContact: require('./TenantContact.input')
+  InputTenantContact: require('./TenantContact.input'),
+  InputContentData: require('./ContentData.input')
 };

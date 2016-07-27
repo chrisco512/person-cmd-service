@@ -10,7 +10,8 @@ const ObjectTypes = {
   EmployeeImportSaga: require('./EmployeeImportSaga'),
   Pillar: require('./Pillar'),
   Content: require('./Content'),
-  Point: require('./Point')
+  Point: require('./Point'),
+  ContentData: require('./ContentData')
 };
 
 const InputTypes = require('./input_types');

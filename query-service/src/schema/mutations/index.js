@@ -4,6 +4,7 @@ const TENANT = require('./tenant');
 const SAGA = require('./saga');
 const POINT = require('./point');
 const PILLAR = require('./pillar');
+const CONTENT = require('./content');
 
 module.exports = {
   USER_CREATE: USER.CREATE,
@@ -19,5 +20,7 @@ module.exports = {
   POINT_DECREMENT: POINT.DECREMENT,
   PILLAR_CREATE: PILLAR.CREATE,
   PILLAR_DELETE: PILLAR.DELETE,
-  PILLAR_NAME_CHANGE: PILLAR.NAME_CHANGE
+  PILLAR_NAME_CHANGE: PILLAR.NAME_CHANGE,
+  CONTENT_CREATE: CONTENT.CREATE,
+  CONTENT_DELETE: CONTENT.DELETE
 };
