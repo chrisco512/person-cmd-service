@@ -19,11 +19,11 @@ function reducer(points = [], action ) {
 }
 
 function incrementPoints(points, payload) {
-	const index = _.findIndex(points, (p) => p._id === payload._id);
+	const index = _.findIndex(points, (p) => p.userId === payload.userId);
 	if(index < 0) { throw new Error('Point does not exist!'); }
 
 	const newPoint = Object.assign({}, points[index], {
-		pointCount: points[index] + payload.count
+		pointCount: points[index].count + payload.count
 	});
 
 	return [
@@ -34,11 +34,11 @@ function incrementPoints(points, payload) {
 }
 
 function decrementPoints(points, payload) {
-	const index = _.findIndex(points, (p) => p._id === payload._id);
+	const index = _.findIndex(points, (p) => p.userId === payload.userId);
 	if(index < 0) { throw new Error('Point does not exist!'); }
 
 	const newPoint = Object.assign({}, points[index], {
-		pointCount: points[index] - payload.count
+		pointCount: points[index].count - payload.count
 	});
 
 	return [

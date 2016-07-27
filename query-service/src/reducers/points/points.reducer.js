@@ -1,17 +1,17 @@
 const _ = require('lodash');
 const {
 	USER_CREATED,
-	POINTS_INCREMENTED,
-	POINTS_DECREMENTED
+	POINT_INCREMENTED,
+	POINT_DECREMENTED
 } = require('../../event_types');
 
 function reducer(points = [], action ) {
 	switch(action.type) {
 		case USER_CREATED:
 			return [ ...points, { userId: action.payload._id, count: 0 }];
-		case POINTS_INCREMENTED:
+		case POINT_INCREMENTED:
 			return incrementPoints(points, action.payload);
-		case POINTS_DECREMENTED:
+		case POINT_DECREMENTED:
 			return decrementPoints(points, action.payload);
 		default:
 			return points;
@@ -19,11 +19,11 @@ function reducer(points = [], action ) {
 }
 
 function incrementPoints(points, payload) {
-	const index = _.findIndex(points, (p) => p._id === payload._id);
+	const index = _.findIndex(points, (p) => p.userId === payload.userId);
 	if(index < 0) { throw new Error('Point does not exist!'); }
 
 	const newPoint = Object.assign({}, points[index], {
-		count: points[index] + payload.count
+		count: points[index].count + payload.count
 	});
 
 	return [
@@ -34,11 +34,11 @@ function incrementPoints(points, payload) {
 }
 
 function decrementPoints(points, payload) {
-	const index = _.findIndex(points, (p) => p._id === payload._id);
+	const index = _.findIndex(points, (p) => p.userId === payload.userId);
 	if(index < 0) { throw new Error('Point does not exist!'); }
 
 	const newPoint = Object.assign({}, points[index], {
-		count: points[index] - payload.count
+		count: points[index].count - payload.count
 	});
 
 	return [

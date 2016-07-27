@@ -32,21 +32,13 @@ const User = new GraphQLObjectType({
     },
     points: {
       type: Point,
-      resolve: (user) => store.getState().points.filter( p => p.userId === user._id)
+      resolve: (user) =>
+        store.getState().points.filter( p => p.userId === user._id)[0] || null
     },
     manager: {
       type: User,
-      resolve: (user) => {
-        const manager = store.getState().users.filter((u) => {
-          return u._id === user.managerId;
-        });
-
-        if(manager.length > 0) {
-          return manager[0];
-        }
-
-        return null;
-      }
+      resolve: (user) =>
+        store.getState().users.filter( u => u._id === user.managerId )[0] || null
     },
     companyIdentifier: {
       type: GraphQLString,
