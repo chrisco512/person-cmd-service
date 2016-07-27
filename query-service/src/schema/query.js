@@ -39,8 +39,8 @@ const query = new GraphQLObjectType({
           totalPoints: store.getState().points.reduce((acc, x) => {
             return acc + x.count;
           }, 0),
-          pillarCount: store.getState().pillars.length
-          // contentCount: store.getState().contents.length
+          pillarCount: store.getState().pillars.length,
+          contentCount: 0//store.getState().contents.length
          };
       }
     },
