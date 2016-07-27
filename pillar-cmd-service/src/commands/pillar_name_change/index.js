@@ -13,6 +13,7 @@ function pillarNameChangeCommandHandler(payload) {
 		.then(persistEvent)
 		.then(publishEvent)
 		.catch(function(err) {
+			log.error('💥', err);
 			throw err;
 		});
 }

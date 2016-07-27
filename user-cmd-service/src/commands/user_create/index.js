@@ -12,7 +12,7 @@ function userCreateCommandHandler(payload) {
     .then(persistEvent)
     .then(publishEvent)
     .catch(function(err) {
-      log.error('💥 ERROR ', err);
+      log.error('💥', err);
       throw err;
     });
 }
