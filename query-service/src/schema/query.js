@@ -31,16 +31,16 @@ const query = new GraphQLObjectType({
           tenantCount: store.getState().tenants.length,
           userCount: store.getState().users.length,
           managerCount: store.getState().users.filter((user) => {
-            return user.roles.includes('manager');
+            return user.roles && user.roles.includes('manager');
           }).length,
           employeeCount: store.getState().users.length - store.getState().users.filter((user) => {
-            return user.roles.includes('employee');
+            return user.roles && user.roles.includes('employee');
           }).length,
           totalPoints: store.getState().points.reduce((acc, x) => {
             return acc + x.count;
           }, 0),
           pillarCount: store.getState().pillars.length,
-          contentCount: 0//store.getState().contents.length
+          contentCount: store.getState().contents.length
          };
       }
     },
