@@ -1,14 +1,5 @@
 version: '2'
 services:
-  kong:
-    container_name: kong
-
-  kongfig:
-    container_name: kongfig
-
-  kong-database:
-    container_name: kong-db
-
   query-service:
     container_name: query-service
     environment:

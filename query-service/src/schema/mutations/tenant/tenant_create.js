@@ -1,9 +1,9 @@
 const {
   GraphQLNonNull,
-  GraphQLInt,
   GraphQLString
 } = require('graphql');
 
+const log = require('../../../log');
 const axios = require('axios');
 const { Tenant, InputTenantContact } = require('../../types');
 
@@ -17,6 +17,7 @@ const TENANT_CREATE = {
   },
   resolve: (rootValue, args) => {
     const type = 'command.TENANT_CREATE';
+    console.log(args);
 
     const body = {
       type,
@@ -24,7 +25,7 @@ const TENANT_CREATE = {
     };
     return axios.post('http://tenant-cmd/', body)
                 .then( res => res.data )
-                .catch(err => { throw err.data; });
+                .catch(res => {throw JSON.stringify(res.data); });
   }
 };
 

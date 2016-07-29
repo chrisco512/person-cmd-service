@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLNonNull } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLFloat, GraphQLNonNull } = require('graphql');
 const Employee = new GraphQLObjectType({
   name: 'Employee',
   description: 'Employee description',
@@ -16,7 +16,7 @@ const Employee = new GraphQLObjectType({
       description: 'Name of the employee'
     },
     phone: {
-      type: GraphQLInt,
+      type: GraphQLFloat,
       description: 'Phone number of the employee'
     },
     email: {

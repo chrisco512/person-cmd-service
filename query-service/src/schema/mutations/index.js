@@ -3,6 +3,8 @@ const USER = require('./user');
 const TENANT = require('./tenant');
 const SAGA = require('./saga');
 const POINT = require('./point');
+const PILLAR = require('./pillar');
+const CONTENT = require('./content');
 
 module.exports = {
   USER_CREATE: USER.CREATE,
@@ -15,5 +17,10 @@ module.exports = {
   TENANT_CREATE: TENANT.CREATE,
   EMPLOYEE_IMPORT_SAGA: SAGA.EMPLOYEE_IMPORT,
   POINT_INCREMENT: POINT.INCREMENT,
-  POINT_DECREMENT: POINT.DECREMENT
+  POINT_DECREMENT: POINT.DECREMENT,
+  PILLAR_CREATE: PILLAR.CREATE,
+  PILLAR_DELETE: PILLAR.DELETE,
+  PILLAR_NAME_CHANGE: PILLAR.NAME_CHANGE,
+  CONTENT_CREATE: CONTENT.CREATE,
+  CONTENT_DELETE: CONTENT.DELETE
 };

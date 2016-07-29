@@ -6,13 +6,14 @@ const publishEvent = require('../../common/publish_event.chainable');
 const log = require('../../log');
 
 function pillarNameChangeCommandHandler(payload) {
-	log.info('RECEIVED PILLAR NAME CHANGE COMMAND 💃');
+	log.info('RECEIVED PILLAR NAME CHANGE COMMAND 💃', payload);
 	return validateCommand(payload)
 		.then(createEvent)
 		.then(dispatchEvent)
 		.then(persistEvent)
 		.then(publishEvent)
 		.catch(function(err) {
+			log.error('💥', err);
 			throw err;
 		});
 }

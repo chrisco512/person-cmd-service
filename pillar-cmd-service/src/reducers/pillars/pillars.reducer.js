@@ -7,7 +7,7 @@ const {
 } = require('../../commands/event_types');
 
 function reducer(pillars = [], action ) {
-	log.debug('IN PILLAR REDUCER 👷');
+	log.info('IN PILLAR REDUCER 👷');
 	switch(action.type) {
 		case PILLAR_CREATED:
 			return pillarCreated(pillars, action.payload);
@@ -39,14 +39,15 @@ function pillarDeleted(pillars, payload) {
 }
 
 function pillarNameChanged(pillars, payload) {
-	const { pillarName, index } = payload;
+	const { index } = payload;
+	const pillarName = payload.name;
 	const newPillar = Object.assign({}, pillars[index], {
 		name: pillarName
 	});
 	return [
 		...pillars.slice(0, index),
 		newPillar,
-		...pillars.slice(index+1)
+		...pillars.slice(index + 1)
 	];
 }
 

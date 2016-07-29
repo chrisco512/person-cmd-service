@@ -11,12 +11,11 @@ const pointDecrementCommandHandler = require('./point_decrement');
 
 function commandHandler(command) {
 	const { payload } = command;
-
 	switch (command.type) {
 		case POINT_INCREMENT:
-			return pointDecrementCommandHandler(payload);
-		case 	POINT_DECREMENT:
 			return pointIncrementCommandHandler(payload);
+		case 	POINT_DECREMENT:
+			return pointDecrementCommandHandler(payload);
 		default:
 			throw { type: INVALID_COMMAND };
 	}

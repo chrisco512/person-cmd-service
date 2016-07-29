@@ -3,6 +3,7 @@ const createEvent = require('./tenant_created.event.creator');
 const dispatchEvent = require('../../common/dispatch_event.chainable');
 const persistEvent = require('../../common/persist_event.chainable');
 const publishEvent = require('../../common/publish_event.chainable');
+const log = require('../../log');
 
 function tenantCreateCommandHandler(payload) {
 	return validateCommand(payload)
@@ -11,8 +12,7 @@ function tenantCreateCommandHandler(payload) {
 		.then(persistEvent)
 		.then(publishEvent)
 		.catch(function(err) {
-			console.log('ERRRRRRRORRORORORORO');
-			console.log(err);
+			log.error('💥', err);
 			throw err;
 		});
 }

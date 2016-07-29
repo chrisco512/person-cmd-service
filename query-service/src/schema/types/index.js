@@ -1,4 +1,5 @@
 const ObjectTypes = {
+  Analytics: require('./Analytics'),
   Employee: require('./Employee'),
   Person: require('./Person'),
   Tenant: require('./Tenant'),
@@ -10,7 +11,8 @@ const ObjectTypes = {
   EmployeeImportSaga: require('./EmployeeImportSaga'),
   Pillar: require('./Pillar'),
   Content: require('./Content'),
-  Point: require('./Point')
+  Point: require('./Point'),
+  ContentData: require('./ContentData')
 };
 
 const InputTypes = require('./input_types');

@@ -10,7 +10,7 @@ const co = require('co');
 const cors = require('koa-cors');
 const log = require('./log');
 const { rebuildMeetingsFromEvents, setupHandlers, setupHeartbeat } = require('./utils');
-const { commandRoute } = require('./routes');
+const commandRoute = require('./routes');
 const app = module.exports = koa();
 const port = process.env.PORT || config.port || 8080;
 const bus = require('servicebus').bus({ url: `${config.servicebus.uri}?heartbeat=60` });

@@ -6,7 +6,7 @@ if [[ $2 == "linux" ]]; then
   opt='-f ./docker-compose.linux.yml'
 fi
 
-if [[ $3 == "-d" ]]; then
+if [[ $2 == "-d" ]]; then
   opt='$opt -d'
 fi
 

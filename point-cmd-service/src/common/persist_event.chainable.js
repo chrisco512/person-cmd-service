@@ -15,7 +15,7 @@ function persistEvent(event) {
 				  .insertOne(event, function(err, r) {
 					  if(err) {
 						  log.error('ERROR PERSISTING EVENT: ', event);
-						  reject({ type: SERVER_ERROR, err });
+						  return reject({ type: SERVER_ERROR, err });
 					  }
 
 					  log.debug('Persisted event: ', r.ops[0]);

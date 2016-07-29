@@ -3,7 +3,6 @@ const User = require('./User');
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt,
   GraphQLNonNull,
   GraphQLList
 } = require('graphql');
