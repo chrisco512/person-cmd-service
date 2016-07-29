@@ -133,7 +133,9 @@ const USER_CREATE = ({ email, role, tenantId, auth0Id, personId, companyIdentifi
       role
       tenantId
       auth0Id
-      personId
+      person {
+        _id
+      }
       companyIdentifier
       email
     }
@@ -141,7 +143,7 @@ const USER_CREATE = ({ email, role, tenantId, auth0Id, personId, companyIdentifi
 `);
 let users = [
   {
-    email: 'benjamin_diugiud@us.com',
+    email: 'benjamin_diuguid@us.com',
     role: 'employee',
     tenantId: 'REPLACE',
     auth0Id: 'FAKE LOL',
@@ -308,27 +310,28 @@ co(function* () {
 
 
     // ***************  USERS  ***************
-    users = users.map( (u, index) => {
-      u.personId = personMutations[index]._id;
+    users = users.map( u => {
+      u.personId = personMutations.filter(p => p.email === u.email )[0]._id;
       u.tenantId = tenantId;
       return u;
     });
     const userQueries = users.map(USER_CREATE);
     const userMutations = yield Promise.all( userQueries.map(fetchQuery) );
-    console.log(userMutations);
 
 
     // ***************  POINTS  ***************
     points = points.map( (p, index) => {
-      p.userId = userMutations[index]._id;
+      p.userId = userMutations[index]._id; // Assign points randomly :)
       return p;
     });
     const pointQueries = points.map(POINT_INCREMENT);
     const pointMutations = yield Promise.all( pointQueries.map(fetchQuery) );
 
+    console.log(' 👍  Success 👍 ');
+
   } catch(e) {
     console.log('💥 ERROR');
     console.log(e);
+    console.log(e.response.data);
   }
-
 });
