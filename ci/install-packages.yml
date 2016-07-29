@@ -1,0 +1,17 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source: {repository: node, tag: "6"}
+inputs:
+  - name: culture-develop
+outputs:
+  - name: culture
+run:
+  path: sh
+  args:
+    - -exec
+    - |
+      cp -r culture-develop/* ./culture/
+      cd culture
+      ./install_all

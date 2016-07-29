@@ -7,66 +7,72 @@ resources:
       branch: ci
       private_key: {{bitbucket-key}}
 jobs:
-  - name: test-communication
-    serial_groups: [tests]
+  - name: get-packages
     plan:
       - get: culture-develop
+        trigger: true
+      - task: install-package
+        file: culture-develop/ci/install-packages.yml
+  - name: test-communication
+    plan:
+      - get: culture-develop
+        passed: [get-packages]
         trigger: true
       - task: test
         file: culture-develop/communication-service/communication-test.yml
   - name: test-content-cmd
-    serial_groups: [tests]
     plan:
       - get: culture-develop
+        passed: [get-packages]
         trigger: true
       - task: test
         file: culture-develop/content-cmd-service/content-cmd-test.yml
   - name: test-person-cmd
-    serial_groups: [tests]
     plan:
       - get: culture-develop
+        passed: [get-packages]
         trigger: true
       - task: test
         file: culture-develop/person-cmd-service/person-cmd-test.yml
   - name: test-pillar-cmd
-    serial_groups: [tests]
     plan:
       - get: culture-develop
+        passed: [get-packages]
         trigger: true
       - task: test
         file: culture-develop/pillar-cmd-service/pillar-cmd-test.yml
   - name: test-query
-    serial_groups: [tests]
     plan:
       - get: culture-develop
+        passed: [get-packages]
         trigger: true
       - task: test
         file: culture-develop/query-service/query-test.yml
   - name: test-saga
-    serial_groups: [tests]
     plan:
       - get: culture-develop
+        passed: [get-packages]
         trigger: true
       - task: test
         file: culture-develop/saga-service/saga-test.yml
   - name: test-tenant-cmd
-    serial_groups: [tests]
     plan:
       - get: culture-develop
+        passed: [get-packages]
         trigger: true
       - task: test
         file: culture-develop/tenant-cmd-service/tenant-cmd-test.yml
   - name: test-user-cmd
-    serial_groups: [tests]
     plan:
       - get: culture-develop
+        passed: [get-packages]
         trigger: true
       - task: test
         file: culture-develop/user-cmd-service/user-cmd-test.yml
   - name: test-websocket
-    serial_groups: [tests]
     plan:
       - get: culture-develop
+        passed: [get-packages]
         trigger: true
       - task: test
         file: culture-develop/websocket-service/websocket-test.yml
