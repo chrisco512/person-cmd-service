@@ -11,7 +11,6 @@ const PILLAR_NAME_CHANGE = {
   type: Pillar,
   description: 'sends `command.PILLAR_NAME_CHANGE`',
   args: {
-    // _id: {type: new GraphQLNonNull(GraphQLString)},
     index: {type: new GraphQLNonNull(GraphQLInt)},
     name: {type: new GraphQLNonNull(GraphQLString)}
   },

@@ -1,7 +1,9 @@
 const _ = require('lodash');
 const {
 	CONTENT_CREATED,
-	CONTENT_DELETED
+	CONTENT_DELETED,
+	CONTENT_TITLE_CHANGED,
+	CONTENT_DESCRIPTION_CHANGED
 } = require('../../event_types');
 
 function reducer(contents = [], action ) {
@@ -10,6 +12,10 @@ function reducer(contents = [], action ) {
 			return contentCreated(contents, action.payload);
 		case CONTENT_DELETED:
 			return contentDeleted(contents, action.payload);
+		case CONTENT_TITLE_CHANGED:
+			return contentTitleChanged(contents, action.payload);
+		case CONTENT_DESCRIPTION_CHANGED:
+			return contentDescriptionChanged(contents, action.payload);
 		default:
 			return contents;
 	}
@@ -28,6 +34,36 @@ function contentDeleted(contents, payload) {
 		...contents.slice(0, contentIndex),
 		newContent,
 		...contents.slice(contentIndex + 1)
+	];
+}
+
+function contentTitleChanged(contents, payload) {
+	const { index } = payload;
+	const contentTitle = payload.data.title;
+	const newContent = Object.assign({}, contents[index], {
+		data: Object.assign({}, contents[index].data, {
+			title: contentTitle
+		})
+	});
+	return [
+		...contents.slice(0, index),
+		newContent,
+		...contents.slice(index + 1)
+	];
+}
+
+function contentDescriptionChanged(contents, payload) {
+	const { index } = payload;
+	const contentDescription = payload.data.description;
+	const newContent = Object.assign({}, contents[index], {
+		data: Object.assign({}, contents[index].data, {
+			description: contentDescription
+		})
+	});
+	return [
+		...contents.slice(0, index),
+		newContent,
+		...contents.slice(index + 1)
 	];
 }
 
