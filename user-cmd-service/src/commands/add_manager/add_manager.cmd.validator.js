@@ -4,39 +4,39 @@ const { contains, createValidator, required, minLength, integer, email, uuid, va
 const { VALIDATION_ERROR } = require('../../error_types');
 
 const validateCommand = createValidator({
-        userId: [required],
-        roles: [contains('manager')]
+	userId: [required],
+	roles: [contains('manager')]
 }, {
-        userId: {
-                primary: '_id',
-                collection: 'users'
-        }
+	userId: {
+		primary: '_id',
+		collection: 'users'
+	}
 });
 
 function validateAddManagerCommand(payload) {
-        return new Promise((resolve, reject) => {
-                const { users } = store.getState();
+	return new Promise((resolve, reject) => {
+		const { users } = store.getState();
 
-                const user = users.filter((elm) => {
-                        return elm._id === payload.managerId;
-                });
+		const user = users.filter((elm) => {
+			return elm._id === payload.managerId;
+		});
 
-                if(user.length < 1) {
-                        return reject({type: VALIDATION_ERROR, errors: {managerId: 'Invalid User Id'}});
-                }
+		if (user.length < 1) {
+			return reject({type: VALIDATION_ERROR, errors: {managerId: 'Invalid User Id'}});
+		}
 
-                const errors = validateCommand(user[0], null, { users });
+		const errors = validateCommand(user[0], null, {users});
 
-                const isErrors = Object.keys(errors).length;
+		const isErrors = Object.keys(errors).length;
 
-                if(isErrors) {
-                        return reject({ type: VALIDATION_ERROR, errors });
-                }
+		if (isErrors) {
+			return reject({type: VALIDATION_ERROR, errors});
+		}
 
-                console.log('asfasdf');
+		console.log('asfasdf');
 
-                resolve(payload);
-        });
+		resolve(payload);
+	});
 }
 
 module.exports = validateAddManagerCommand;
