@@ -252,35 +252,43 @@ const POINT_INCREMENT = ({ userId, count }) => (`
 let points = [
   {
     userId: 'REPLACE',
-    count: 1000
+    count: 1000,
+    date: "8-1-2016"
   },
   {
     userId: 'REPLACE',
-    count: 100
+    count: 101,
+    date: "8-1-2016"
   },
   {
     userId: 'REPLACE',
-    count: 200
+    count: 200,
+    date: "8-1-2016"
   },
   {
     userId: 'REPLACE',
-    count: 500
+    count: 501,
+    date: "8-2-2016"
   },
   {
     userId: 'REPLACE',
-    count: 300
+    count: 301,
+    date: "8-2-2016"
   },
   {
     userId: 'REPLACE',
-    count: 5000
+    count: 5000,
+    date: "8-2-2016"
   },
   {
     userId: 'REPLACE',
-    count: 50
+    count: 50,
+    date: "8-3-2016"
   },
   {
     userId: 'REPLACE',
-    count: 300
+    count: 303,
+    date: "8-3-2016"
   }
 ];
 

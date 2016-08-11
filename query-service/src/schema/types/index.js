@@ -14,6 +14,7 @@ const ObjectTypes = {
   Point: require('./Point'),
   ContentData: require('./ContentData'),
   RichText: require('./RichText'),
+  PointDate: require('./PointDate'),
 };
 
 const InputTypes = require('./input_types');

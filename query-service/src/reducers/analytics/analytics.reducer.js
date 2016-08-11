@@ -29,7 +29,18 @@ function reducer(analytics = {}, action) {
 
 function rollupPoints(analytics, payload) {
 	// if(!analytics.employeesCreated) analytics.employeesCreated = 0;
-	// analytics.employeesCreated ++;
+	let date = (new Date(payload.date)).toLocaleDateString("en-us");
+
+	let index =  _.findIndex(analytics.pointDates, {date: date})
+	if(index < 0) {
+		analytics.pointDates.push({
+			date: date,
+			count: payload.count,
+		})
+	} else {
+		analytics.pointDates[index].count += payload.count;
+	}
+
 	return analytics;
 }
 

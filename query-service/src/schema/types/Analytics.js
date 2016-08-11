@@ -1,4 +1,6 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLNonNull } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLNonNull } = require('graphql');
+const PointDate = require('./PointDate')
+
 const Analytics = new GraphQLObjectType({
   name: 'Analytics',
   description: 'All the stats',
@@ -30,6 +32,10 @@ const Analytics = new GraphQLObjectType({
     contentCount: {
       type: GraphQLInt,
       description: 'The number of contents'
+    },
+    pointsByDate: {
+      type: new GraphQLList(PointDate),
+      description: 'All the points by date'
     }
   })
 });

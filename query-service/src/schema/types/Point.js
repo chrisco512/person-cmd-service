@@ -10,6 +10,10 @@ const Point = new GraphQLObjectType({
     count: {
       type: GraphQLFloat,
       description: 'The amount of points the user has acquired'
+    },
+    date: {
+      type: GraphQLString,
+      description: 'The date'
     }
   })
 });
