@@ -1,4 +1,5 @@
 const { GraphQLString, GraphQLInputObjectType } = require('graphql');
+const InputRichText = require('./RichText.input');
 
 const InputContentData = new GraphQLInputObjectType({
   name: 'InputContentData',
@@ -32,7 +33,12 @@ const InputContentData = new GraphQLInputObjectType({
     recipientPosition: {
       type: GraphQLString,
       description: 'Position of the recipient for the lunch meeting'
-    }
+    },
+    // For type: Richtext
+    richtext: {
+      type: InputRichText,
+      description: 'Rich Text content'
+    },
   })
 });
 

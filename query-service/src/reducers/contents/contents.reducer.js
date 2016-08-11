@@ -31,6 +31,8 @@ function reducer(contents = [], action ) {
 				return contentDataChanged(contents, action.payload.index, action.payload.data.recipientPosition, 'recipientPosition');
 			case CONTENT_DESCRIPTION_CHANGED:
 				return contentDataChanged(contents, action.payload.index, action.payload.data.description, 'description');
+			case CONTENT_RICHTEXT_CHANGED:
+				return contentDataChanged(contents, action.payload.index, action.payload.data.richtext, 'richtext');
 		default:
 			return contents;
 	}

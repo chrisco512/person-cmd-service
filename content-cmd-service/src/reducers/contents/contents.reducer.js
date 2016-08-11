@@ -7,7 +7,8 @@ const {
 	CONTENT_AUTHOR_CHANGED,
 	CONTENT_RECIPIENT_CHANGED,
 	CONTENT_RECIPIENT_POSITION_CHANGED,
-	CONTENT_DESCRIPTION_CHANGED
+	CONTENT_DESCRIPTION_CHANGED,
+	CONTENT_RICHTEXT_CHANGED,
 } = require('../../commands/event_types');
 const log = require('../../log');
 const _ = require('lodash');
@@ -33,6 +34,8 @@ function reducer(contents = [], action ) {
 			return contentDataChanged(contents, action.payload.index, action.payload.data.recipientPosition, 'recipientPosition');
 		case CONTENT_DESCRIPTION_CHANGED:
 			return contentDataChanged(contents, action.payload.index, action.payload.data.description, 'description');
+		case CONTENT_RICHTEXT_CHANGED:
+			return contentDataChanged(contents, action.payload.index, action.payload.data.richtext, 'richtext');
 		default:
 			return contents;
 	}

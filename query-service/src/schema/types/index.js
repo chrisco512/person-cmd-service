@@ -12,7 +12,8 @@ const ObjectTypes = {
   Pillar: require('./Pillar'),
   Content: require('./Content'),
   Point: require('./Point'),
-  ContentData: require('./ContentData')
+  ContentData: require('./ContentData'),
+  RichText: require('./RichText'),
 };
 
 const InputTypes = require('./input_types');

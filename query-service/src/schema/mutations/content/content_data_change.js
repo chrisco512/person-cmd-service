@@ -31,6 +31,8 @@ const CONTENT_DATA_CHANGE = {
       type = 'command.CONTENT_RECIPIENT_CHANGE';
     } else if (_.findKey(args, 'recipientPosition')) {
       type = 'command.CONTENT_RECIPIENT_POSITION_CHANGE';
+    } else if (_.findKey(args, 'richtext')) {
+      type = 'command.CONTENT_RICHTEXT_CHANGE';
     } else {
       console.log('could not find property');
     }
