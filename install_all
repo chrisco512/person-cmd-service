@@ -7,5 +7,5 @@ do
   echo "RUNNING npm install AT $i"
   cd $i
   [ -e "package.json" ] && npm install
-  cd ..
+  cd ../
 done
