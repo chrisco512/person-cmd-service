@@ -238,37 +238,41 @@ let pillars = [
   }
 ];
 
-const POINT_INCREMENT = ({ userId, count }) => (`
-  mutation {
-    mutation: POINT_INCREMENT(
-      userId: "${userId}"
-      count: ${count}
-    ) {
-      userId
-      count
+const POINT_INCREMENT = ({ userId, count, date }) => {
+  return (`
+    mutation {
+      mutation: POINT_INCREMENT(
+        userId: "${userId}"
+        count: ${count}
+        date: "${date}"
+      ) {
+        userId
+        count
+        date
+      }
     }
-  }
-`);
+  `);
+}
 let points = [
   {
     userId: 'REPLACE',
     count: 1000,
-    date: "8-1-2016"
+    date: "8-20-2016"
   },
   {
     userId: 'REPLACE',
     count: 101,
-    date: "8-1-2016"
+    date: "7-21-2016"
   },
   {
     userId: 'REPLACE',
     count: 200,
-    date: "8-1-2016"
+    date: "2-1-2015"
   },
   {
     userId: 'REPLACE',
     count: 501,
-    date: "8-2-2016"
+    date: "8-2-2014"
   },
   {
     userId: 'REPLACE',

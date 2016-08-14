@@ -2,7 +2,7 @@ const { POINT_INCREMENTED } = require('../event_types');
 const log = require('../../log');
 
 function pointCreated({ userId, count, date }) {
-	log.debug(`${POINT_INCREMENTED}:${count}`);
+	log.debug(`${POINT_INCREMENTED}:${count}:${date}`);
 
 	return {
 		type: POINT_INCREMENTED,

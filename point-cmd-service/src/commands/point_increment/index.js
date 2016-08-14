@@ -5,7 +5,7 @@ const persistEvent = require('../../common/persist_event.chainable');
 const publishEvent = require('../../common/publish_event.chainable');
 const log = require('../../log');
 
-function pointDecrementCommandHandler(payload) {
+function pointIncrementCommandHandler(payload) {
 	return validateCommand(payload)
 		.then(createEvent)
 		.then(dispatchEvent)
@@ -17,4 +17,4 @@ function pointDecrementCommandHandler(payload) {
 		});
 }
 
-module.exports = pointDecrementCommandHandler;
+module.exports = pointIncrementCommandHandler;

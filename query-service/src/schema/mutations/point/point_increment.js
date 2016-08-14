@@ -13,6 +13,7 @@ const POINT_INCREMENT = {
   args: {
     count: {type: new GraphQLNonNull(GraphQLFloat)},
     userId: {type: new GraphQLNonNull(GraphQLString)},
+    date: {type: GraphQLString},
   },
   resolve: (rootValue, args) => {
     const type = 'command.POINT_INCREMENT';

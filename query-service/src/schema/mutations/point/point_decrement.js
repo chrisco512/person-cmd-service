@@ -1,6 +1,7 @@
 const {
   GraphQLNonNull,
-  GraphQLFloat
+  GraphQLFloat,
+  GraphQLString
 } = require('graphql');
 
 const axios = require('axios');
@@ -11,6 +12,8 @@ const POINT_DECREMENT = {
   description: 'Decrements a user\'s point count by a given amount and sends `command.POINT_DECREMENT`',
   args: {
     count: {type: new GraphQLNonNull(GraphQLFloat)},
+    userId: {type: new GraphQLNonNull(GraphQLString)},
+    date: {type: GraphQLString},
   },
   resolve: (rootValue, args) => {
     const type = 'command.POINT_DECREMENT';
