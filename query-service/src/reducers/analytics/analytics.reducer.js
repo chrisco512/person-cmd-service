@@ -29,7 +29,7 @@ function reducer(analytics = {}, action) {
 
 function rollupPoints(analytics, payload) {
 	analytics.pointsByDate = analytics.pointsByDate || [];
-	let date = (new Date(payload.date)).toLocaleDateString("en-us");
+	let date = (new Date(payload.date)).getTime();
 	let index =  _.findIndex(analytics.pointsByDate, {date: date})
 
 	if(index < 0) {

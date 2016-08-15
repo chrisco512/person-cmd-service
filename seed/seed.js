@@ -256,13 +256,13 @@ const POINT_INCREMENT = ({ userId, count, date }) => {
 let points = [
   {
     userId: 'REPLACE',
-    count: 1000,
-    date: "8-20-2016"
+    count: 100,
+    date: "1-20-2016"
   },
   {
     userId: 'REPLACE',
-    count: 101,
-    date: "7-21-2016"
+    count: 201,
+    date: "2-21-2016"
   },
   {
     userId: 'REPLACE',
@@ -271,28 +271,28 @@ let points = [
   },
   {
     userId: 'REPLACE',
-    count: 501,
-    date: "8-2-2014"
-  },
-  {
-    userId: 'REPLACE',
     count: 301,
-    date: "8-2-2016"
+    date: "3-2-2014"
   },
   {
     userId: 'REPLACE',
-    count: 5000,
-    date: "8-2-2016"
+    count: 404,
+    date: "4-2-2016"
   },
   {
     userId: 'REPLACE',
-    count: 50,
-    date: "8-3-2016"
+    count: 500,
+    date: "5-2-2016"
   },
   {
     userId: 'REPLACE',
-    count: 303,
-    date: "8-3-2016"
+    count: 667,
+    date: "6-3-2016"
+  },
+  {
+    userId: 'REPLACE',
+    count: 700,
+    date: "7-3-2016"
   }
 ];
 
@@ -332,8 +332,10 @@ co(function* () {
 
 
     // ***************  POINTS  ***************
+    points = points.concat(points).concat(points).concat(points).concat(points).concat(points)
+
     points = points.map( (p, index) => {
-      p.userId = userMutations[index]._id; // Assign points randomly :)
+      p.userId = userMutations[index % users.length]._id; // Assign points randomly :)
       return p;
     });
     const pointQueries = points.map(POINT_INCREMENT);
