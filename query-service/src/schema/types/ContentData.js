@@ -1,4 +1,5 @@
 const { GraphQLObjectType, GraphQLString } = require('graphql');
+const RichText = require('./RichText');
 
 const ContentData = new GraphQLObjectType({
   name: 'ContentData',
@@ -23,6 +24,11 @@ const ContentData = new GraphQLObjectType({
     author: {
       type: GraphQLString,
       description: 'Author of the quote'
+    },
+    // For type: RichText
+    richtext: {
+      type: RichText,
+      description: 'Rich text data'
     },
     // For type: Lunch
     recipient: {
